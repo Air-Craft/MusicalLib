@@ -57,7 +57,7 @@
     static NSArray *scaleNames;
 
     if (nil == scaleNames) {
-        NSArray *clsArr = [CEObjectiveCRuntime subclassesOfClass:[MusicalScaleAbstract class]];
+        NSArray *clsArr = [MLObjC subclassesOfClass:[MusicalScaleAbstract class]];
         NSMutableArray *tmpArr = [NSMutableArray array];
         
         // Get the name 
@@ -78,7 +78,7 @@
 
     // Init the lookup if needed
     if (nil == scaleClassLookup) {
-        NSArray *clsArr = [CEObjectiveCRuntime subclassesOfClass:[MusicalScaleAbstract class]];
+        NSArray *clsArr = [MLObjC subclassesOfClass:[MusicalScaleAbstract class]];
 //        NSArray *namesArr = [self scaleNamesArray]; // these should be in the same order
         
 //        scaleClassLookup = [NSMutableDictionary dictionaryWithObjects:clsArr forKeys:namesArr];
@@ -156,7 +156,7 @@
     rootNote = [[MusicalNote alloc] initWithNoteName:key andOctave:note.octave];
     
     if (i == NSUIntegerMax) {
-        DLOG(@"This shouldn't be given the previous ops...");
+        MLLOG(@"This shouldn't be given the previous ops...");
         return nil;
     }
     

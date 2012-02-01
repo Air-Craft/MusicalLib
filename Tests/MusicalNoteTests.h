@@ -10,7 +10,6 @@
 //#import <UIKit/UIKit.h>
 
 #import "MusicalNote.h"
-#import "MusicalScale.h"
 #import "MusicalScaleDefinitions.h"
 
 

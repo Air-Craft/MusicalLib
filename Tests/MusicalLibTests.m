@@ -5,9 +5,6 @@
 //  Created by Hari Karam Singh on 08/09/2011.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
-#import "TestsControl.h"
-#if TEST_MUSICAL_LIB == 1
-
 #import "MusicalLibTests.h"
 
 
@@ -102,7 +99,7 @@
                                        scaleKeyString:@"D" 
                             insideRangeFromNoteString:@"Db-1" 
                                          toNoteString:@"F2"];
-    DLOGs([notes.scale isKindOfClass:[MusicalScaleDorian class]]);
+    NSLog(@"%@", [notes.scale isKindOfClass:[MusicalScaleDorian class]]);
     STAssertTrue([notes.scale isMemberOfClass:[MusicalScaleDorian class]],   @"Init from string test failed!");
     STAssertTrue([[[notes noteAtIndex:0] toString] isEqualToString: @"D-1"],   @"Init from string test failed!");
     STAssertTrue([[[notes lastNote] toString] isEqualToString: @"F2"],   @"Init from string test failed!");    
@@ -123,4 +120,3 @@
 
 @end
 
-#endif

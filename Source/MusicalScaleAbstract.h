@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MLConfig.h"
 #import "MusicalNote.h"
-#import "CEObjectiveCRuntime.h"
+#import "MLObjC.h"
 
 
 @interface MusicalScaleAbstract : NSObject {
