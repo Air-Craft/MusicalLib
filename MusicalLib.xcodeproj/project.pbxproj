@@ -9,15 +9,39 @@
 /* Begin PBXBuildFile section */
 		CEDFB98514D968FE00D3CC9D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEDFB98414D968FE00D3CC9D /* UIKit.framework */; };
 		CEDFB98714D968FE00D3CC9D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEDFB98614D968FE00D3CC9D /* Foundation.framework */; };
-		CEDFB98914D968FE00D3CC9D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEDFB98814D968FE00D3CC9D /* CoreGraphics.framework */; };
-		CEDFB98F14D968FE00D3CC9D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEDFB98D14D968FE00D3CC9D /* InfoPlist.strings */; };
-		CEDFB99114D968FE00D3CC9D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB99014D968FE00D3CC9D /* main.m */; };
-		CEDFB99514D968FF00D3CC9D /* MLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB99414D968FF00D3CC9D /* MLAppDelegate.m */; };
 		CEDFB99D14D968FF00D3CC9D /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEDFB99C14D968FF00D3CC9D /* SenTestingKit.framework */; };
 		CEDFB99E14D968FF00D3CC9D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEDFB98414D968FE00D3CC9D /* UIKit.framework */; };
 		CEDFB99F14D968FF00D3CC9D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEDFB98614D968FE00D3CC9D /* Foundation.framework */; };
-		CEDFB9A714D968FF00D3CC9D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEDFB9A514D968FF00D3CC9D /* InfoPlist.strings */; };
-		CEDFB9AA14D968FF00D3CC9D /* MusicalLibTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB9A914D968FF00D3CC9D /* MusicalLibTests.m */; };
+		CEDFB9BB14D96B1000D3CC9D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEDFB9B414D96B1000D3CC9D /* InfoPlist.strings */; };
+		CEDFB9BC14D96B1000D3CC9D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB9B614D96B1000D3CC9D /* main.m */; };
+		CEDFB9BD14D96B1000D3CC9D /* MLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB9B814D96B1000D3CC9D /* MLAppDelegate.m */; };
+		CEDFB9C514D96B1800D3CC9D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEDFB9C014D96B1800D3CC9D /* InfoPlist.strings */; };
+		CEDFB9C714D96B1800D3CC9D /* MusicalLibTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB9C414D96B1800D3CC9D /* MusicalLibTests.m */; };
+		CEDFB9E514D96B4D00D3CC9D /* MusicalNote.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB9CB14D96B4D00D3CC9D /* MusicalNote.m */; };
+		CEDFB9E614D96B4D00D3CC9D /* MusicalNote.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB9CB14D96B4D00D3CC9D /* MusicalNote.m */; };
+		CEDFB9E714D96B4D00D3CC9D /* MusicalNoteSet.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB9CD14D96B4D00D3CC9D /* MusicalNoteSet.m */; };
+		CEDFB9E814D96B4D00D3CC9D /* MusicalNoteSet.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB9CD14D96B4D00D3CC9D /* MusicalNoteSet.m */; };
+		CEDFB9E914D96B4D00D3CC9D /* MusicalScale.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB9CF14D96B4D00D3CC9D /* MusicalScale.m */; };
+		CEDFB9EA14D96B4D00D3CC9D /* MusicalScale.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB9CF14D96B4D00D3CC9D /* MusicalScale.m */; };
+		CEDFB9EB14D96B4D00D3CC9D /* MusicalScaleAbstract.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB9D214D96B4D00D3CC9D /* MusicalScaleAbstract.m */; };
+		CEDFB9EC14D96B4D00D3CC9D /* MusicalScaleAbstract.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB9D214D96B4D00D3CC9D /* MusicalScaleAbstract.m */; };
+		CEDFB9ED14D96B4D00D3CC9D /* MusicalScaleDefinitions.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB9D414D96B4D00D3CC9D /* MusicalScaleDefinitions.m */; };
+		CEDFB9EE14D96B4D00D3CC9D /* MusicalScaleDefinitions.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB9D414D96B4D00D3CC9D /* MusicalScaleDefinitions.m */; };
+		CEDFB9EF14D96B4D00D3CC9D /* MusicalScales.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB9D814D96B4D00D3CC9D /* MusicalScales.m */; };
+		CEDFB9F014D96B4D00D3CC9D /* MusicalScales.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB9D814D96B4D00D3CC9D /* MusicalScales.m */; };
+		CEDFB9F114D96B4D00D3CC9D /* MusicalScalesJazz.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB9DA14D96B4D00D3CC9D /* MusicalScalesJazz.m */; };
+		CEDFB9F214D96B4D00D3CC9D /* MusicalScalesJazz.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB9DA14D96B4D00D3CC9D /* MusicalScalesJazz.m */; };
+		CEDFB9F314D96B4D00D3CC9D /* MusicalScalesModal.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB9DC14D96B4D00D3CC9D /* MusicalScalesModal.m */; };
+		CEDFB9F414D96B4D00D3CC9D /* MusicalScalesModal.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB9DC14D96B4D00D3CC9D /* MusicalScalesModal.m */; };
+		CEDFB9F514D96B4D00D3CC9D /* MusicalScalesNormal.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB9DE14D96B4D00D3CC9D /* MusicalScalesNormal.m */; };
+		CEDFB9F614D96B4D00D3CC9D /* MusicalScalesNormal.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB9DE14D96B4D00D3CC9D /* MusicalScalesNormal.m */; };
+		CEDFB9F714D96B4D00D3CC9D /* MusicalScalesRaagNorthIndia.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB9E014D96B4D00D3CC9D /* MusicalScalesRaagNorthIndia.m */; };
+		CEDFB9F814D96B4D00D3CC9D /* MusicalScalesRaagNorthIndia.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB9E014D96B4D00D3CC9D /* MusicalScalesRaagNorthIndia.m */; };
+		CEDFB9F914D96B4D00D3CC9D /* MusicalScalesRaagSouthIndia.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB9E214D96B4D00D3CC9D /* MusicalScalesRaagSouthIndia.m */; };
+		CEDFB9FA14D96B4D00D3CC9D /* MusicalScalesRaagSouthIndia.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB9E214D96B4D00D3CC9D /* MusicalScalesRaagSouthIndia.m */; };
+		CEDFB9FB14D96B4D00D3CC9D /* MusicalScalesWorld.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB9E414D96B4D00D3CC9D /* MusicalScalesWorld.m */; };
+		CEDFB9FC14D96B4D00D3CC9D /* MusicalScalesWorld.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB9E414D96B4D00D3CC9D /* MusicalScalesWorld.m */; };
+		CEDFB9FF14D96C1300D3CC9D /* MusicalNoteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB9FE14D96C1300D3CC9D /* MusicalNoteTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,18 +59,48 @@
 		CEDFB98414D968FE00D3CC9D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CEDFB98614D968FE00D3CC9D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CEDFB98814D968FE00D3CC9D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		CEDFB98C14D968FE00D3CC9D /* MusicalLib-Info.plist */ = {isa = PBXFileReference; path = "MusicalLib-Info.plist"; sourceTree = "<group>"; };
-		CEDFB98E14D968FE00D3CC9D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		CEDFB99014D968FE00D3CC9D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		CEDFB99214D968FE00D3CC9D /* MusicalLib-Prefix.pch */ = {isa = PBXFileReference; path = "MusicalLib-Prefix.pch"; sourceTree = "<group>"; };
-		CEDFB99314D968FF00D3CC9D /* MLAppDelegate.h */ = {isa = PBXFileReference; path = MLAppDelegate.h; sourceTree = "<group>"; };
-		CEDFB99414D968FF00D3CC9D /* MLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MLAppDelegate.m; sourceTree = "<group>"; };
 		CEDFB99B14D968FF00D3CC9D /* MusicalLibTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusicalLibTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEDFB99C14D968FF00D3CC9D /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		CEDFB9A414D968FF00D3CC9D /* MusicalLibTests-Info.plist */ = {isa = PBXFileReference; path = "MusicalLibTests-Info.plist"; sourceTree = "<group>"; };
-		CEDFB9A614D968FF00D3CC9D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		CEDFB9A814D968FF00D3CC9D /* MusicalLibTests.h */ = {isa = PBXFileReference; path = MusicalLibTests.h; sourceTree = "<group>"; };
-		CEDFB9A914D968FF00D3CC9D /* MusicalLibTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicalLibTests.m; sourceTree = "<group>"; };
+		CEDFB9B514D96B1000D3CC9D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CEDFB9B614D96B1000D3CC9D /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CEDFB9B714D96B1000D3CC9D /* MLAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLAppDelegate.h; sourceTree = "<group>"; };
+		CEDFB9B814D96B1000D3CC9D /* MLAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLAppDelegate.m; sourceTree = "<group>"; };
+		CEDFB9B914D96B1000D3CC9D /* MusicalLib-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MusicalLib-Info.plist"; sourceTree = "<group>"; };
+		CEDFB9BA14D96B1000D3CC9D /* MusicalLib-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MusicalLib-Prefix.pch"; sourceTree = "<group>"; };
+		CEDFB9C114D96B1800D3CC9D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CEDFB9C214D96B1800D3CC9D /* MusicalLibTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MusicalLibTests-Info.plist"; sourceTree = "<group>"; };
+		CEDFB9C314D96B1800D3CC9D /* MusicalLibTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicalLibTests.h; sourceTree = "<group>"; };
+		CEDFB9C414D96B1800D3CC9D /* MusicalLibTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicalLibTests.m; sourceTree = "<group>"; };
+		CEDFB9C914D96B4D00D3CC9D /* MusicalLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicalLib.h; sourceTree = "<group>"; };
+		CEDFB9CA14D96B4D00D3CC9D /* MusicalNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicalNote.h; sourceTree = "<group>"; };
+		CEDFB9CB14D96B4D00D3CC9D /* MusicalNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicalNote.m; sourceTree = "<group>"; };
+		CEDFB9CC14D96B4D00D3CC9D /* MusicalNoteSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicalNoteSet.h; sourceTree = "<group>"; };
+		CEDFB9CD14D96B4D00D3CC9D /* MusicalNoteSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicalNoteSet.m; sourceTree = "<group>"; };
+		CEDFB9CE14D96B4D00D3CC9D /* MusicalScale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicalScale.h; sourceTree = "<group>"; };
+		CEDFB9CF14D96B4D00D3CC9D /* MusicalScale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicalScale.m; sourceTree = "<group>"; };
+		CEDFB9D014D96B4D00D3CC9D /* MusicalScaleAbstract+.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MusicalScaleAbstract+.h"; sourceTree = "<group>"; };
+		CEDFB9D114D96B4D00D3CC9D /* MusicalScaleAbstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicalScaleAbstract.h; sourceTree = "<group>"; };
+		CEDFB9D214D96B4D00D3CC9D /* MusicalScaleAbstract.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicalScaleAbstract.m; sourceTree = "<group>"; };
+		CEDFB9D314D96B4D00D3CC9D /* MusicalScaleDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicalScaleDefinitions.h; sourceTree = "<group>"; };
+		CEDFB9D414D96B4D00D3CC9D /* MusicalScaleDefinitions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicalScaleDefinitions.m; sourceTree = "<group>"; };
+		CEDFB9D514D96B4D00D3CC9D /* MusicalScaleDefintionProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicalScaleDefintionProtocol.h; sourceTree = "<group>"; };
+		CEDFB9D614D96B4D00D3CC9D /* MusicalScaleProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicalScaleProtocol.h; sourceTree = "<group>"; };
+		CEDFB9D714D96B4D00D3CC9D /* MusicalScales.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicalScales.h; sourceTree = "<group>"; };
+		CEDFB9D814D96B4D00D3CC9D /* MusicalScales.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicalScales.m; sourceTree = "<group>"; };
+		CEDFB9D914D96B4D00D3CC9D /* MusicalScalesJazz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicalScalesJazz.h; sourceTree = "<group>"; };
+		CEDFB9DA14D96B4D00D3CC9D /* MusicalScalesJazz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicalScalesJazz.m; sourceTree = "<group>"; };
+		CEDFB9DB14D96B4D00D3CC9D /* MusicalScalesModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicalScalesModal.h; sourceTree = "<group>"; };
+		CEDFB9DC14D96B4D00D3CC9D /* MusicalScalesModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicalScalesModal.m; sourceTree = "<group>"; };
+		CEDFB9DD14D96B4D00D3CC9D /* MusicalScalesNormal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicalScalesNormal.h; sourceTree = "<group>"; };
+		CEDFB9DE14D96B4D00D3CC9D /* MusicalScalesNormal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicalScalesNormal.m; sourceTree = "<group>"; };
+		CEDFB9DF14D96B4D00D3CC9D /* MusicalScalesRaagNorthIndia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicalScalesRaagNorthIndia.h; sourceTree = "<group>"; };
+		CEDFB9E014D96B4D00D3CC9D /* MusicalScalesRaagNorthIndia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicalScalesRaagNorthIndia.m; sourceTree = "<group>"; };
+		CEDFB9E114D96B4D00D3CC9D /* MusicalScalesRaagSouthIndia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicalScalesRaagSouthIndia.h; sourceTree = "<group>"; };
+		CEDFB9E214D96B4D00D3CC9D /* MusicalScalesRaagSouthIndia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicalScalesRaagSouthIndia.m; sourceTree = "<group>"; };
+		CEDFB9E314D96B4D00D3CC9D /* MusicalScalesWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicalScalesWorld.h; sourceTree = "<group>"; };
+		CEDFB9E414D96B4D00D3CC9D /* MusicalScalesWorld.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicalScalesWorld.m; sourceTree = "<group>"; };
+		CEDFB9FD14D96C1300D3CC9D /* MusicalNoteTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicalNoteTests.h; sourceTree = "<group>"; };
+		CEDFB9FE14D96C1300D3CC9D /* MusicalNoteTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicalNoteTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +110,6 @@
 			files = (
 				CEDFB98514D968FE00D3CC9D /* UIKit.framework in Frameworks */,
 				CEDFB98714D968FE00D3CC9D /* Foundation.framework in Frameworks */,
-				CEDFB98914D968FE00D3CC9D /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,8 +129,9 @@
 		CEDFB97514D968FE00D3CC9D = {
 			isa = PBXGroup;
 			children = (
-				CEDFB98A14D968FE00D3CC9D /* MusicalLib */,
-				CEDFB9A214D968FF00D3CC9D /* MusicalLibTests */,
+				CEDFB9B314D96B1000D3CC9D /* Project */,
+				CEDFB9C814D96B4D00D3CC9D /* Source */,
+				CEDFB9BF14D96B1800D3CC9D /* Tests */,
 				CEDFB98314D968FE00D3CC9D /* Frameworks */,
 				CEDFB98114D968FE00D3CC9D /* Products */,
 			);
@@ -103,44 +157,65 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		CEDFB98A14D968FE00D3CC9D /* MusicalLib */ = {
+		CEDFB9B314D96B1000D3CC9D /* Project */ = {
 			isa = PBXGroup;
 			children = (
-				CEDFB99314D968FF00D3CC9D /* MLAppDelegate.h */,
-				CEDFB99414D968FF00D3CC9D /* MLAppDelegate.m */,
-				CEDFB98B14D968FE00D3CC9D /* Supporting Files */,
+				CEDFB9B414D96B1000D3CC9D /* InfoPlist.strings */,
+				CEDFB9B614D96B1000D3CC9D /* main.m */,
+				CEDFB9B714D96B1000D3CC9D /* MLAppDelegate.h */,
+				CEDFB9B814D96B1000D3CC9D /* MLAppDelegate.m */,
+				CEDFB9B914D96B1000D3CC9D /* MusicalLib-Info.plist */,
+				CEDFB9BA14D96B1000D3CC9D /* MusicalLib-Prefix.pch */,
 			);
-			path = MusicalLib;
+			path = Project;
 			sourceTree = "<group>";
 		};
-		CEDFB98B14D968FE00D3CC9D /* Supporting Files */ = {
+		CEDFB9BF14D96B1800D3CC9D /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				CEDFB98C14D968FE00D3CC9D /* MusicalLib-Info.plist */,
-				CEDFB98D14D968FE00D3CC9D /* InfoPlist.strings */,
-				CEDFB99014D968FE00D3CC9D /* main.m */,
-				CEDFB99214D968FE00D3CC9D /* MusicalLib-Prefix.pch */,
+				CEDFB9FD14D96C1300D3CC9D /* MusicalNoteTests.h */,
+				CEDFB9FE14D96C1300D3CC9D /* MusicalNoteTests.m */,
+				CEDFB9C014D96B1800D3CC9D /* InfoPlist.strings */,
+				CEDFB9C214D96B1800D3CC9D /* MusicalLibTests-Info.plist */,
+				CEDFB9C314D96B1800D3CC9D /* MusicalLibTests.h */,
+				CEDFB9C414D96B1800D3CC9D /* MusicalLibTests.m */,
 			);
-			name = "Supporting Files";
+			path = Tests;
 			sourceTree = "<group>";
 		};
-		CEDFB9A214D968FF00D3CC9D /* MusicalLibTests */ = {
+		CEDFB9C814D96B4D00D3CC9D /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				CEDFB9A814D968FF00D3CC9D /* MusicalLibTests.h */,
-				CEDFB9A914D968FF00D3CC9D /* MusicalLibTests.m */,
-				CEDFB9A314D968FF00D3CC9D /* Supporting Files */,
+				CEDFB9C914D96B4D00D3CC9D /* MusicalLib.h */,
+				CEDFB9CA14D96B4D00D3CC9D /* MusicalNote.h */,
+				CEDFB9CB14D96B4D00D3CC9D /* MusicalNote.m */,
+				CEDFB9CC14D96B4D00D3CC9D /* MusicalNoteSet.h */,
+				CEDFB9CD14D96B4D00D3CC9D /* MusicalNoteSet.m */,
+				CEDFB9CE14D96B4D00D3CC9D /* MusicalScale.h */,
+				CEDFB9CF14D96B4D00D3CC9D /* MusicalScale.m */,
+				CEDFB9D014D96B4D00D3CC9D /* MusicalScaleAbstract+.h */,
+				CEDFB9D114D96B4D00D3CC9D /* MusicalScaleAbstract.h */,
+				CEDFB9D214D96B4D00D3CC9D /* MusicalScaleAbstract.m */,
+				CEDFB9D314D96B4D00D3CC9D /* MusicalScaleDefinitions.h */,
+				CEDFB9D414D96B4D00D3CC9D /* MusicalScaleDefinitions.m */,
+				CEDFB9D514D96B4D00D3CC9D /* MusicalScaleDefintionProtocol.h */,
+				CEDFB9D614D96B4D00D3CC9D /* MusicalScaleProtocol.h */,
+				CEDFB9D714D96B4D00D3CC9D /* MusicalScales.h */,
+				CEDFB9D814D96B4D00D3CC9D /* MusicalScales.m */,
+				CEDFB9D914D96B4D00D3CC9D /* MusicalScalesJazz.h */,
+				CEDFB9DA14D96B4D00D3CC9D /* MusicalScalesJazz.m */,
+				CEDFB9DB14D96B4D00D3CC9D /* MusicalScalesModal.h */,
+				CEDFB9DC14D96B4D00D3CC9D /* MusicalScalesModal.m */,
+				CEDFB9DD14D96B4D00D3CC9D /* MusicalScalesNormal.h */,
+				CEDFB9DE14D96B4D00D3CC9D /* MusicalScalesNormal.m */,
+				CEDFB9DF14D96B4D00D3CC9D /* MusicalScalesRaagNorthIndia.h */,
+				CEDFB9E014D96B4D00D3CC9D /* MusicalScalesRaagNorthIndia.m */,
+				CEDFB9E114D96B4D00D3CC9D /* MusicalScalesRaagSouthIndia.h */,
+				CEDFB9E214D96B4D00D3CC9D /* MusicalScalesRaagSouthIndia.m */,
+				CEDFB9E314D96B4D00D3CC9D /* MusicalScalesWorld.h */,
+				CEDFB9E414D96B4D00D3CC9D /* MusicalScalesWorld.m */,
 			);
-			path = MusicalLibTests;
-			sourceTree = "<group>";
-		};
-		CEDFB9A314D968FF00D3CC9D /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				CEDFB9A414D968FF00D3CC9D /* MusicalLibTests-Info.plist */,
-				CEDFB9A514D968FF00D3CC9D /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
+			path = Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,7 +288,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEDFB98F14D968FE00D3CC9D /* InfoPlist.strings in Resources */,
+				CEDFB9BB14D96B1000D3CC9D /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,7 +296,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEDFB9A714D968FF00D3CC9D /* InfoPlist.strings in Resources */,
+				CEDFB9C514D96B1800D3CC9D /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,8 +323,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEDFB99114D968FE00D3CC9D /* main.m in Sources */,
-				CEDFB99514D968FF00D3CC9D /* MLAppDelegate.m in Sources */,
+				CEDFB9BC14D96B1000D3CC9D /* main.m in Sources */,
+				CEDFB9BD14D96B1000D3CC9D /* MLAppDelegate.m in Sources */,
+				CEDFB9E514D96B4D00D3CC9D /* MusicalNote.m in Sources */,
+				CEDFB9E714D96B4D00D3CC9D /* MusicalNoteSet.m in Sources */,
+				CEDFB9E914D96B4D00D3CC9D /* MusicalScale.m in Sources */,
+				CEDFB9EB14D96B4D00D3CC9D /* MusicalScaleAbstract.m in Sources */,
+				CEDFB9ED14D96B4D00D3CC9D /* MusicalScaleDefinitions.m in Sources */,
+				CEDFB9EF14D96B4D00D3CC9D /* MusicalScales.m in Sources */,
+				CEDFB9F114D96B4D00D3CC9D /* MusicalScalesJazz.m in Sources */,
+				CEDFB9F314D96B4D00D3CC9D /* MusicalScalesModal.m in Sources */,
+				CEDFB9F514D96B4D00D3CC9D /* MusicalScalesNormal.m in Sources */,
+				CEDFB9F714D96B4D00D3CC9D /* MusicalScalesRaagNorthIndia.m in Sources */,
+				CEDFB9F914D96B4D00D3CC9D /* MusicalScalesRaagSouthIndia.m in Sources */,
+				CEDFB9FB14D96B4D00D3CC9D /* MusicalScalesWorld.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,7 +344,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEDFB9AA14D968FF00D3CC9D /* MusicalLibTests.m in Sources */,
+				CEDFB9C714D96B1800D3CC9D /* MusicalLibTests.m in Sources */,
+				CEDFB9E614D96B4D00D3CC9D /* MusicalNote.m in Sources */,
+				CEDFB9E814D96B4D00D3CC9D /* MusicalNoteSet.m in Sources */,
+				CEDFB9EA14D96B4D00D3CC9D /* MusicalScale.m in Sources */,
+				CEDFB9EC14D96B4D00D3CC9D /* MusicalScaleAbstract.m in Sources */,
+				CEDFB9EE14D96B4D00D3CC9D /* MusicalScaleDefinitions.m in Sources */,
+				CEDFB9F014D96B4D00D3CC9D /* MusicalScales.m in Sources */,
+				CEDFB9F214D96B4D00D3CC9D /* MusicalScalesJazz.m in Sources */,
+				CEDFB9F414D96B4D00D3CC9D /* MusicalScalesModal.m in Sources */,
+				CEDFB9F614D96B4D00D3CC9D /* MusicalScalesNormal.m in Sources */,
+				CEDFB9F814D96B4D00D3CC9D /* MusicalScalesRaagNorthIndia.m in Sources */,
+				CEDFB9FA14D96B4D00D3CC9D /* MusicalScalesRaagSouthIndia.m in Sources */,
+				CEDFB9FC14D96B4D00D3CC9D /* MusicalScalesWorld.m in Sources */,
+				CEDFB9FF14D96C1300D3CC9D /* MusicalNoteTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,18 +372,18 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		CEDFB98D14D968FE00D3CC9D /* InfoPlist.strings */ = {
+		CEDFB9B414D96B1000D3CC9D /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				CEDFB98E14D968FE00D3CC9D /* en */,
+				CEDFB9B514D96B1000D3CC9D /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		CEDFB9A514D968FF00D3CC9D /* InfoPlist.strings */ = {
+		CEDFB9C014D96B1800D3CC9D /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				CEDFB9A614D968FF00D3CC9D /* en */,
+				CEDFB9C114D96B1800D3CC9D /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -340,8 +440,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MusicalLib/MusicalLib-Prefix.pch";
-				INFOPLIST_FILE = "MusicalLib/MusicalLib-Info.plist";
+				GCC_PREFIX_HEADER = "Project/MusicalLib-Prefix.pch";
+				INFOPLIST_FILE = "Project/MusicalLib-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -351,8 +451,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MusicalLib/MusicalLib-Prefix.pch";
-				INFOPLIST_FILE = "MusicalLib/MusicalLib-Info.plist";
+				GCC_PREFIX_HEADER = "Project/MusicalLib-Prefix.pch";
+				INFOPLIST_FILE = "Project/MusicalLib-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -368,7 +468,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MusicalLib/MusicalLib-Prefix.pch";
-				INFOPLIST_FILE = "MusicalLibTests/MusicalLibTests-Info.plist";
+				INFOPLIST_FILE = "Tests/MusicalLibTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
@@ -385,7 +485,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MusicalLib/MusicalLib-Prefix.pch";
-				INFOPLIST_FILE = "MusicalLibTests/MusicalLibTests-Info.plist";
+				INFOPLIST_FILE = "Tests/MusicalLibTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
