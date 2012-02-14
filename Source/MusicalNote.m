@@ -1,6 +1,6 @@
 //
 //  Note.m
-//  AirPluckHarp
+//  SoundWand
 //
 //  Created by Hari Karam Singh on 07/08/2011.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
