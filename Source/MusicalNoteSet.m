@@ -97,19 +97,18 @@
     return notesArray;
 }
 
-/**********************************************************************************************************************/
-#pragma mark -
-#pragma mark Publics
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Public API
+/////////////////////////////////////////////////////////////////////////
 
 - (MusicalNote *)noteAtIndex:(NSUInteger)theIdx
 {
-    if (theIdx >= [self.notesArray count])
-        return nil;
-            
+    NSAssert(theIdx < [self.notesArray count], @"Note idx %i out of range (max: %i)", theIdx, [self.notesArray count] - 1);
+           
     return [self.notesArray objectAtIndex:theIdx];
 }
 
-/**********************************************************************/
+/////////////////////////////////////////////////////////////////////////
 
 - (MusicalNote *)firstNote
 {

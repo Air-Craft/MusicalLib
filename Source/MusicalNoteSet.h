@@ -74,7 +74,7 @@
 #pragma mark Public
 
 /**
- Returns MusicalNote at given (0-based) index OR nil if out of range.
+ Returns MusicalNote at given (0-based) index.  Exception if out of range.
  */
 - (MusicalNote *)noteAtIndex:(NSUInteger)theIdx;
 
