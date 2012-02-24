@@ -244,6 +244,17 @@
     return ([aNote toInteger] - [self toInteger]);
 }
 
+/////////////////////////////////////////////////////////////////////////
+
+- (BOOL)isEqual:(id)object
+{
+    if (![object isMemberOfClass:[MusicalNote class]]) {
+        return NO;
+    }
+    
+    return ([(MusicalNote *)object name] == name && [(MusicalNote *)object octave] == octave);
+}
+
 /*********************************************************************/
 
 - (BOOL)isSameNoteMusically:(MusicalNote *)aNote

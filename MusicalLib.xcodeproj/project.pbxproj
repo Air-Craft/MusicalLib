@@ -37,7 +37,6 @@
 		CEDFB9FA14D96B4D00D3CC9D /* MusicalScalesRaagSouthIndia.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB9E214D96B4D00D3CC9D /* MusicalScalesRaagSouthIndia.m */; };
 		CEDFB9FB14D96B4D00D3CC9D /* MusicalScalesWorld.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB9E414D96B4D00D3CC9D /* MusicalScalesWorld.m */; };
 		CEDFB9FC14D96B4D00D3CC9D /* MusicalScalesWorld.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB9E414D96B4D00D3CC9D /* MusicalScalesWorld.m */; };
-		CEDFB9FF14D96C1300D3CC9D /* MusicalNoteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFB9FE14D96C1300D3CC9D /* MusicalNoteTests.m */; };
 		CEDFBA0214D9764500D3CC9D /* MLObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFBA0114D9764500D3CC9D /* MLObjC.m */; };
 		CEDFBA0314D9764500D3CC9D /* MLObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDFBA0114D9764500D3CC9D /* MLObjC.m */; };
 /* End PBXBuildFile section */
@@ -94,8 +93,6 @@
 		CEDFB9E214D96B4D00D3CC9D /* MusicalScalesRaagSouthIndia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicalScalesRaagSouthIndia.m; sourceTree = "<group>"; };
 		CEDFB9E314D96B4D00D3CC9D /* MusicalScalesWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicalScalesWorld.h; sourceTree = "<group>"; };
 		CEDFB9E414D96B4D00D3CC9D /* MusicalScalesWorld.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicalScalesWorld.m; sourceTree = "<group>"; };
-		CEDFB9FD14D96C1300D3CC9D /* MusicalNoteTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicalNoteTests.h; sourceTree = "<group>"; };
-		CEDFB9FE14D96C1300D3CC9D /* MusicalNoteTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicalNoteTests.m; sourceTree = "<group>"; };
 		CEDFBA0014D9764500D3CC9D /* MLObjC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MLObjC.h; path = Source/MLObjC.h; sourceTree = SOURCE_ROOT; };
 		CEDFBA0114D9764500D3CC9D /* MLObjC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MLObjC.m; path = Source/MLObjC.m; sourceTree = SOURCE_ROOT; };
 		CEDFBA0414D976CC00D3CC9D /* MLConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLConfig.h; sourceTree = "<group>"; };
@@ -171,8 +168,6 @@
 		CEDFB9BF14D96B1800D3CC9D /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				CEDFB9FD14D96C1300D3CC9D /* MusicalNoteTests.h */,
-				CEDFB9FE14D96C1300D3CC9D /* MusicalNoteTests.m */,
 				CEDFB9C014D96B1800D3CC9D /* InfoPlist.strings */,
 				CEDFB9C214D96B1800D3CC9D /* MusicalLibTests-Info.plist */,
 				CEDFB9C314D96B1800D3CC9D /* MusicalLibTests.h */,
@@ -352,7 +347,6 @@
 				CEDFB9F814D96B4D00D3CC9D /* MusicalScalesRaagNorthIndia.m in Sources */,
 				CEDFB9FA14D96B4D00D3CC9D /* MusicalScalesRaagSouthIndia.m in Sources */,
 				CEDFB9FC14D96B4D00D3CC9D /* MusicalScalesWorld.m in Sources */,
-				CEDFB9FF14D96C1300D3CC9D /* MusicalNoteTests.m in Sources */,
 				CEDFBA0314D9764500D3CC9D /* MLObjC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -507,6 +501,7 @@
 				CEDFB9AF14D968FF00D3CC9D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CEDFB9B014D968FF00D3CC9D /* Build configuration list for PBXNativeTarget "MusicalLibTests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +510,7 @@
 				CEDFB9B214D968FF00D3CC9D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

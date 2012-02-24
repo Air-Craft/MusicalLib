@@ -117,6 +117,11 @@ typedef enum {
 - (NSInteger)getDifferenceInHalfStepsFrom:(MusicalNote *)aNote;
 
 /**
+ NSObject override.  (C#2 != Db2).  Returns NO if object isnt a musical note.
+ */
+- (BOOL)isEqual:(id)object;
+
+/**
  Returns YES if the notes are the same, musically, ie C#2 = Db2 
  */
 - (BOOL)isSameNoteMusically:(MusicalNote *)aNote;

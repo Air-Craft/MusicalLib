@@ -65,7 +65,7 @@
     
 }
 
-/*********************************************************************/
+/////////////////////////////////////////////////////////////////////////
 
 - (void)testMusicalNoteSets
 {
@@ -99,14 +99,63 @@
                                        scaleKeyString:@"D" 
                             insideRangeFromNoteString:@"Db-1" 
                                          toNoteString:@"F2"];
-    NSLog(@"%@", [notes.scale isKindOfClass:[MusicalScaleDorian class]]);
     STAssertTrue([notes.scale isMemberOfClass:[MusicalScaleDorian class]],   @"Init from string test failed!");
     STAssertTrue([[[notes noteAtIndex:0] toString] isEqualToString: @"D-1"],   @"Init from string test failed!");
     STAssertTrue([[[notes lastNote] toString] isEqualToString: @"F2"],   @"Init from string test failed!");    
 
 }
 
-/*********************************************************************/
+/////////////////////////////////////////////////////////////////////////
+
+/**
+ Edge cases
+ 
+ \p CONDITION 1
+ When the first note snapped to the scale has a higher octave number than the fromNote (eg. fromNote=Bb2 scale = A minor pentatonic) a bug existed that caused the second note to begin at an octave higher than expected.
+ 
+ \p CONDITION 2
+ A similar hypothetical edge case to test when the fromNote == the first note, 
+ */
+- (void)testNoteSetEdgeCases
+{
+    /////////////////////////////////////////
+    // CONDITION 1:
+    /////////////////////////////////////////
+    {
+    MusicalNoteSet *noteSet = [[MusicalNoteSet alloc] initWithScaleName:@"Pentatonic Minor" scaleKeyString:@"A" insideRangeFromNoteString:@"Bb2" toNoteString:@"D5"];
+    
+    MusicalNote *n0 = [noteSet.notesArray objectAtIndex:0];
+    MusicalNote *n1 = [noteSet.notesArray objectAtIndex:1];
+    MusicalNote *nN = [noteSet.notesArray lastObject];
+
+    //    NSLog(@"%@", noteSet);
+
+    STAssertTrue([noteSet noteCount] == 12, @"Should be 12 notes (%i found)", [noteSet noteCount]);
+    STAssertTrue([[n0 toString] isEqualToString:@"C3"], @"Fail!");
+    STAssertTrue([[n1 toString] isEqualToString:@"D3"], @"Fail!");
+    STAssertTrue([[nN toString] isEqualToString:@"D5"], @"Fail!");
+    }
+
+    /////////////////////////////////////////
+    // CONDITION 2:
+    /////////////////////////////////////////
+    {
+    MusicalNoteSet *noteSet = [[MusicalNoteSet alloc] initWithScaleName:@"Pentatonic Minor" scaleKeyString:@"A" insideRangeFromNoteString:@"C2" toNoteString:@"C3"];
+    
+    MusicalNote *n0 = [noteSet.notesArray objectAtIndex:0];
+    MusicalNote *n1 = [noteSet.notesArray objectAtIndex:1];
+    MusicalNote *nN = [noteSet.notesArray lastObject];
+    
+    //    NSLog(@"%@", noteSet);
+    
+    STAssertTrue([noteSet noteCount] == 6, @"Should be 6 notes (%i found)", [noteSet noteCount]);
+    STAssertTrue([[n0 toString] isEqualToString:@"C2"], @"Fail!");
+    STAssertTrue([[n1 toString] isEqualToString:@"D2"], @"Fail!");
+    STAssertTrue([[nN toString] isEqualToString:@"C3"], @"Fail!");
+    }
+    
+    
+}
 
 
 /*********************************************************************/

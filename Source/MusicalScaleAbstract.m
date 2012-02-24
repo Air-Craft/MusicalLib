@@ -154,11 +154,14 @@
     
     // And get the scale's root note which "note" is relative to, ie note = root + halfstepsArr[i]
     rootNote = [[MusicalNote alloc] initWithNoteName:key andOctave:note.octave];
-    
-    if (i == NSUIntegerMax) {
-        MLLOG(@"This shouldn't be given the previous ops...");
-        return nil;
+    // Now get the nearest octave thats below our test Note
+    // Even if they are equal, go one octave lower so we can grab the note *below* if
+    // requested
+    while ([rootNote toInteger] > [note toInteger]) {
+        rootNote.octave -= octavesCoveredByDef;
     }
+    
+    NSAssert(i != NSUIntegerMax, @"This shouldn't be given the previous ops...");
     
     NSInteger octaveAdd = 0;
     noteSet = [[NSMutableArray alloc] init];
