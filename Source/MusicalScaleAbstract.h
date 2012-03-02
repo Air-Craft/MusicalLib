@@ -2,7 +2,7 @@
 //  MusicalScaleAbstract.h
 //  SoundWand
 //
-//  Created by Hari Karam Singh on 07/09/2011.
+/// \author  Created by Hari Karam Singh on 07/09/2011.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -10,8 +10,13 @@
 #import "MLConfig.h"
 #import "MusicalNote.h"
 #import "MLObjC.h"
+#import "MLTypes.h"
 
-
+/**
+ \ingroup   MusicalLib
+ \brief     Abstract base class for musical scale defintions
+ \abstract
+ */
 @interface MusicalScaleAbstract : NSObject {
 }
 
@@ -24,18 +29,20 @@
  */
 @property (nonatomic, readonly) NSUInteger noteCountForScale;
 
-/** ********************************************************************************************************************/
-#pragma mark -
-#pragma mark Class methods
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Class Methods
+/////////////////////////////////////////////////////////////////////////
+
 + (NSString const *)name;
 + (NSString const *)category;
 
 + (NSArray *)scaleNamesArray;
-+ (MusicalScaleAbstract *)musicalScaleFromScaleName:(NSString *)scaleName andKey:(MusicalNoteName)theKey ;
++ (MusicalScaleAbstract *)musicalScaleFromScaleName:(NSString *)scaleName andKey:(MusicalNoteName)theKey;
 
-/** ********************************************************************************************************************/
-#pragma mark -
-#pragma mark Publics
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Init
+/////////////////////////////////////////////////////////////////////////
+
 /**
  Create a scale object which can be used to get notes and intervals for a given scale definition
 
@@ -48,15 +55,29 @@
  */
 - (id)init;
 
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Public API
+/////////////////////////////////////////////////////////////////////////
+
 /**
  Public convenience methods for getting a note in the current
  key/scale closest to a given note.  
  
  See protected getNearestInKeyNoteForNote:above for more.
+ @{
  */
 - (MusicalNote *)getNearestInKeyNoteGreaterThanOrEqualTo:(MusicalNote *)aNote;
 - (MusicalNote *)getNearestInKeyNoteLessThanOrEqualTo:(MusicalNote *)aNote;
+/// @}
 
+/////////////////////////////////////////////////////////////////////////
+
+- (MusicalNote *)getNearestInKeyNoteForInterval:(MLNoteInterval)anInterval note:(MusicalNote *)aStartNote;
+
+/////////////////////////////////////////////////////////////////////////
+
+
+/** Returns notes in scale/key in the given range */
 - (NSArray *)getArrayOfNotesInRangeFrom:(MusicalNote *)fromNote to:(MusicalNote *)toNote;
 
 /**
@@ -67,5 +88,6 @@
  @return 0 for first note.  NSUIntegerMax
  */
 - (NSUInteger)indexOfNoteInScale:(MusicalNoteName)musicalNoteName;
+
 
 @end

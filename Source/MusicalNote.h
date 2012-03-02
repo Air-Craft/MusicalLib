@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MLTypes.h"
 
 /**
  Constants to identify note names, C, D#, etc.  Note C# != Db.  See 
@@ -59,8 +60,14 @@ typedef enum {
  Generate a new MusicalNote by adding halfsteps (musical intervals)
  to theNote
  */
-+ (MusicalNote *)noteFromAddingHalfsteps:(NSInteger)theHalfSteps toNote:(MusicalNote *)theNote;
++ (MusicalNote *)noteFromAddingHalfsteps:(NSInteger)anInterval toNote:(MusicalNote *)theNote;
 
+/////////////////////////////////////////////////////////////////////////
+
++ (MusicalNote *)noteWithInterval:(MLNoteInterval)theHalfSteps fromNote:(MusicalNote *)theNote;
+
+
+/////////////////////////////////////////////////////////////////////////
 
 /**
  Convert NSStrings like C# and Bb to the MusicalNoteName enum type.  Proper case only!
@@ -72,6 +79,10 @@ typedef enum {
  */
 + (NSString *)noteNameToString:(MusicalNoteName)noteName;
 
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Init methods
+/////////////////////////////////////////////////////////////////////////
 
 /**
  Main initializer
@@ -92,6 +103,15 @@ typedef enum {
  Defaults to C4 (middle C)
  */
 - (MusicalNote *)init;
+
+
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Public API
+/////////////////////////////////////////////////////////////////////////
+
+/// Returns a new note with the interval specified interval to this one
+- (MusicalNote *)noteWithInterval:(MLNoteInterval)anInterval;
 
 /**
  Calculate a hash representing the distance in half steps from C0.  

@@ -124,19 +124,49 @@
 }
 
 
-/*********************************************************************/
-#pragma mark -
-#pragma mark Public Methods
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Public API
+/////////////////////////////////////////////////////////////////////////
 
 - (MusicalNote *)getNearestInKeyNoteGreaterThanOrEqualTo:(MusicalNote *)aNote
 {
     return [self getNearestInKeyNoteForNote:aNote above:YES];
 }
 
+/////////////////////////////////////////////////////////////////////////
+
 - (MusicalNote *)getNearestInKeyNoteLessThanOrEqualTo:(MusicalNote *)aNote
 {
     return [self getNearestInKeyNoteForNote:aNote above:NO];
 }
+
+/////////////////////////////////////////////////////////////////////////
+
+- (MusicalNote *)getNearestInKeyNoteForInterval:(MLNoteInterval)anInterval note:(MusicalNote *)aStartNote
+{
+    // Get the greater and less than notes and choose the one with the lesser interval
+    MusicalNote *lowerBound, *upperBound, *notePlusInterval;
+    
+    notePlusInterval = [aStartNote noteWithInterval:anInterval];
+
+    // Get the note snapped to scale above and below.  See which is closer to the original
+    lowerBound = [self getNearestInKeyNoteLessThanOrEqualTo:notePlusInterval];
+    upperBound = [self getNearestInKeyNoteGreaterThanOrEqualTo:notePlusInterval];
+    
+    NSInteger lowerDiff, upperDiff;
+    lowerDiff = abs([aStartNote getDifferenceInHalfStepsFrom:lowerBound]);
+    upperDiff = abs([aStartNote getDifferenceInHalfStepsFrom:upperBound]);
+    
+    // If the diffs are equal then choose the note further away for musical considerations
+    // Note, this is different for intervals below
+    if (anInterval >= MLNoteIntervalUnison) {
+        return upperDiff >= lowerDiff ? upperBound : lowerBound;
+    } else {
+        return upperDiff > lowerDiff ? upperBound : lowerBound;        
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////
 
 - (NSArray *)getArrayOfNotesInRangeFrom:(MusicalNote *)fromNote to:(MusicalNote *)toNote
 {
@@ -185,17 +215,16 @@
     return [NSArray arrayWithArray:noteSet];        // convert to immutable type
 }
 
-/*********************************************************************/
+/////////////////////////////////////////////////////////////////////////
 
 - (NSUInteger)indexOfNoteInScale:(MusicalNoteName)musicalNoteName
 {
     return [self getHalfstepDefinitionIndexForNoteName:musicalNoteName];
 }
 
-
-/** *******************************************************************/
-#pragma mark -
-#pragma mark Protected Method
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Protected Methods
+/////////////////////////////////////////////////////////////////////////
 
 - (MusicalNote *)getNearestInKeyNoteForNote:(MusicalNote *)theNote above:(BOOL)above
 {

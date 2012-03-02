@@ -111,7 +111,20 @@
     return [[MusicalNote alloc] initWithNoteName:nameArr[i] andOctave:newOctave];
 }
 
-/*********************************************************************/
+/////////////////////////////////////////////////////////////////////////
+
++ (MusicalNote *)noteWithInterval:(MLNoteInterval)anInterval fromNote:(MusicalNote *)theNote
+{
+    // Easy for now
+    return [self noteFromAddingHalfsteps:anInterval toNote:theNote];
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Init
+/////////////////////////////////////////////////////////////////////////
+
 
 - (MusicalNote *)initWithNoteName:(MusicalNoteName)n andOctave:(int)o {
     if (!(self = [super init])) 
@@ -185,7 +198,19 @@
     return [self initWithNoteName:MUSICAL_NOTE_C andOctave:4];  // middle C
 }
 
-/*********************************************************************/
+
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Public API
+/////////////////////////////////////////////////////////////////////////
+
+- (MusicalNote *)noteWithInterval:(MLNoteInterval)anInterval 
+{
+    return [[self class] noteWithInterval:anInterval fromNote:self];
+}
+
+/////////////////////////////////////////////////////////////////////////
+
 
 - (NSInteger)toInteger 
 {

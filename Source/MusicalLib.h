@@ -1,16 +1,17 @@
 /**
+ \defgroup MusicalLib
+ \author Hari Karam Singh / Club 15CC.
+ 
  Convenience header for clients
- 
- 
  
  FEATURES:
  - Supports scales covering multiple octaves
- 
  */
 
 #ifndef MusicalLib_h
 #define MusicalLib_h
 
+#import "MLTypes.h"
 #import "MusicalNote.h"
 #import "MusicalScaleAbstract.h"
 #import "MusicalScalesNormal.h"
