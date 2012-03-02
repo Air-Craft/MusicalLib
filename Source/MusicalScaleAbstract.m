@@ -217,6 +217,13 @@
 
 /////////////////////////////////////////////////////////////////////////
 
+- (BOOL)noteNameIsInKey:(MusicalNoteName)testNoteName
+{
+    return ([self getHalfstepDefinitionIndexForNoteName:testNoteName] != NSUIntegerMax);
+}
+
+/////////////////////////////////////////////////////////////////////////
+
 - (NSUInteger)indexOfNoteInScale:(MusicalNoteName)musicalNoteName
 {
     return [self getHalfstepDefinitionIndexForNoteName:musicalNoteName];

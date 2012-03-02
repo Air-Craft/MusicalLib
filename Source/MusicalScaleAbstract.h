@@ -80,6 +80,15 @@
 /** Returns notes in scale/key in the given range */
 - (NSArray *)getArrayOfNotesInRangeFrom:(MusicalNote *)fromNote to:(MusicalNote *)toNote;
 
+/////////////////////////////////////////////////////////////////////////
+
+/** Returns whether the given note name is in this scale/key
+ */
+- (BOOL)noteNameIsInKey:(MusicalNoteName)testNoteName;
+
+
+/////////////////////////////////////////////////////////////////////////
+
 /**
  Return the idx of the musical note in the scale definition.  C#=Db
  
@@ -88,6 +97,9 @@
  @return 0 for first note.  NSUIntegerMax
  */
 - (NSUInteger)indexOfNoteInScale:(MusicalNoteName)musicalNoteName;
+
+/////////////////////////////////////////////////////////////////////////
+
 
 
 @end
