@@ -78,14 +78,16 @@
  */
 - (MusicalNote *)noteAtIndex:(NSUInteger)theIdx;
 
+/** Index of the given note in set or NSUIntegerMax if not found.  Musical comparison rather than literal (ie Eb = D#)*/
+- (NSUInteger)indexOfNoteInSet:(MusicalNote *)aNote;
+
 - (MusicalNote *)firstNote;
 - (MusicalNote *)lastNote;
 - (NSUInteger)noteCount;
 
-/**
- Convenience method for getting the idx of the first note wrt the scale.  Root note = 0
- */
+/** Convenience method for getting the idx of the first note wrt the scale.  Root note = 0 */
 - (NSUInteger)firstNotesIndexInScale;
+
 
 
 @end
