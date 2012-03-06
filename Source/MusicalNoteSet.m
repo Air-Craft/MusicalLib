@@ -112,8 +112,8 @@
 
 - (NSUInteger)indexOfNoteInSet:(MusicalNote *)aNote
 {
-    for (int i=0; i<notesArray.count; i++) {
-        if ([(MusicalNote *)[notesArray objectAtIndex:i] isSameNoteMusically:aNote]) {
+    for (int i=0; i<self.noteCount; i++) {
+        if ([(MusicalNote *)[self.notesArray objectAtIndex:i] isSameNoteMusically:aNote]) {
             return i;
         }
     }
