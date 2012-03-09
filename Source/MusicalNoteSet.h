@@ -31,15 +31,15 @@
 /**
  Readonly prop representing start/end notes in the current key
  */
-@property (nonatomic, weak, readonly) MusicalNote *actualStartNote;
-@property (nonatomic, weak, readonly) MusicalNote *actualEndNote;
+@property (nonatomic, strong, readonly) MusicalNote *actualStartNote;
+@property (nonatomic, strong, readonly) MusicalNote *actualEndNote;
 
 /**
  Return an array of MusicalNotes for the scale and bounds
  
  Internally cached for performance.
  */
-@property (nonatomic, weak, readonly) NSArray *notesArray;
+@property (nonatomic, strong, readonly) NSArray *notesArray;
 
 /** ********************************************************************************************************************/
 #pragma mark -

@@ -211,7 +211,7 @@
         
         
     } while ([note toInteger] <= [toNote toInteger]);  // no need to snap the end note to the scale. it will be included if relavant 
-    
+
     return [NSArray arrayWithArray:noteSet];        // convert to immutable type
 }
 
