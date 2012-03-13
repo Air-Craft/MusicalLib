@@ -1,5 +1,5 @@
-#include "MusicalScaleAbstract.h"
-#include "MusicalScaleAbstract+.h"
+#import "MusicalScaleAbstract.h"
+#import "MusicalScaleAbstract+.h"
 
 @interface MusicalScaleBebopDominant:MusicalScaleAbstract @end
 @interface MusicalScaleDiatonic:MusicalScaleAbstract @end

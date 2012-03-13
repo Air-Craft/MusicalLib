@@ -87,6 +87,10 @@
     
     Class scaleClass = [scaleClassLookup objectForKey:scaleName];
     
+    if (NULL == scaleClass) {
+        [NSException raise:NSInvalidArgumentException format:@"Scale with name '%@' note found", scaleName];
+    }
+    
     return [[scaleClass alloc] initWithKey:theKey];
 }
 

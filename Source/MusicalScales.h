@@ -15,3 +15,4 @@
 #import "MusicalScalesRaagNorthIndia.h"
 #import "MusicalScalesRaagSouthIndia.h"
 #import "MusicalScalesWorld.h"
+#import "MusicalScalesArpeggio.h"
