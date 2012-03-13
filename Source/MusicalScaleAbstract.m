@@ -79,14 +79,10 @@
     // Init the lookup if needed
     if (nil == scaleClassLookup) {
         NSArray *clsArr = [MLObjC subclassesOfClass:[MusicalScaleAbstract class]];
-//        NSArray *namesArr = [self scaleNamesArray]; // these should be in the same order
-        
-//        scaleClassLookup = [NSMutableDictionary dictionaryWithObjects:clsArr forKeys:namesArr];
         scaleClassLookup = [NSMutableDictionary dictionary];
         for (Class cls in clsArr) {
             [scaleClassLookup setObject:cls forKey:[cls name]];
         }
-                            
     }
     
     Class scaleClass = [scaleClassLookup objectForKey:scaleName];
@@ -94,6 +90,13 @@
     return [[scaleClass alloc] initWithKey:theKey];
 }
 
+/////////////////////////////////////////////////////////////////////////
+
++ (MusicalScaleAbstract *)musicalScaleFromScaleName:(NSString *)scaleName andKeyName:(NSString *)theKeyName
+{
+    MusicalNoteName key = [MusicalNote noteNameFromString:theKeyName];
+    return [self musicalScaleFromScaleName:scaleName andKey:key];
+}
 
 /** *******************************************************************************************************************/
 #pragma mark -

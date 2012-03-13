@@ -37,7 +37,14 @@
 + (NSString const *)category;
 
 + (NSArray *)scaleNamesArray;
+
+/////////////////////////////////////////////////////////////////////////
+
 + (MusicalScaleAbstract *)musicalScaleFromScaleName:(NSString *)scaleName andKey:(MusicalNoteName)theKey;
+
+/////////////////////////////////////////////////////////////////////////
+
++ (MusicalScaleAbstract *)musicalScaleFromScaleName:(NSString *)scaleName andKeyName:(NSString *)theKeyName;
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Init

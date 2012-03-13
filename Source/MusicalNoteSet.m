@@ -38,8 +38,7 @@
                                toNoteString:(NSString *)toNote
 {
     // Convert the key string to the reqd enum and init the class
-    MusicalNoteName key = [MusicalNote noteNameFromString:aKeyName];
-    MusicalScaleAbstract *aScale = [MusicalScaleAbstract musicalScaleFromScaleName:aScaleName andKey:key];
+    MusicalScaleAbstract *aScale = [MusicalScaleAbstract musicalScaleFromScaleName:aScaleName andKeyName:aKeyName];
     
     if (!aScale) {
         [NSException raise:@"MusicalLibScaleNotFound" 
