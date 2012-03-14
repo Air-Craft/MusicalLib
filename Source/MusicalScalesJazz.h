@@ -12,6 +12,7 @@
 @interface MusicalScaleHalfDiminishedLocrian:MusicalScaleAbstract @end
 @interface MusicalScaleHalfDiminishedLocrian2:MusicalScaleAbstract @end
 @interface MusicalScaleLeadingWholeTone:MusicalScaleAbstract @end
+@interface MusicalScalePhrygianDominant:MusicalScaleAbstract @end
 @interface MusicalScaleLydianAugmented:MusicalScaleAbstract @end
 @interface MusicalScaleLydianMinor:MusicalScaleAbstract @end
 @interface MusicalScaleLydianDiminished:MusicalScaleAbstract @end

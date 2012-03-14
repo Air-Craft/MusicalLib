@@ -88,6 +88,15 @@
 + (NSUInteger const)octavesCovered { return 1; }
 @end
 
+@implementation MusicalScalePhrygianDominant
++ (NSString const *)name { static NSString const *name = @"Phrygian Dominant"; return name; } 
++ (NSString const *)category { static NSString const *categ = @"Jazz & Exotic"; return categ; }
++ (NSInteger const * const)halfstepsArray { static const NSInteger halfsteps[] = {0,1,4,5,7,8,10}; return halfsteps; }
++ (NSUInteger const)halfstepsArrayCount { return 7; }
++ (NSUInteger const)octavesCovered { return 1; }
+@end
+
+
 @implementation MusicalScaleLydianAugmented
 + (NSString const *)name { static NSString const *name = @"Lydian Augmented"; return name; }
 + (NSString const *)category { static NSString const *categ = @"Jazz & Exotic"; return categ; }

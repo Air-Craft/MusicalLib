@@ -11,3 +11,12 @@
 @interface MusicalScaleMarvaThaat:MusicalScaleAbstract @end
 @interface MusicalScalePurviThaat:MusicalScaleAbstract @end
 @interface MusicalScaleTodiThaat:MusicalScaleAbstract @end
+
+/////////////////////////////////////////////////////////////////////////
+
+@interface MusicalScaleRaagSarang:MusicalScaleAbstract @end
+@interface MusicalScaleRaagGauri:MusicalScaleAbstract @end
+@interface MusicalScaleRaagSri:MusicalScaleAbstract @end
+@interface MusicalScaleRaagKaanra:MusicalScaleAbstract @end
+@interface MusicalScaleRaagDevgandhari:MusicalScaleAbstract @end
+@interface MusicalScaleRaagAsa:MusicalScaleAbstract @end
