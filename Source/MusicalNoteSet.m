@@ -102,7 +102,9 @@
 
 - (MusicalNote *)noteAtIndex:(NSUInteger)theIdx
 {
-    NSAssert(theIdx < [self.notesArray count], @"Note idx %i out of range (max: %i)", theIdx, [self.notesArray count] - 1);
+    if (theIdx >= [self.notesArray count]) {
+        [NSException raise:NSRangeException format:@"Note idx %i out of range (max: %i)", theIdx, [self.notesArray count] - 1];
+    }
            
     return [self.notesArray objectAtIndex:theIdx];
 }
