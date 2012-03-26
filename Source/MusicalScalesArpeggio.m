@@ -24,6 +24,14 @@
 + (NSUInteger const)octavesCovered { return 1; }
 @end
 
+@implementation MusicalScaleArpeggioMajorSeventh
++ (NSString const *)name { static NSString const *name = @"Major 7th Arpeggio"; return name; }
++ (NSString const *)category { static NSString const *categ = @"Arpeggios"; return categ; }
++ (NSInteger const * const)halfstepsArray { static const NSInteger halfsteps[] = {0,4,7,11}; return halfsteps; }
++ (NSUInteger const)halfstepsArrayCount { return 4; }
++ (NSUInteger const)octavesCovered { return 1; }
+@end
+
 @implementation MusicalScaleArpeggioDominantThirteenth
 + (NSString const *)name { static NSString const *name = @"Dominant 13th Arpeggio"; return name; }
 + (NSString const *)category { static NSString const *categ = @"Arpeggios"; return categ; }

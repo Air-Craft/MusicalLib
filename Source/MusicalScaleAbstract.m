@@ -135,6 +135,13 @@
 #pragma mark - Public API
 /////////////////////////////////////////////////////////////////////////
 
+- (NSString *)name 
+{
+    return (NSString *)[[self class] name];
+}
+
+/////////////////////////////////////////////////////////////////////////
+
 - (MusicalNote *)getNearestInKeyNoteGreaterThanOrEqualTo:(MusicalNote *)aNote
 {
     return [self getNearestInKeyNoteForNote:aNote above:YES];

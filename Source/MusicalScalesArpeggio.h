@@ -13,4 +13,5 @@
 
 @interface MusicalScaleArpeggioMajorSixth:MusicalScaleAbstract @end
 @interface MusicalScaleArpeggioMinorSeventh:MusicalScaleAbstract @end
+@interface MusicalScaleArpeggioMajorSeventh:MusicalScaleAbstract @end
 @interface MusicalScaleArpeggioDominantThirteenth:MusicalScaleAbstract @end
