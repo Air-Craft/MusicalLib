@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'MusicalLibStaticLib' target in the 'MusicalLibStaticLib' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif
