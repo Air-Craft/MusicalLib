@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A6C7B2CE16412022004FBA10 /* MusicalScalesArpeggio.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C7B2CD16412022004FBA10 /* MusicalScalesArpeggio.m */; };
+		A6C7B2CF16412037004FBA10 /* MusicalScalesArpeggio.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C7B2CD16412022004FBA10 /* MusicalScalesArpeggio.m */; };
 		A6D946EE15DA53B6002B42E0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEDFB98614D968FE00D3CC9D /* Foundation.framework */; };
 		A6D946F315DA53B7002B42E0 /* MusicalLibStaticLib.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = A6D946F215DA53B6002B42E0 /* MusicalLibStaticLib.h */; };
 		A6D946F515DA53B7002B42E0 /* MusicalLibStaticLib.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D946F415DA53B7002B42E0 /* MusicalLibStaticLib.m */; };
@@ -78,6 +80,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A6C7B2CB16412012004FBA10 /* MusicalScalesArpeggio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicalScalesArpeggio.h; sourceTree = "<group>"; };
+		A6C7B2CD16412022004FBA10 /* MusicalScalesArpeggio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicalScalesArpeggio.m; sourceTree = "<group>"; };
 		A6D946ED15DA53B6002B42E0 /* libMusicalLibStaticLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMusicalLibStaticLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6D946F115DA53B6002B42E0 /* MusicalLibStaticLib-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MusicalLibStaticLib-Prefix.pch"; sourceTree = "<group>"; };
 		A6D946F215DA53B6002B42E0 /* MusicalLibStaticLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicalLibStaticLib.h; sourceTree = "<group>"; };
@@ -253,6 +257,8 @@
 				CEDFB9DC14D96B4D00D3CC9D /* MusicalScalesModal.m */,
 				CEDFB9DD14D96B4D00D3CC9D /* MusicalScalesNormal.h */,
 				CEDFB9DE14D96B4D00D3CC9D /* MusicalScalesNormal.m */,
+				A6C7B2CB16412012004FBA10 /* MusicalScalesArpeggio.h */,
+				A6C7B2CD16412022004FBA10 /* MusicalScalesArpeggio.m */,
 				CEDFB9DF14D96B4D00D3CC9D /* MusicalScalesRaagNorthIndia.h */,
 				CEDFB9E014D96B4D00D3CC9D /* MusicalScalesRaagNorthIndia.m */,
 				CEDFB9E114D96B4D00D3CC9D /* MusicalScalesRaagSouthIndia.h */,
@@ -386,6 +392,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6C7B2CF16412037004FBA10 /* MusicalScalesArpeggio.m in Sources */,
 				A6D946FA15DA53CF002B42E0 /* MLObjC.m in Sources */,
 				A6D946FB15DA53CF002B42E0 /* MusicalNote.m in Sources */,
 				A6D946FC15DA53CF002B42E0 /* MusicalNoteSet.m in Sources */,
@@ -416,6 +423,7 @@
 				CEDFB9F914D96B4D00D3CC9D /* MusicalScalesRaagSouthIndia.m in Sources */,
 				CEDFB9FB14D96B4D00D3CC9D /* MusicalScalesWorld.m in Sources */,
 				CEDFBA0214D9764500D3CC9D /* MLObjC.m in Sources */,
+				A6C7B2CE16412022004FBA10 /* MusicalScalesArpeggio.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -610,6 +618,7 @@
 				A6D946F715DA53B7002B42E0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CEDFB97A14D968FE00D3CC9D /* Build configuration list for PBXProject "MusicalLib" */ = {
 			isa = XCConfigurationList;
