@@ -126,6 +126,11 @@ typedef enum {
 - (NSString *)toString;
 
 /**
+ Convert to a MIDI Note value 0-127
+ */
+- (NSUInteger)toMidiNoteValue;
+
+/**
  Checks whether self is within the specified note range (inclusively)
  */
 - (BOOL)isInRangeFrom:(MusicalNote *)fromNote to:(MusicalNote *)toNote;

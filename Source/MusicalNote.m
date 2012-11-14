@@ -249,6 +249,21 @@
 
 /*********************************************************************/
 
+- (NSUInteger)toMidiNoteValue
+{
+        
+    NSInteger midiValue = [self toInteger] + 12;
+    midiValue = midiValue < 0 
+                    ? 0 
+                    : (midiValue > 127
+                            ? 127
+                            : midiValue);
+    return midiValue;
+}
+
+
+/*********************************************************************/
+
 - (NSString *)description 
 {
     return [self toString];
