@@ -1,5 +1,5 @@
-#include "MusicalScaleAbstract.h"
-#include "MusicalScaleAbstract+.h"
+#import "MusicalScaleAbstract.h"
+#import "MusicalScaleAbstract+.h"
 
 @interface MusicalScaleAsavariThaat:MusicalScaleAbstract @end
 @interface MusicalScaleBilavalThaat:MusicalScaleAbstract @end

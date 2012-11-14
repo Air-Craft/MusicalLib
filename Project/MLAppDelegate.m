@@ -7,6 +7,7 @@
 //
 
 #import "MLAppDelegate.h"
+#import "MusicalLib.h"
 
 @implementation MLAppDelegate
 

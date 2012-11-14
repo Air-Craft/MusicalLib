@@ -1,5 +1,5 @@
-#include "MusicalScaleAbstract.h"
-#include "MusicalScaleAbstract+.h"
+#import "MusicalScaleAbstract.h"
+#import "MusicalScaleAbstract+.h"
 
 @interface MusicalScaleIonian:MusicalScaleAbstract @end
 @interface MusicalScaleDorian:MusicalScaleAbstract @end
