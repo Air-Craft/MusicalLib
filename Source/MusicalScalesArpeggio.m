@@ -39,3 +39,11 @@
 + (NSUInteger const)halfstepsArrayCount { return 7; }
 + (NSUInteger const)octavesCovered { return 2; }
 @end
+
+@implementation MusicalScaleArpeggioHawaiian
++ (NSString const *)name { static NSString const *name = @"Hawaiian Arpeggio"; return name; }
++ (NSString const *)category { static NSString const *categ = @"World"; return categ; }
++ (NSInteger const * const)halfstepsArray { static const NSInteger halfsteps[] = {0,3,7,11,14,17,21}; return halfsteps; }
++ (NSUInteger const)halfstepsArrayCount { return 7; }
++ (NSUInteger const)octavesCovered { return 2; }
+@end

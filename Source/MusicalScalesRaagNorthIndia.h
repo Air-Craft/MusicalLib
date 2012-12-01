@@ -20,3 +20,7 @@
 @interface MusicalScaleRaagKaanra:MusicalScaleAbstract @end
 @interface MusicalScaleRaagDevgandhari:MusicalScaleAbstract @end
 @interface MusicalScaleRaagAsa:MusicalScaleAbstract @end
+
+@interface MusicalScaleIndianRaag1:MusicalScaleAbstract @end
+@interface MusicalScaleIndianRaag2:MusicalScaleAbstract @end
+

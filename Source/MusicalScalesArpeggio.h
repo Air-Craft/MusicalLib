@@ -15,3 +15,4 @@
 @interface MusicalScaleArpeggioMinorSeventh:MusicalScaleAbstract @end
 @interface MusicalScaleArpeggioMajorSeventh:MusicalScaleAbstract @end
 @interface MusicalScaleArpeggioDominantThirteenth:MusicalScaleAbstract @end
+@interface MusicalScaleArpeggioHawaiian:MusicalScaleAbstract @end

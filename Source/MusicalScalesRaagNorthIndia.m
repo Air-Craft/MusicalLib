@@ -130,3 +130,21 @@
 + (NSUInteger const)octavesCovered { return 1; }
 @end
 
+@implementation MusicalScaleIndianRaag1
++ (NSString const *)name { static NSString const *name = @"Indian Raag 1"; return name; }
++ (NSString const *)category { static NSString const *categ = @"Raag (Northern India)"; return categ; }
++ (NSInteger const * const)halfstepsArray { static const NSInteger halfsteps[] = {0,1,3,5,7,8,11}; return halfsteps; }
++ (NSUInteger const)halfstepsArrayCount { return 7; }
++ (NSUInteger const)octavesCovered { return 1; }
+@end
+
+@implementation MusicalScaleIndianRaag2 // bit of a hack for SW
++ (NSString const *)name { static NSString const *name = @"Indian Raag 2"; return name; }
++ (NSString const *)category { static NSString const *categ = @"Raag (Northern India)"; return categ; }
++ (NSInteger const * const)halfstepsArray { static const NSInteger halfsteps[] = {0,1,4,6,7,8}; return halfsteps; }
++ (NSUInteger const)halfstepsArrayCount { return 6; }
++ (NSUInteger const)octavesCovered { return 1; }
+@end
+
+
+

@@ -141,7 +141,7 @@
 {
     NSUInteger len, i=0;
     NSInteger octv;
-    unichar letter, modifier, aChar;
+    unichar letter, modifier='\0', aChar;
     MusicalNoteName noteName;
     
     len = [noteStr length];
