@@ -74,9 +74,10 @@
 #pragma mark Public
 
 /**
- Returns MusicalNote at given (0-based) index.  Exception thrown (NSAssert) if out of range.
+ Returns MusicalNote at given (0-based) index.  Exception thrown (NSAssert) if out of range.  Also supports indexed subscripting
  */
 - (MusicalNote *)noteAtIndex:(NSUInteger)theIdx;
+- (MusicalNote *)objectAtIndexedSubscript:(NSUInteger)idx;
 
 /** Index of the given note in set or NSUIntegerMax if not found.  Musical comparison rather than literal (ie Eb = D#)*/
 - (NSUInteger)indexOfNoteInSet:(MusicalNote *)aNote;
@@ -87,6 +88,7 @@
 
 /** Convenience method for getting the idx of the first note wrt the scale.  Root note = 0 */
 - (NSUInteger)firstNotesIndexInScale;
+
 
 
 

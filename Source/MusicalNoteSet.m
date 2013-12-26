@@ -100,14 +100,23 @@
 #pragma mark - Public API
 /////////////////////////////////////////////////////////////////////////
 
-- (MusicalNote *)noteAtIndex:(NSUInteger)theIdx
+/** Informal protocol to allow indexed subscript access [] */
+- (MusicalNote *)objectAtIndexedSubscript:(NSUInteger)idx
 {
-    if (theIdx >= [self.notesArray count]) {
-        [NSException raise:NSRangeException format:@"Note idx %i out of range (max: %i)", theIdx, [self.notesArray count] - 1];
+    if (idx >= [self.notesArray count]) {
+        [NSException raise:NSRangeException format:@"Note idx %i out of range (max: %i)", idx, [self.notesArray count] - 1];
     }
-           
-    return [self.notesArray objectAtIndex:theIdx];
+    
+    return [self.notesArray objectAtIndex:idx];
 }
+
+//---------------------------------------------------------------------
+
+- (MusicalNote *)noteAtIndex:(NSUInteger)idx
+{
+    return self[idx];
+}
+
 
 /////////////////////////////////////////////////////////////////////////
 
