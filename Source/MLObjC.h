@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 
-@interface MLObjC
+@interface MLObjC : NSObject 
 
 /**
  Get a nice NSArray of NSStrings of class names filtered by predicate

@@ -7,17 +7,18 @@
 //
 
 #import "MusicalNote.h"
+#import <tgmath.h>
 
-/**********************************************************************/
+//---------------------------------------------------------------------
 @interface MusicalNote()
 @end
 
-/*********************************************************************/
+//---------------------------------------------------------------------
 
 @implementation MusicalNote
 @synthesize name, octave;
 
-/*********************************************************************/
+//---------------------------------------------------------------------
 
 + (MusicalNoteName)noteNameFromString:(NSString *)noteString
 {
@@ -43,7 +44,7 @@
     return MUSICAL_NOTE_A;  // Satisfy the compiler
 }
 
-/**********************************************************************/
+//---------------------------------------------------------------------
 
 + (NSString *)noteNameToString:(MusicalNoteName)noteName
 {
@@ -71,7 +72,7 @@
     }
 }
 
-/*********************************************************************/
+//---------------------------------------------------------------------
 
 
 + (MusicalNote *)noteFromAddingHalfsteps:(NSInteger)theHalfSteps toNote:(MusicalNote *)theNote
@@ -111,12 +112,25 @@
     return [[MusicalNote alloc] initWithNoteName:nameArr[i] andOctave:newOctave];
 }
 
-/////////////////////////////////////////////////////////////////////////
+//---------------------------------------------------------------------
 
 + (MusicalNote *)noteWithInterval:(MLNoteInterval)anInterval fromNote:(MusicalNote *)theNote
 {
     // Easy for now
     return [self noteFromAddingHalfsteps:anInterval toNote:theNote];
+}
+
+//---------------------------------------------------------------------
+
++ (NSUInteger)halfStepsFromNoteName:(MusicalNoteName)noteA toNoteName:(MusicalNoteName)noteB
+{
+    // Relies on our enum's values
+    NSInteger diff = round((float_t)(noteB - noteA) / 10.);
+    
+    // If negative then add 12 to get the forward direction
+    if (diff < 0) diff += 12.;
+    
+    return diff;
 }
 
 
@@ -135,7 +149,7 @@
     return self;
 }
 
-/*********************************************************************/
+//---------------------------------------------------------------------
 
 - (MusicalNote *)initFromNoteString:(NSString *)noteStr
 {
@@ -191,13 +205,54 @@
     return [self initWithNoteName:noteName andOctave:octv];
 }
 
-/*********************************************************************/
+//---------------------------------------------------------------------
 
 - (MusicalNote *)init 
 {
     return [self initWithNoteName:MUSICAL_NOTE_C andOctave:4];  // middle C
 }
 
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - NSDictionary Key Requirements
+/////////////////////////////////////////////////////////////////////////
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    MusicalNote *copy = [[[self class] allocWithZone:zone] init];
+    copy.name = self.name;
+    copy.octave = self.octave;
+    return copy;
+}
+
+//---------------------------------------------------------------------
+
+- (BOOL)isEqual:(id)object
+{
+    if (![object isMemberOfClass:[MusicalNote class]]) {
+        return NO;
+    }
+    //    if ([(MusicalNote *)object octave] == 2) {
+    //        NSLog(@"sds");
+    //    }
+    return ([(MusicalNote *)object name] == name && [(MusicalNote *)object octave] == octave);
+}
+
+//---------------------------------------------------------------------
+
+- (NSUInteger)hash
+{
+    // We want Cs != Db here
+    return ((NSUInteger)octave * 120) + name;
+}
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Properties
+/////////////////////////////////////////////////////////////////////////
+
+- (NSString *)nameString
+{
+    return [MusicalNote noteNameToString:self.name];
+}
 
 
 /////////////////////////////////////////////////////////////////////////
@@ -209,15 +264,15 @@
     return [[self class] noteWithInterval:anInterval fromNote:self];
 }
 
-/////////////////////////////////////////////////////////////////////////
-
+//---------------------------------------------------------------------
 
 - (NSInteger)toInteger 
 {
     return (NSInteger)( (octave * 12) + (NSUInteger)(roundf((float)name / 10.0f)) );
 }
 
-/*********************************************************************/
+//---------------------------------------------------------------------
+
 - (NSString *)toString
 {
     NSString *noteString;
@@ -247,7 +302,7 @@
     return noteString;
 }
 
-/*********************************************************************/
+//---------------------------------------------------------------------
 
 - (NSUInteger)toMidiNoteValue
 {
@@ -262,14 +317,14 @@
 }
 
 
-/*********************************************************************/
+//---------------------------------------------------------------------
 
 - (NSString *)description 
 {
     return [self toString];
 }
 
-/*********************************************************************/
+//---------------------------------------------------------------------
 
 - (BOOL)isInRangeFrom:(MusicalNote *)fromNote to:(MusicalNote *)toNote
 {
@@ -277,42 +332,21 @@
     return ([fromNote toInteger] <= selfVal && [toNote toInteger] >= selfVal);
 }
 
-/*********************************************************************/
+//---------------------------------------------------------------------
 
 - (NSInteger)getDifferenceInHalfStepsFrom:(MusicalNote *)aNote 
 {
     return ([aNote toInteger] - [self toInteger]);
 }
 
-/////////////////////////////////////////////////////////////////////////
-
-- (BOOL)isEqual:(id)object
-{
-    if (![object isMemberOfClass:[MusicalNote class]]) {
-        return NO;
-    }
-    
-    return ([(MusicalNote *)object name] == name && [(MusicalNote *)object octave] == octave);
-}
-
-/*********************************************************************/
+//---------------------------------------------------------------------
 
 - (BOOL)isSameNoteMusically:(MusicalNote *)aNote
 {
     return ([aNote toInteger] == [self toInteger]);
 }
 
-/*********************************************************************/
-
-- (id)copyWithZone:(NSZone *)zone
-{
-    MusicalNote *copy = [[[self class] allocWithZone: zone] init];
-    copy.name = self.name;
-    copy.octave = self.octave;
-    return copy;
-}
-
-/** ********************************************************************/
+//---------------------------------------------------------------------
 
 - (BOOL)isAnOctaveOf:(MusicalNoteName)aNoteName
 {

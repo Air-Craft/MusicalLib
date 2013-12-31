@@ -50,6 +50,9 @@ typedef enum {
  */
 @property (nonatomic) MusicalNoteName name;
 
+/** The string representation of the MusicalNoteName */
+@property (nonatomic, readonly) NSString *nameString;
+
 /**
  Any NSInteger value
  */
@@ -78,6 +81,9 @@ typedef enum {
  Convert MusicalNoteName's to NSStrings
  */
 + (NSString *)noteNameToString:(MusicalNoteName)noteName;
+
+/** The number of halfsteps to go between the note names of a scale.  Always position forward: F -> E = 11, A => A = 0, B => C = 1 */
++ (NSUInteger)halfStepsFromNoteName:(MusicalNoteName)noteA toNoteName:(MusicalNoteName)noteB;
 
 
 /////////////////////////////////////////////////////////////////////////
