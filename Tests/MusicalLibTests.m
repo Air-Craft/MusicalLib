@@ -3,7 +3,7 @@
 //  AirPluckHarp
 //
 //  Created by Hari Karam Singh on 08/09/2011.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2011-2014 Amritvela / Club 15CC.  MIT License.
 //
 #import "MusicalLibTests.h"
 
