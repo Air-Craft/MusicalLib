@@ -3,7 +3,7 @@
 //  SoundWand
 //
 //  Created by Hari Karam Singh on 16/12/2011.
-//  Copyright (c) 2011 Amritvela / Club 15CC.  MIT License.
+//  Copyright (c) 2011-2014 Amritvela / Club 15CC.  MIT License.
 //
 
 #import <Foundation/Foundation.h>

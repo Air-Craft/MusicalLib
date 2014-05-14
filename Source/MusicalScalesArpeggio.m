@@ -2,8 +2,8 @@
 //  MusicalScalesArpeggio.m
 //  SoundWand
 //
-//  Created by  on 13/03/2012.
-//  Copyright (c) 2012 Club 15CC. All rights reserved.
+//  Created by Hari Karam Singh on 03/13/2012.
+//  Copyright (c) 2011-2014 Amritvela / Club 15CC.  MIT License.
 //
 
 #import "MusicalScalesArpeggio.h"

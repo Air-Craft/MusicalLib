@@ -1,7 +1,7 @@
 /// \ingroup    MusicalLib
 /// \file       MLTypes.h
 /// \author     Created by  on 02/03/2012.
-/// \copyright  (c) 2012 Club 15CC. All rights reserved.
+//  Copyright  (c) 2011-2014 Amritvela / Club 15CC.  MIT License.
 
 #ifndef MusicalLib_MLTypes_h
 #define MusicalLib_MLTypes_h

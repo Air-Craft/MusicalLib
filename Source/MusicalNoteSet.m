@@ -3,7 +3,7 @@
 //  SoundWand
 //
 //  Created by Hari Karam Singh on 20/11/2011.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2011-2014 Amritvela / Club 15CC.  MIT License.
 //
 
 #import "MusicalNoteSet.h"
