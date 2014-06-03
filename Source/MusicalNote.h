@@ -76,7 +76,7 @@ typedef enum {
 /**
  Main initializer
  */
-- (MusicalNote *)initWithNoteName:(MusicalNoteName)n andOctave:(int)o;
+- (MusicalNote *)initWithNoteName:(MusicalNoteName)n andOctave:(NSInteger)o;
 
 //---------------------------------------------------------------------
 

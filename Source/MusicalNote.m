@@ -180,7 +180,7 @@
 
 //---------------------------------------------------------------------
 
-- (MusicalNote *)initWithNoteName:(MusicalNoteName)n andOctave:(int)o {
+- (MusicalNote *)initWithNoteName:(MusicalNoteName)n andOctave:(NSInteger)o {
     if (!(self = [super init])) 
         return nil;
 
@@ -320,23 +320,23 @@
     NSString *noteString;
     
     switch (name) {
-        case MUSICAL_NOTE_C:    noteString = [NSString stringWithFormat:@"C%i",  octave];    break;    
-        case MUSICAL_NOTE_Cs:   noteString = [NSString stringWithFormat:@"C#%i", octave];    break;    
-        case MUSICAL_NOTE_Db:   noteString = [NSString stringWithFormat:@"Db%i", octave];    break;     
-        case MUSICAL_NOTE_D:    noteString = [NSString stringWithFormat:@"D%i",  octave];    break;    
-        case MUSICAL_NOTE_Ds:   noteString = [NSString stringWithFormat:@"D#%i", octave];    break;    
-        case MUSICAL_NOTE_Eb:   noteString = [NSString stringWithFormat:@"Eb%i", octave];    break;     
-        case MUSICAL_NOTE_E:    noteString = [NSString stringWithFormat:@"E%i",  octave];    break;      
-        case MUSICAL_NOTE_F:    noteString = [NSString stringWithFormat:@"F%i",  octave];    break;     
-        case MUSICAL_NOTE_Fs:   noteString = [NSString stringWithFormat:@"F#%i", octave];    break;    
-        case MUSICAL_NOTE_Gb:   noteString = [NSString stringWithFormat:@"Gb%i", octave];    break;     
-        case MUSICAL_NOTE_G:    noteString = [NSString stringWithFormat:@"G%i",  octave];    break;     
-        case MUSICAL_NOTE_Gs:   noteString = [NSString stringWithFormat:@"G#%i", octave];    break;    
-        case MUSICAL_NOTE_Ab:   noteString = [NSString stringWithFormat:@"Ab%i", octave];    break;     
-        case MUSICAL_NOTE_A:    noteString = [NSString stringWithFormat:@"A%i",  octave];    break;    
-        case MUSICAL_NOTE_As:   noteString = [NSString stringWithFormat:@"A#%i", octave];    break;   
-        case MUSICAL_NOTE_Bb:   noteString = [NSString stringWithFormat:@"Bb%i", octave];    break;    
-        case MUSICAL_NOTE_B:    noteString = [NSString stringWithFormat:@"B%i",  octave];    break;
+        case MUSICAL_NOTE_C:    noteString = [NSString stringWithFormat:@"C%i", (int)octave];    break;
+        case MUSICAL_NOTE_Cs:   noteString = [NSString stringWithFormat:@"C#%i", (int)octave];    break;    
+        case MUSICAL_NOTE_Db:   noteString = [NSString stringWithFormat:@"Db%i", (int)octave];    break;     
+        case MUSICAL_NOTE_D:    noteString = [NSString stringWithFormat:@"D%i",  (int)octave];    break;    
+        case MUSICAL_NOTE_Ds:   noteString = [NSString stringWithFormat:@"D#%i", (int)octave];    break;    
+        case MUSICAL_NOTE_Eb:   noteString = [NSString stringWithFormat:@"Eb%i", (int)octave];    break;     
+        case MUSICAL_NOTE_E:    noteString = [NSString stringWithFormat:@"E%i",  (int)octave];    break;      
+        case MUSICAL_NOTE_F:    noteString = [NSString stringWithFormat:@"F%i",  (int)octave];    break;     
+        case MUSICAL_NOTE_Fs:   noteString = [NSString stringWithFormat:@"F#%i", (int)octave];    break;    
+        case MUSICAL_NOTE_Gb:   noteString = [NSString stringWithFormat:@"Gb%i", (int)octave];    break;     
+        case MUSICAL_NOTE_G:    noteString = [NSString stringWithFormat:@"G%i",  (int)octave];    break;     
+        case MUSICAL_NOTE_Gs:   noteString = [NSString stringWithFormat:@"G#%i", (int)octave];    break;    
+        case MUSICAL_NOTE_Ab:   noteString = [NSString stringWithFormat:@"Ab%i", (int)octave];    break;     
+        case MUSICAL_NOTE_A:    noteString = [NSString stringWithFormat:@"A%i",  (int)octave];    break;    
+        case MUSICAL_NOTE_As:   noteString = [NSString stringWithFormat:@"A#%i", (int)octave];    break;   
+        case MUSICAL_NOTE_Bb:   noteString = [NSString stringWithFormat:@"Bb%i", (int)octave];    break;    
+        case MUSICAL_NOTE_B:    noteString = [NSString stringWithFormat:@"B%i",  (int)octave];    break;
         default:   
             noteString = @"Invalid MusicalNote";
     }

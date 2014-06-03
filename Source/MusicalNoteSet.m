@@ -57,7 +57,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@: %p, _scale=%@, %i notes in range %@..%@ => %@..%@ (%@)>", NSStringFromClass([self class]), &self, [[self.scale class] name], [self noteCount], self.rangeMinNote, self.rangeMaxNote, self.firstNote, self.lastNote, [self.notesArray componentsJoinedByString:@" "]];
+    return [NSString stringWithFormat:@"<%@: %p, _scale=%@, %i notes in range %@..%@ => %@..%@ (%@)>", NSStringFromClass([self class]), &self, [[self.scale class] name], (int)[self noteCount], self.rangeMinNote, self.rangeMaxNote, self.firstNote, self.lastNote, [self.notesArray componentsJoinedByString:@" "]];
 }
 
 //---------------------------------------------------------------------
@@ -134,7 +134,7 @@
 - (MusicalNote *)objectAtIndexedSubscript:(NSUInteger)idx
 {
     if (idx >= [self.notesArray count]) {
-        [NSException raise:NSRangeException format:@"Note idx %i out of range (max: %i)", idx, [self.notesArray count] - 1];
+        [NSException raise:NSRangeException format:@"Note idx %i out of range (max: %i)", (int)idx, (int)([self.notesArray count] - 1)];
     }
     
     return [self.notesArray objectAtIndex:idx];

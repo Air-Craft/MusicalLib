@@ -6,6 +6,7 @@
 //  Copyright (c) 2011-2014 Amritvela / Club 15CC.  MIT License.
 //
 
+#import <tgmath.h>
 #import "MusicalScaleAbstract.h"
 #import "MusicalScaleAbstract+.h"
 
@@ -182,8 +183,8 @@
     upperBound = [self getNearestInKeyNoteGreaterThanOrEqualTo:notePlusInterval];
     
     NSInteger lowerDiff, upperDiff;
-    lowerDiff = abs([aStartNote getDifferenceInHalfStepsFrom:lowerBound]);
-    upperDiff = abs([aStartNote getDifferenceInHalfStepsFrom:upperBound]);
+    lowerDiff = abs((int)[aStartNote getDifferenceInHalfStepsFrom:lowerBound]);
+    upperDiff = abs((int)[aStartNote getDifferenceInHalfStepsFrom:upperBound]);
     
     // If the diffs are equal then choose the note further away for musical considerations
     // Note, this is different for intervals below
@@ -277,7 +278,7 @@
     NSInteger halfsteps = 0;
     const NSInteger *halfstepsDefArr = [[self class] halfstepsArray];
     NSInteger sign = (relPosition < 0) ? -1 : 1;
-    NSInteger iters = abs(relPosition);
+    NSInteger iters = abs((int)relPosition);
     NSUInteger scaleNotes = [[self class] halfstepsArrayCount];
     while (iters-- > 0) {
 
