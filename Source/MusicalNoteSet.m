@@ -9,12 +9,13 @@
 #import "MusicalNoteSet.h"
 
 @implementation MusicalNoteSet
+{
+    NSArray *_notesCache;
+}
 
-@synthesize scale, rangeMinNote, rangeMaxNote, actualStartNote, actualEndNote, notesArray;
-
-/**********************************************************************************************************************/
-#pragma mark -
-#pragma mark Init's
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Life Cycle
+/////////////////////////////////////////////////////////////////////////
 
 - (MusicalNoteSet *)initWithScale:(MusicalScaleAbstract *)aScale
               insideRangeFromNote:(MusicalNote *)fromNote 
@@ -22,15 +23,15 @@
 {
     if (!(self = [super init])) return nil;
     
-    scale = aScale;
-    rangeMinNote = fromNote;
-    rangeMaxNote = toNote;
-    notesArray = nil;   // Nil until first call
+    _scale = aScale;
+    _rangeMinNote = fromNote;
+    _rangeMaxNote = toNote;
+    _notesCache = nil;   // Nil until first call
     
     return self;
 }
 
-/**********************************************************************/
+//---------------------------------------------------------------------
 
 - (MusicalNoteSet *)initWithScaleName:(NSString *)aScaleName 
                          scaleKeyString:(NSString *)aKeyName
@@ -52,48 +53,77 @@
 }
 
 
-/** ********************************************************************************************************************/
-#pragma mark -
-#pragma mark Overrides
+//---------------------------------------------------------------------
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@: %p, scale=%@, %i notes in range %@..%@ => %@..%@ (%@)>", NSStringFromClass([self class]), &self, [[self.scale class] name], [self noteCount], self.rangeMinNote, self.rangeMaxNote, self.firstNote, self.lastNote, [self.notesArray componentsJoinedByString:@" "]];
+    return [NSString stringWithFormat:@"<%@: %p, _scale=%@, %i notes in range %@..%@ => %@..%@ (%@)>", NSStringFromClass([self class]), &self, [[self.scale class] name], [self noteCount], self.rangeMinNote, self.rangeMaxNote, self.firstNote, self.lastNote, [self.notesArray componentsJoinedByString:@" "]];
+}
+
+//---------------------------------------------------------------------
+
+- (MusicalNoteSet *)noteSetShiftedByHalfSteps:(NSInteger)halfSteps
+{
+    // Create a new noteset with the notes augmented shifted by the specified amount
+    // Scale stays the same but the start/end and key change
+    MusicalNote *newRangeMin = [MusicalNote noteFromAddingHalfsteps:halfSteps toNote:self.rangeMinNote];
+    MusicalNote *newRangeMax = [MusicalNote noteFromAddingHalfsteps:halfSteps toNote:self.rangeMaxNote];
+    
+    // The key is just the
+    MusicalNoteName newKey = [MusicalNote noteNameFromNoteName:self.scale.key ShiftedByHalfSteps:halfSteps];
+    MusicalScaleAbstract *newScale = [self.scale musicalScaleWithNewKey:newKey];
+    
+    
+    // Now build the new set
+    return [[MusicalNoteSet alloc] initWithScale:newScale insideRangeFromNote:newRangeMin toNote:newRangeMax];
+}
+
+//---------------------------------------------------------------------
+
+- (MusicalNoteSet *)noteSetShiftedByNoteOffsetInScale:(NSInteger)noteOffset
+{
+    // Get our new min/max by shifting those...
+    MusicalNote *newRangeMin = [self.scale noteWithScalePosition:noteOffset relativeToNote:self.actualStartNote];
+    MusicalNote *newRangeMax = [self.scale noteWithScalePosition:noteOffset relativeToNote:self.actualEndNote];
+    
+    // The key and scale stay the same
+    return [[MusicalNoteSet alloc] initWithScale:self.scale insideRangeFromNote:newRangeMin toNote:newRangeMax];
 }
 
 
 
-/** ********************************************************************************************************************/
-#pragma mark -
-#pragma mark Property overrides
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Properties
+/////////////////////////////////////////////////////////////////////////
+
 
 /** Clear notesArray when properties change */
 - (void)setValue:(id)value forKey:(NSString *)key
 {
-    notesArray = nil;
+    _notesCache = nil;
     [super setValue:value forKey:key];
 }
 
 /**
- Ensure that start/end notes snap to the scale
+ Ensure that start/end notes snap to the _scale
  */
 - (MusicalNote *)actualStartNote
 {
-    return [scale getNearestInKeyNoteGreaterThanOrEqualTo:rangeMinNote];
+    return [_scale getNearestInKeyNoteGreaterThanOrEqualTo:_rangeMinNote];
 }
 - (MusicalNote *)actualEndNote
 {
-    return [scale getNearestInKeyNoteLessThanOrEqualTo:rangeMaxNote];
+    return [_scale getNearestInKeyNoteLessThanOrEqualTo:_rangeMaxNote];
 }
 
 
 - (NSArray *)notesArray
 {
-    if (!notesArray) {
-        notesArray = [self.scale getArrayOfNotesInRangeFrom:rangeMinNote 
-                                                         to:rangeMaxNote];
+    if (!_notesCache) {
+        _notesCache = [_scale getArrayOfNotesInRangeFrom:_rangeMinNote
+                                                      to:_rangeMaxNote];
     }
-    return notesArray;
+    return _notesCache;
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -118,7 +148,7 @@
 }
 
 
-/////////////////////////////////////////////////////////////////////////
+//---------------------------------------------------------------------
 
 - (NSUInteger)indexOfNoteInSet:(MusicalNote *)aNote
 {
@@ -128,34 +158,34 @@
         }
     }
     // Not found?
-    return NSUIntegerMax;
+    return NSNotFound;
 }
 
-/////////////////////////////////////////////////////////////////////////
+//---------------------------------------------------------------------
 
 - (MusicalNote *)firstNote
 {
     return [self.notesArray objectAtIndex:0u];
 }
 
-/**********************************************************************/
+//---------------------------------------------------------------------
 
 - (MusicalNote *)lastNote
 {
     return [self.notesArray lastObject];
 }
 
-/**********************************************************************/
+//---------------------------------------------------------------------
 
 - (NSUInteger)noteCount
 {
     return [self.notesArray count];
 }
 
-/** ********************************************************************/
+//---------------------------------------------------------------------
 
 - (NSUInteger)firstNotesIndexInScale
 {
-    return [[self scale] indexOfNoteInScale:[self noteAtIndex:0].name];
+    return [_scale indexOfNoteInScale:[self noteAtIndex:0].name];
 }
 @end

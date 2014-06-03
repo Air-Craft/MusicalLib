@@ -11,11 +11,11 @@
 
 @implementation MusicalScaleAbstract
 
-@synthesize key, noteCountForScale;
+@synthesize key;
 
-/** ********************************************************************************************************************/
-#pragma mark -
-#pragma mark Abstract methods
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Abstract
+/////////////////////////////////////////////////////////////////////////
 
 + (NSInteger const *)halfstepsArray 
 {
@@ -48,9 +48,10 @@
 }
 
 
-/** *******************************************************************************************************************/
-#pragma mark -
-#pragma mark Class methods
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Class Methods
+/////////////////////////////////////////////////////////////////////////
+
 
 + (NSArray *)scaleNamesArray 
 {
@@ -102,9 +103,12 @@
     return [self musicalScaleFromScaleName:scaleName andKey:key];
 }
 
-/** *******************************************************************************************************************/
-#pragma mark -
-#pragma mark Init
+
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Life Cycle
+/////////////////////////////////////////////////////////////////////////
+
 
 - (id)initWithKey:(MusicalNoteName)theKey 
 {
@@ -120,10 +124,20 @@
     return [self initWithKey:MUSICAL_NOTE_C];
 }
 
+//---------------------------------------------------------------------
 
-/** ********************************************************************************************************************/
-#pragma mark -
-#pragma mark Getter/Setters
+- (MusicalScaleAbstract *)musicalScaleWithNewKey:(MusicalNoteName)newKey
+{
+    MusicalScaleAbstract *newScale = [[self class] new];
+    newScale->key = newKey;
+    return newScale;
+}
+
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Properties
+/////////////////////////////////////////////////////////////////////////
+
 
 - (NSUInteger)noteCountForScale 
 {
@@ -205,7 +219,7 @@
         rootNote.octave -= octavesCoveredByDef;
     }
     
-    NSAssert(i != NSUIntegerMax, @"This shouldn't be given the previous ops...");
+    NSAssert(i != NSNotFound, @"This shouldn't be given the previous ops...");
     
     NSInteger octaveAdd = 0;
     noteSet = [[NSMutableArray alloc] init];
@@ -233,15 +247,62 @@
 
 - (BOOL)noteNameIsInKey:(MusicalNoteName)testNoteName
 {
-    return ([self getHalfstepDefinitionIndexForNoteName:testNoteName] != NSUIntegerMax);
+    return ([self getHalfstepDefinitionIndexForNoteName:testNoteName] != NSNotFound);
 }
 
-/////////////////////////////////////////////////////////////////////////
+//---------------------------------------------------------------------
 
 - (NSUInteger)indexOfNoteInScale:(MusicalNoteName)musicalNoteName
 {
     return [self getHalfstepDefinitionIndexForNoteName:musicalNoteName];
 }
+
+//---------------------------------------------------------------------
+
+- (MusicalNote *)noteWithScalePosition:(NSInteger)relPosition relativeToNote:(MusicalNote *)referenceNote
+{
+    // We want the number of halfsteps transvered when we move forward (or backward for negative) by `relPosition` notes in the scale starting from the reference note.
+    
+    // Start by getting the index of the source note's name in the scale definition so we know where we are starting from
+    NSInteger idx = [self getHalfstepDefinitionIndexForNoteName:referenceNote.name];
+    
+    // If the reference is not in the scale then snap to the previous scale note (or next note note if relPos is negative)
+    if (idx == NSNotFound) {
+        referenceNote = [self getNearestInKeyNoteForNote:referenceNote above:(relPosition > 0)];
+        idx = [self getHalfstepDefinitionIndexForNoteName:referenceNote.name];
+        NSAssert(idx != NSNotFound, @"Shouldn't be (MSA:nwsp)");
+    }
+    
+    // Now tally up the halfsteps
+    NSInteger halfsteps = 0;
+    const NSInteger *halfstepsDefArr = [[self class] halfstepsArray];
+    NSInteger sign = (relPosition < 0) ? -1 : 1;
+    NSInteger iters = abs(relPosition);
+    NSUInteger scaleNotes = [[self class] halfstepsArrayCount];
+    while (iters-- > 0) {
+
+        // Halfsteps are all relative to root so we need to subtract the next from the current
+        // Inc/Dec the idx and wrap for the length of the scale definition array
+        NSInteger nextIdx = idx + sign;
+        if (nextIdx < 0) idx = scaleNotes - 1;
+        else nextIdx %= scaleNotes;
+        
+        // Get the distance wrt 12 note scale
+        NSInteger deltaHalfSteps = halfstepsDefArr[nextIdx] - halfstepsDefArr[idx];
+        deltaHalfSteps %= 12;
+        if (deltaHalfSteps < 0) deltaHalfSteps += 12;
+        
+        // Add the halfsteps entry to our tally.  Be sure to account for going backwards
+        halfsteps += deltaHalfSteps;
+        
+    }
+    
+    // Now shift the reference note by the halfsteps
+    MusicalNote *newNote = [MusicalNote noteFromAddingHalfsteps:halfsteps toNote:referenceNote];
+    
+    return newNote;
+}
+
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Protected Methods
@@ -294,7 +355,7 @@
     return above ? note : prevNote;
 }
 
-/** *******************************************************************/
+//---------------------------------------------------------------------
 
 - (NSUInteger)getHalfstepDefinitionIndexForNoteName:(MusicalNoteName)theNoteName
 {
@@ -324,7 +385,7 @@
     } while (++i < halfstepsArrCnt);
     
     // Otherwise indicate error
-    return NSUIntegerMax;
+    return NSNotFound;
 }
 
 @end

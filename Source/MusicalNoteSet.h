@@ -16,9 +16,7 @@
  - Should original requested start/endNote be saved so changing scale snaps to them rather
    than snapping to what they snapped on init or previous scale change ad infinitum?
  */
-@interface MusicalNoteSet : NSObject {
-    NSArray *musicalNotesArrayCache;
-}
+@interface MusicalNoteSet : NSObject 
 
 @property (nonatomic, strong) MusicalScaleAbstract *scale;
 
@@ -41,9 +39,9 @@
  */
 @property (nonatomic, strong, readonly) NSArray *notesArray;
 
-/** ********************************************************************************************************************/
-#pragma mark -
-#pragma mark Inits
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Life Cycle
+/////////////////////////////////////////////////////////////////////////
 
 /** 
  Designated init.  
@@ -64,14 +62,22 @@
  @param toNote      Max ending note.
  */
 - (MusicalNoteSet *)initWithScaleName:(NSString *)aScaleName
-                         scaleKeyString:(NSString *)aKey
-                  insideRangeFromNoteString:(NSString *)fromNote 
-                               toNoteString:(NSString *)toNote;
+                       scaleKeyString:(NSString *)aKey
+            insideRangeFromNoteString:(NSString *)fromNote
+                         toNoteString:(NSString *)toNote;
+
+/** Return a new noteset with the notes augmented shifted by the specified amount of halfsteps.  Changes the key of the underlying scale and the min/max ranges
+ */
+- (MusicalNoteSet *)noteSetShiftedByHalfSteps:(NSInteger)halfSteps;
 
 
-/** ********************************************************************************************************************/
-#pragma mark -
-#pragma mark Public
+- (MusicalNoteSet *)noteSetShiftedByNoteOffsetInScale:(NSInteger)noteOffset;
+
+
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Public Methods
+/////////////////////////////////////////////////////////////////////////
 
 /**
  Returns MusicalNote at given (0-based) index.  Exception thrown (NSAssert) if out of range.  Also supports indexed subscripting
@@ -79,7 +85,7 @@
 - (MusicalNote *)noteAtIndex:(NSUInteger)theIdx;
 - (MusicalNote *)objectAtIndexedSubscript:(NSUInteger)idx;
 
-/** Index of the given note in set or NSUIntegerMax if not found.  Musical comparison rather than literal (ie Eb = D#)*/
+/** Index of the given note in set or NSNotFound if not found.  Musical comparison rather than literal (ie Eb = D#)*/
 - (NSUInteger)indexOfNoteInSet:(MusicalNote *)aNote;
 
 - (MusicalNote *)firstNote;

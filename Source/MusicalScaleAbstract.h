@@ -46,8 +46,9 @@
 
 + (MusicalScaleAbstract *)musicalScaleFromScaleName:(NSString *)scaleName andKeyName:(NSString *)theKeyName;
 
+
 /////////////////////////////////////////////////////////////////////////
-#pragma mark - Init
+#pragma mark - Life Cycle
 /////////////////////////////////////////////////////////////////////////
 
 /**
@@ -61,6 +62,9 @@
  Defaults to key of C
  */
 - (id)init;
+
+- (MusicalScaleAbstract *)musicalScaleWithNewKey:(MusicalNoteName)newKey;
+
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Public API
@@ -106,12 +110,17 @@
  
  Wrapper for protected method @link getHalfstepDefinitionIndexForNoteName:
  
- @return 0 for first note.  NSUIntegerMax
+ @return 0 for first note.  NSNotFound
  */
 - (NSUInteger)indexOfNoteInScale:(MusicalNoteName)musicalNoteName;
 
-/////////////////////////////////////////////////////////////////////////
+//---------------------------------------------------------------------
 
+/** Get the note in this key/scale that is relPosition notes away from the reference. E.g. C1 => -3 in C Major = G0
+ 
+ @param referenceNote   If not in the current scale it will first be snapped to scale in the direction opposite that implied by relPosition
+ */
+- (MusicalNote *)noteWithScalePosition:(NSInteger)relPosition relativeToNote:(MusicalNote *)referenceNote;
 
 
 @end

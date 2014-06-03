@@ -16,9 +16,12 @@
 //---------------------------------------------------------------------
 
 @implementation MusicalNote
+
 @synthesize name, octave;
 
-//---------------------------------------------------------------------
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Class Methods
+/////////////////////////////////////////////////////////////////////////
 
 + (MusicalNoteName)noteNameFromString:(NSString *)noteString
 {
@@ -74,6 +77,61 @@
 
 //---------------------------------------------------------------------
 
++ (NSUInteger)halfStepsFromNoteName:(MusicalNoteName)noteA toNoteName:(MusicalNoteName)noteB
+{
+    // Relies on our enum's values
+    NSInteger diff = round((float_t)(noteB - noteA) / 10.);
+    
+    // If negative then add 12 to get the forward direction
+    if (diff < 0) diff += 12.;
+    
+    return diff;
+}
+
+//---------------------------------------------------------------------
+
++ (MusicalNoteName)noteNameFromNoteName:(MusicalNoteName)noteName ShiftedByHalfSteps:(NSInteger)halfSteps
+{
+    // We want to keep sharps as sharps and flats as flats
+    static MusicalNoteName sharpScale[12] = {MUSICAL_NOTE_C, MUSICAL_NOTE_Cs, MUSICAL_NOTE_D, MUSICAL_NOTE_Ds, MUSICAL_NOTE_E, MUSICAL_NOTE_F, MUSICAL_NOTE_Fs, MUSICAL_NOTE_G, MUSICAL_NOTE_Gs, MUSICAL_NOTE_A, MUSICAL_NOTE_As, MUSICAL_NOTE_B};
+    static MusicalNoteName flatScale[12] = {MUSICAL_NOTE_C, MUSICAL_NOTE_Db, MUSICAL_NOTE_D, MUSICAL_NOTE_Eb, MUSICAL_NOTE_E, MUSICAL_NOTE_F, MUSICAL_NOTE_Gb, MUSICAL_NOTE_G, MUSICAL_NOTE_Ab, MUSICAL_NOTE_A, MUSICAL_NOTE_Bb, MUSICAL_NOTE_B};
+    
+    // Loop through and find a match.  Try the sharps first...
+    NSInteger matchedIdx = NSNotFound;
+    MusicalNoteName *scale;
+    for (int i=0; i<12; i++) {
+        if (sharpScale[i] == noteName) {
+            matchedIdx = i;
+            scale = sharpScale;
+            break;
+        }
+    }
+    
+    // If no match, then try the flats
+    if (matchedIdx == NSNotFound) {
+        for (int i=0; i<12; i++) {
+            if (flatScale[i] == noteName) {
+                matchedIdx = i;
+                scale = flatScale;
+            }
+        }
+    }
+    
+    NSAssert(matchedIdx != NSNotFound, @"No matching notename for %i!", noteName);
+    
+    // Now add halfsteps, wrap and return the new note name
+    NSInteger newIdx = matchedIdx + halfSteps;
+    newIdx %= 12;
+    if (newIdx < 0) newIdx += 12;
+    
+    return scale[newIdx];
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Life Cycle
+/////////////////////////////////////////////////////////////////////////
 
 + (MusicalNote *)noteFromAddingHalfsteps:(NSInteger)theHalfSteps toNote:(MusicalNote *)theNote
 {
@@ -121,24 +179,6 @@
 }
 
 //---------------------------------------------------------------------
-
-+ (NSUInteger)halfStepsFromNoteName:(MusicalNoteName)noteA toNoteName:(MusicalNoteName)noteB
-{
-    // Relies on our enum's values
-    NSInteger diff = round((float_t)(noteB - noteA) / 10.);
-    
-    // If negative then add 12 to get the forward direction
-    if (diff < 0) diff += 12.;
-    
-    return diff;
-}
-
-
-
-/////////////////////////////////////////////////////////////////////////
-#pragma mark - Init
-/////////////////////////////////////////////////////////////////////////
-
 
 - (MusicalNote *)initWithNoteName:(MusicalNoteName)n andOctave:(int)o {
     if (!(self = [super init])) 
@@ -211,6 +251,8 @@
 {
     return [self initWithNoteName:MUSICAL_NOTE_C andOctave:4];  // middle C
 }
+
+
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - NSDictionary Key Requirements
