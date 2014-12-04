@@ -63,10 +63,17 @@ typedef enum {
 + (NSUInteger)halfStepsFromNoteName:(MusicalNoteName)noteA toNoteName:(MusicalNoteName)noteB;
 
 /** Returns the musical note name that results from adding/subtracting the specified number of halfsteps and wrapping, Ie  C => -12 => C.  Flats always map to flats (or natural of course) and sharps to sharps */
-+ (MusicalNoteName)noteNameFromNoteName:(MusicalNoteName)noteName ShiftedByHalfSteps:(NSInteger)halfSteps;
++ (MusicalNoteName)noteNameFromNoteName:(MusicalNoteName)noteName shiftedByHalfSteps:(NSInteger)halfSteps;
+
+/** Returns Ab for G#. Ab for Ab and the same for natural notes */
++ (MusicalNoteName)flatVersionForNoteName:(MusicalNoteName)noteName;
+
++ (BOOL)noteNameIsNatural:(MusicalNoteName)noteName;
 
 
 // plus class initialisers below...
+
+
 
 
 /////////////////////////////////////////////////////////////////////////
@@ -89,6 +96,10 @@ typedef enum {
  - Nonexistants like Cb resolve to their existing equivlent, eg B.
  */
 - (MusicalNote *)initFromNoteString:(NSString *)noteStr;
+
+//---------------------------------------------------------------------
+
+- (MusicalNote *)initFromMidiValue:(NSUInteger)midiValue;
 
 //---------------------------------------------------------------------
 

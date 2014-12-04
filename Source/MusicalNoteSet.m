@@ -70,7 +70,7 @@
     MusicalNote *newRangeMax = [MusicalNote noteFromAddingHalfsteps:halfSteps toNote:self.rangeMaxNote];
     
     // The key is just the
-    MusicalNoteName newKey = [MusicalNote noteNameFromNoteName:self.scale.key ShiftedByHalfSteps:halfSteps];
+    MusicalNoteName newKey = [MusicalNote noteNameFromNoteName:self.scale.key shiftedByHalfSteps:halfSteps];
     MusicalScaleAbstract *newScale = [self.scale musicalScaleWithNewKey:newKey];
     
     
@@ -109,7 +109,7 @@
  */
 - (MusicalNote *)actualStartNote
 {
-    return [_scale getNearestInKeyNoteGreaterThanOrEqualTo:_rangeMinNote];
+    return [_scale nearestInKeyNoteGreaterThanOrEqualTo:_rangeMinNote];
 }
 - (MusicalNote *)actualEndNote
 {

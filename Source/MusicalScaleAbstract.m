@@ -157,16 +157,16 @@
 
 /////////////////////////////////////////////////////////////////////////
 
-- (MusicalNote *)getNearestInKeyNoteGreaterThanOrEqualTo:(MusicalNote *)aNote
+- (MusicalNote *)nearestInKeyNoteGreaterThanOrEqualTo:(MusicalNote *)aNote
 {
-    return [self getNearestInKeyNoteForNote:aNote above:YES];
+    return [self nearestInKeyNoteForNote:aNote above:YES];
 }
 
 /////////////////////////////////////////////////////////////////////////
 
 - (MusicalNote *)getNearestInKeyNoteLessThanOrEqualTo:(MusicalNote *)aNote
 {
-    return [self getNearestInKeyNoteForNote:aNote above:NO];
+    return [self nearestInKeyNoteForNote:aNote above:NO];
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -180,7 +180,7 @@
 
     // Get the note snapped to scale above and below.  See which is closer to the original
     lowerBound = [self getNearestInKeyNoteLessThanOrEqualTo:notePlusInterval];
-    upperBound = [self getNearestInKeyNoteGreaterThanOrEqualTo:notePlusInterval];
+    upperBound = [self nearestInKeyNoteGreaterThanOrEqualTo:notePlusInterval];
     
     NSInteger lowerDiff, upperDiff;
     lowerDiff = abs((int)[aStartNote getDifferenceInHalfStepsFrom:lowerBound]);
@@ -195,6 +195,7 @@
     }
 }
 
+
 /////////////////////////////////////////////////////////////////////////
 
 - (NSArray *)getArrayOfNotesInRangeFrom:(MusicalNote *)fromNote to:(MusicalNote *)toNote
@@ -206,10 +207,10 @@
     NSUInteger const octavesCoveredByDef = [[self class] octavesCovered];
     
     // Get the start note snapped to this key/scale
-    note = [self getNearestInKeyNoteGreaterThanOrEqualTo:fromNote]; 
+    note = [self nearestInKeyNoteGreaterThanOrEqualTo:fromNote]; 
     
     // Get the index in the scale definition that represents this note, (wrt the key)
-    NSUInteger i = [self getHalfstepDefinitionIndexForNoteName:note.name];
+    NSUInteger i = [self halfstepDefinitionIndexForNoteName:note.name];
     
     // And get the scale's root note which "note" is relative to, ie note = root + halfstepsArr[i]
     rootNote = [[MusicalNote alloc] initWithNoteName:key andOctave:note.octave];
@@ -248,14 +249,14 @@
 
 - (BOOL)noteNameIsInKey:(MusicalNoteName)testNoteName
 {
-    return ([self getHalfstepDefinitionIndexForNoteName:testNoteName] != NSNotFound);
+    return ([self halfstepDefinitionIndexForNoteName:testNoteName] != NSNotFound);
 }
 
 //---------------------------------------------------------------------
 
 - (NSUInteger)indexOfNoteInScale:(MusicalNoteName)musicalNoteName
 {
-    return [self getHalfstepDefinitionIndexForNoteName:musicalNoteName];
+    return [self halfstepDefinitionIndexForNoteName:musicalNoteName];
 }
 
 //---------------------------------------------------------------------
@@ -265,12 +266,12 @@
     // We want the number of halfsteps transvered when we move forward (or backward for negative) by `relPosition` notes in the scale starting from the reference note.
     
     // Start by getting the index of the source note's name in the scale definition so we know where we are starting from
-    NSInteger idx = [self getHalfstepDefinitionIndexForNoteName:referenceNote.name];
+    NSInteger idx = [self halfstepDefinitionIndexForNoteName:referenceNote.name];
     
     // If the reference is not in the scale then snap to the previous scale note (or next note note if relPos is negative)
     if (idx == NSNotFound) {
-        referenceNote = [self getNearestInKeyNoteForNote:referenceNote above:(relPosition > 0)];
-        idx = [self getHalfstepDefinitionIndexForNoteName:referenceNote.name];
+        referenceNote = [self nearestInKeyNoteForNote:referenceNote above:(relPosition > 0)];
+        idx = [self halfstepDefinitionIndexForNoteName:referenceNote.name];
         NSAssert(idx != NSNotFound, @"Shouldn't be (MSA:nwsp)");
     }
     
@@ -285,13 +286,14 @@
         // Halfsteps are all relative to root so we need to subtract the next from the current
         // Inc/Dec the idx and wrap for the length of the scale definition array
         NSInteger nextIdx = idx + sign;
-        if (nextIdx < 0) idx = scaleNotes - 1;
+        if (nextIdx < 0) nextIdx = scaleNotes - 1;
         else nextIdx %= scaleNotes;
         
         // Get the distance wrt 12 note scale
         NSInteger deltaHalfSteps = halfstepsDefArr[nextIdx] - halfstepsDefArr[idx];
         deltaHalfSteps %= 12;
-        if (deltaHalfSteps < 0) deltaHalfSteps += 12;
+        if (relPosition >= 0 && deltaHalfSteps < 0) deltaHalfSteps += 12;
+        else if (relPosition < 0 && deltaHalfSteps >= 0) deltaHalfSteps -= 12;
         
         // Add the halfsteps entry to our tally.  Be sure to account for going backwards
         halfsteps += deltaHalfSteps;
@@ -309,7 +311,7 @@
 #pragma mark - Protected Methods
 /////////////////////////////////////////////////////////////////////////
 
-- (MusicalNote *)getNearestInKeyNoteForNote:(MusicalNote *)theNote above:(BOOL)above
+- (MusicalNote *)nearestInKeyNoteForNote:(MusicalNote *)theNote above:(BOOL)above
 {
     MusicalNote *note, *baseNote, *loopStartNote, *prevNote;
     
@@ -358,7 +360,7 @@
 
 //---------------------------------------------------------------------
 
-- (NSUInteger)getHalfstepDefinitionIndexForNoteName:(MusicalNoteName)theNoteName
+- (NSUInteger)halfstepDefinitionIndexForNoteName:(MusicalNoteName)theNoteName
 {
     NSInteger const *halfstepsArr = [[self class] halfstepsArray];
     NSUInteger const halfstepsArrCnt = [[self class] halfstepsArrayCount];

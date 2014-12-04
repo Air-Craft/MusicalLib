@@ -32,11 +32,11 @@
 /**
  If the note is not in the key/scale, returns the nearest note in the key/scale above or below as specified
  */
-- (MusicalNote *)getNearestInKeyNoteForNote:(MusicalNote *)theNote above:(BOOL)above;
+- (MusicalNote *)nearestInKeyNoteForNote:(MusicalNote *)theNote above:(BOOL)above;
 /**
  Utility to return the index of the halfstep array which generates the given note name for the scale 
  */
-- (NSUInteger)getHalfstepDefinitionIndexForNoteName:(MusicalNoteName)theNoteName;
+- (NSUInteger)halfstepDefinitionIndexForNoteName:(MusicalNoteName)theNoteName;
 
 @end
 

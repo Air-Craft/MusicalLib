@@ -65,7 +65,6 @@
 
 - (MusicalScaleAbstract *)musicalScaleWithNewKey:(MusicalNoteName)newKey;
 
-
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Public API
 /////////////////////////////////////////////////////////////////////////
@@ -77,9 +76,12 @@
  See protected getNearestInKeyNoteForNote:above for more.
  @{
  */
-- (MusicalNote *)getNearestInKeyNoteGreaterThanOrEqualTo:(MusicalNote *)aNote;
+- (MusicalNote *)nearestInKeyNoteGreaterThanOrEqualTo:(MusicalNote *)aNote;
 - (MusicalNote *)getNearestInKeyNoteLessThanOrEqualTo:(MusicalNote *)aNote;
 /// @}
+
+/** Checks up and down and returns the closer or the higher if tie  */
+- (MusicalNote *)getNearestInKeyNote;
 
 /////////////////////////////////////////////////////////////////////////
 

@@ -17,7 +17,7 @@
 
 @implementation MusicalNote
 
-@synthesize name, octave;
+@synthesize name=_name, octave=_octave;
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Class Methods
@@ -90,7 +90,7 @@
 
 //---------------------------------------------------------------------
 
-+ (MusicalNoteName)noteNameFromNoteName:(MusicalNoteName)noteName ShiftedByHalfSteps:(NSInteger)halfSteps
++ (MusicalNoteName)noteNameFromNoteName:(MusicalNoteName)noteName shiftedByHalfSteps:(NSInteger)halfSteps
 {
     // We want to keep sharps as sharps and flats as flats
     static MusicalNoteName sharpScale[12] = {MUSICAL_NOTE_C, MUSICAL_NOTE_Cs, MUSICAL_NOTE_D, MUSICAL_NOTE_Ds, MUSICAL_NOTE_E, MUSICAL_NOTE_F, MUSICAL_NOTE_Fs, MUSICAL_NOTE_G, MUSICAL_NOTE_Gs, MUSICAL_NOTE_A, MUSICAL_NOTE_As, MUSICAL_NOTE_B};
@@ -127,6 +127,38 @@
     return scale[newIdx];
 }
 
+//---------------------------------------------------------------------
+
++ (MusicalNoteName)flatVersionForNoteName:(MusicalNoteName)noteName
+{
+    switch (noteName) {
+        case MUSICAL_NOTE_Cs: return MUSICAL_NOTE_Db;
+        case MUSICAL_NOTE_Ds: return MUSICAL_NOTE_Eb;
+        case MUSICAL_NOTE_Fs: return MUSICAL_NOTE_Gb;
+        case MUSICAL_NOTE_Gs: return MUSICAL_NOTE_Ab;
+        case MUSICAL_NOTE_As: return MUSICAL_NOTE_Bb;
+        default:
+            return noteName;
+    }
+}
+
+//---------------------------------------------------------------------
+
++ (BOOL)noteNameIsNatural:(MusicalNoteName)noteName
+{
+    switch (noteName) {
+        case MUSICAL_NOTE_C:
+        case MUSICAL_NOTE_D:
+        case MUSICAL_NOTE_E:
+        case MUSICAL_NOTE_F:
+        case MUSICAL_NOTE_G:
+        case MUSICAL_NOTE_A:
+        case MUSICAL_NOTE_B:
+            return YES;
+        default:
+            return NO;
+    }
+}
 
 
 /////////////////////////////////////////////////////////////////////////
@@ -184,8 +216,8 @@
     if (!(self = [super init])) 
         return nil;
 
-    name = n;
-    octave = o;
+    _name = n;
+    _octave = o;
     return self;
 }
 
@@ -247,6 +279,34 @@
 
 //---------------------------------------------------------------------
 
+- (MusicalNote *)initFromMidiValue:(NSUInteger)midiValue
+{
+    // Should we check bounds here? Nah...
+    self = [super init];
+    if (self) {
+        _octave = floor(midiValue / 12) - 1;    // we're C-1 based
+        switch (midiValue % 12) {
+            case 0: _name = MUSICAL_NOTE_C; break;
+            case 1: _name = MUSICAL_NOTE_Cs; break;
+            case 2: _name = MUSICAL_NOTE_D; break;
+            case 3: _name = MUSICAL_NOTE_Ds; break;
+            case 4: _name = MUSICAL_NOTE_E; break;
+            case 5: _name = MUSICAL_NOTE_F; break;
+            case 6: _name = MUSICAL_NOTE_Fs; break;
+            case 7: _name = MUSICAL_NOTE_G; break;
+            case 8: _name = MUSICAL_NOTE_Gs; break;
+            case 9: _name = MUSICAL_NOTE_A; break;
+            case 10: _name = MUSICAL_NOTE_As; break;
+            case 11: _name = MUSICAL_NOTE_B; break;
+            default:
+                [NSException raise:NSInternalInconsistencyException format:@"Midi note name out of range. Shouldnt be!"];
+        }
+    }
+    return self;
+}
+
+//---------------------------------------------------------------------
+
 - (MusicalNote *)init 
 {
     return [self initWithNoteName:MUSICAL_NOTE_C andOctave:4];  // middle C
@@ -276,7 +336,7 @@
     //    if ([(MusicalNote *)object octave] == 2) {
     //        NSLog(@"sds");
     //    }
-    return ([(MusicalNote *)object name] == name && [(MusicalNote *)object octave] == octave);
+    return ([(MusicalNote *)object name] == _name && [(MusicalNote *)object octave] == _octave);
 }
 
 //---------------------------------------------------------------------
@@ -284,7 +344,7 @@
 - (NSUInteger)hash
 {
     // We want Cs != Db here
-    return ((NSUInteger)octave * 120) + name;
+    return ((NSUInteger)_octave * 120) + _name;
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -310,7 +370,7 @@
 
 - (NSInteger)toInteger 
 {
-    return (NSInteger)( (octave * 12) + (NSUInteger)(roundf((float)name / 10.0f)) );
+    return (NSInteger)( (_octave * 12) + (NSUInteger)(roundf((float)_name / 10.0f)) );
 }
 
 //---------------------------------------------------------------------
@@ -319,24 +379,24 @@
 {
     NSString *noteString;
     
-    switch (name) {
-        case MUSICAL_NOTE_C:    noteString = [NSString stringWithFormat:@"C%i", (int)octave];    break;
-        case MUSICAL_NOTE_Cs:   noteString = [NSString stringWithFormat:@"C#%i", (int)octave];    break;    
-        case MUSICAL_NOTE_Db:   noteString = [NSString stringWithFormat:@"Db%i", (int)octave];    break;     
-        case MUSICAL_NOTE_D:    noteString = [NSString stringWithFormat:@"D%i",  (int)octave];    break;    
-        case MUSICAL_NOTE_Ds:   noteString = [NSString stringWithFormat:@"D#%i", (int)octave];    break;    
-        case MUSICAL_NOTE_Eb:   noteString = [NSString stringWithFormat:@"Eb%i", (int)octave];    break;     
-        case MUSICAL_NOTE_E:    noteString = [NSString stringWithFormat:@"E%i",  (int)octave];    break;      
-        case MUSICAL_NOTE_F:    noteString = [NSString stringWithFormat:@"F%i",  (int)octave];    break;     
-        case MUSICAL_NOTE_Fs:   noteString = [NSString stringWithFormat:@"F#%i", (int)octave];    break;    
-        case MUSICAL_NOTE_Gb:   noteString = [NSString stringWithFormat:@"Gb%i", (int)octave];    break;     
-        case MUSICAL_NOTE_G:    noteString = [NSString stringWithFormat:@"G%i",  (int)octave];    break;     
-        case MUSICAL_NOTE_Gs:   noteString = [NSString stringWithFormat:@"G#%i", (int)octave];    break;    
-        case MUSICAL_NOTE_Ab:   noteString = [NSString stringWithFormat:@"Ab%i", (int)octave];    break;     
-        case MUSICAL_NOTE_A:    noteString = [NSString stringWithFormat:@"A%i",  (int)octave];    break;    
-        case MUSICAL_NOTE_As:   noteString = [NSString stringWithFormat:@"A#%i", (int)octave];    break;   
-        case MUSICAL_NOTE_Bb:   noteString = [NSString stringWithFormat:@"Bb%i", (int)octave];    break;    
-        case MUSICAL_NOTE_B:    noteString = [NSString stringWithFormat:@"B%i",  (int)octave];    break;
+    switch (_name) {
+        case MUSICAL_NOTE_C:    noteString = [NSString stringWithFormat:@"C%i", (int)_octave];    break;
+        case MUSICAL_NOTE_Cs:   noteString = [NSString stringWithFormat:@"C#%i", (int)_octave];    break;    
+        case MUSICAL_NOTE_Db:   noteString = [NSString stringWithFormat:@"Db%i", (int)_octave];    break;     
+        case MUSICAL_NOTE_D:    noteString = [NSString stringWithFormat:@"D%i",  (int)_octave];    break;    
+        case MUSICAL_NOTE_Ds:   noteString = [NSString stringWithFormat:@"D#%i", (int)_octave];    break;    
+        case MUSICAL_NOTE_Eb:   noteString = [NSString stringWithFormat:@"Eb%i", (int)_octave];    break;     
+        case MUSICAL_NOTE_E:    noteString = [NSString stringWithFormat:@"E%i",  (int)_octave];    break;      
+        case MUSICAL_NOTE_F:    noteString = [NSString stringWithFormat:@"F%i",  (int)_octave];    break;     
+        case MUSICAL_NOTE_Fs:   noteString = [NSString stringWithFormat:@"F#%i", (int)_octave];    break;    
+        case MUSICAL_NOTE_Gb:   noteString = [NSString stringWithFormat:@"Gb%i", (int)_octave];    break;     
+        case MUSICAL_NOTE_G:    noteString = [NSString stringWithFormat:@"G%i",  (int)_octave];    break;     
+        case MUSICAL_NOTE_Gs:   noteString = [NSString stringWithFormat:@"G#%i", (int)_octave];    break;    
+        case MUSICAL_NOTE_Ab:   noteString = [NSString stringWithFormat:@"Ab%i", (int)_octave];    break;     
+        case MUSICAL_NOTE_A:    noteString = [NSString stringWithFormat:@"A%i",  (int)_octave];    break;    
+        case MUSICAL_NOTE_As:   noteString = [NSString stringWithFormat:@"A#%i", (int)_octave];    break;   
+        case MUSICAL_NOTE_Bb:   noteString = [NSString stringWithFormat:@"Bb%i", (int)_octave];    break;    
+        case MUSICAL_NOTE_B:    noteString = [NSString stringWithFormat:@"B%i",  (int)_octave];    break;
         default:   
             noteString = @"Invalid MusicalNote";
     }
@@ -350,6 +410,8 @@
 {
         
     NSInteger midiValue = [self toInteger] + 12;
+    
+    // don't know about this...
     midiValue = midiValue < 0 
                     ? 0 
                     : (midiValue > 127
