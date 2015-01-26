@@ -144,6 +144,21 @@
 
 //---------------------------------------------------------------------
 
++ (MusicalNoteName)sharpVersionForNoteName:(MusicalNoteName)noteName
+{
+    switch (noteName) {
+        case MUSICAL_NOTE_Db: return MUSICAL_NOTE_Cs;
+        case MUSICAL_NOTE_Eb: return MUSICAL_NOTE_Ds;
+        case MUSICAL_NOTE_Gb: return MUSICAL_NOTE_Fs;
+        case MUSICAL_NOTE_Ab: return MUSICAL_NOTE_Gs;
+        case MUSICAL_NOTE_Bb: return MUSICAL_NOTE_As;
+        default:
+            return noteName;
+    }
+}
+
+//---------------------------------------------------------------------
+
 + (BOOL)noteNameIsNatural:(MusicalNoteName)noteName
 {
     switch (noteName) {

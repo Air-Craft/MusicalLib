@@ -44,7 +44,6 @@ typedef enum {
  *************************************************************/
 @interface MusicalNote : NSObject <NSCopying>
 
-
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Class Methods
 /////////////////////////////////////////////////////////////////////////
@@ -67,6 +66,10 @@ typedef enum {
 
 /** Returns Ab for G#. Ab for Ab and the same for natural notes */
 + (MusicalNoteName)flatVersionForNoteName:(MusicalNoteName)noteName;
+
+/** Returns G# for Ab. G# for G# and the same for natural notes */
++ (MusicalNoteName)sharpVersionForNoteName:(MusicalNoteName)noteName;
+
 
 + (BOOL)noteNameIsNatural:(MusicalNoteName)noteName;
 
