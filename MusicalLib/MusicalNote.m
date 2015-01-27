@@ -204,8 +204,8 @@
 - (id)copyWithZone:(NSZone *)zone
 {
     MusicalNote *copy = [[[self class] allocWithZone:zone] init];
-    copy.key = self.key;
-    copy.octave = self.octave;
+    copy->_key = _key;
+    copy->_octave = _octave;
     return copy;
 }
 
@@ -216,9 +216,7 @@
     if (![object isMemberOfClass:[MusicalNote class]]) {
         return NO;
     }
-    //    if ([(MusicalNote *)object octave] == 2) {
-    //        NSLog(@"sds");
-    //    }
+    
     return ([(MusicalNote *)object key] == _key && [(MusicalNote *)object octave] == _octave);
 }
 
@@ -243,6 +241,13 @@
 - (MusicalNote *)noteWithInterval:(MusicalInterval)anInterval 
 {
     return [[self class] noteWithInterval:anInterval fromNote:self];
+}
+
+//---------------------------------------------------------------------
+
+- (MusicalNote *)noteWithNewOctave:(NSInteger)newOctave
+{
+    return [[self class] noteWithKey:self.key octave:newOctave];
 }
 
 //---------------------------------------------------------------------

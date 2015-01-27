@@ -80,13 +80,13 @@
  Enum constant for musical note name.  kMusicalKeyCs != kMusicalKeyDb, but
  round(kMusicalKeyCs/10) == round(kMusicalKeyDb/10).
  */
-@property (nonatomic) MusicalKey key;
+@property (nonatomic, readonly) MusicalKey key;
 
 
 /**
  Any NSInteger value
  */
-@property (nonatomic) NSInteger octave;
+@property (nonatomic, readonly) NSInteger octave;
 
 
 
@@ -96,6 +96,9 @@
 
 /** Returns a new note with the interval specified interval to this one */
 - (MusicalNote *)noteWithInterval:(MusicalInterval)anInterval;
+
+/** Copy the note but with a new octave */
+- (MusicalNote *)noteWithNewOctave:(NSInteger)newOctave;
 
 /**
  Calculate a hash representing the distance in half steps from C0.  

@@ -123,7 +123,7 @@
     // Even if they are equal, go one octave lower so we can grab the note *below* if
     // requested
     while ([rootNote toInteger] > [note toInteger]) {
-        rootNote.octave -= octavesCoveredByDef;
+        rootNote = [rootNote noteWithNewOctave:rootNote.octave - octavesCoveredByDef];
     }
     
     NSAssert(i != NSNotFound, @"This shouldn't be given the previous ops...");
@@ -233,7 +233,7 @@
     // Even if they are equal, go one octave lower so we can grab the note *below* if
     // requested
     while ([loopStartNote toInteger] >= [theNote toInteger]) {
-        loopStartNote.octave -= octavesCoveredByDef;
+        loopStartNote = [loopStartNote noteWithNewOctave:loopStartNote.octave - octavesCoveredByDef];
     }
     
     // Loop through and find point at which we find or cross over (or match) the test note
@@ -280,7 +280,7 @@
         note = [MusicalNote noteFromAddingHalfsteps:[_scaleDefinition.halfstepsArr[i] integerValue] toNote:aStartNote];
         
         // Set the octave of our test note to match
-        testNote.octave = note.octave;
+        testNote = [MusicalNote noteWithKey:testNote.key octave:note.octave];
         
         // return the index on match
         if ([testNote toInteger] == [note toInteger]) {
