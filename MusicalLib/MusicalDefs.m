@@ -1,7 +1,7 @@
 #import "MusicalDefs.h"
 
 
-MusicalKey ML_KeyFromString(NSString *keyStr)
+MusicalKey MusicalKeyFromString(NSString *keyStr)
 {
     if ([keyStr isEqualToString:@"C"]) return kMusicalKeyC;
     if ([keyStr isEqualToString:@"C#"]) return kMusicalKeyCs;
@@ -46,7 +46,7 @@ MusicalKey ML_KeyFromString(NSString *keyStr)
 
 //---------------------------------------------------------------------
 
-NSString *ML_KeyToString(MusicalKey key)
+NSString *MusicalKeyToString(MusicalKey key)
 {
     switch (key) {
         case kMusicalKeyC: return @"C";
@@ -74,7 +74,7 @@ NSString *ML_KeyToString(MusicalKey key)
 
 //---------------------------------------------------------------------
 
-NSUInteger ML_HalfstepsFromKeytoKey(MusicalKey keyA, MusicalKey keyB)
+NSUInteger MusicalHalfstepsFromKeytoKey(MusicalKey keyA, MusicalKey keyB)
 {
     // Relies on our enum's values
     NSInteger diff = round((float_t)(keyB - keyA) / 10.);
@@ -87,7 +87,7 @@ NSUInteger ML_HalfstepsFromKeytoKey(MusicalKey keyA, MusicalKey keyB)
 
 //---------------------------------------------------------------------
 
-MusicalKey ML_KeyShiftedByHalfsteps(MusicalKey key, NSInteger halfsteps)
+MusicalKey MusicalKeyShiftedByHalfsteps(MusicalKey key, NSInteger halfsteps)
 {
     // We want to keep sharps as sharps and flats as flats
     static MusicalKey sharpScale[12] = {kMusicalKeyC, kMusicalKeyCs, kMusicalKeyD, kMusicalKeyDs, kMusicalKeyE, kMusicalKeyF, kMusicalKeyFs, kMusicalKeyG, kMusicalKeyGs, kMusicalKeyA, kMusicalKeyAs, kMusicalKeyB};
@@ -128,7 +128,7 @@ MusicalKey ML_KeyShiftedByHalfsteps(MusicalKey key, NSInteger halfsteps)
 
 //---------------------------------------------------------------------
 
-MusicalKey ML_FlatVersionOfKey(MusicalKey key)
+MusicalKey MusicalFlatVersionOfKey(MusicalKey key)
 {
     switch (key) {
         case kMusicalKeyCs: return kMusicalKeyDb;
@@ -143,7 +143,7 @@ MusicalKey ML_FlatVersionOfKey(MusicalKey key)
 
 //---------------------------------------------------------------------
 
-MusicalKey ML_SharpVersionOfKey(MusicalKey key)
+MusicalKey MusicalSharpVersionOfKey(MusicalKey key)
 {
     switch (key) {
         case kMusicalKeyDb: return kMusicalKeyCs;
@@ -158,7 +158,7 @@ MusicalKey ML_SharpVersionOfKey(MusicalKey key)
 
 //---------------------------------------------------------------------
 
-BOOL ML_KeyIsNatural(MusicalKey key)
+BOOL MusicalKeyIsNatural(MusicalKey key)
 {
     switch (key) {
         case kMusicalKeyC:

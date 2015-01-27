@@ -46,7 +46,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@ (%p): scaleDef=%@, key=%@", NSStringFromClass(self.class), &self, _scaleDefinition.ID, ML_KeyToString(_key)];
+    return [NSString stringWithFormat:@"<%@ (%p): scaleDef=%@, key=%@", NSStringFromClass(self.class), &self, _scaleDefinition.ID, MusicalKeyToString(_key)];
 }
 
 

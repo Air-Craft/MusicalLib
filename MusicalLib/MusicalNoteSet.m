@@ -56,7 +56,7 @@
     MusicalNote *newRangeMax = [MusicalNote noteFromAddingHalfsteps:halfsteps toNote:self.rangeMaxNote];
     
     // The key is just the
-    MusicalKey newKey = ML_KeyShiftedByHalfsteps(self.scale.key, halfsteps);
+    MusicalKey newKey = MusicalKeyShiftedByHalfsteps(self.scale.key, halfsteps);
     MusicalScale *newScale = [self.scale copyWithNewKey:newKey];
     
     
