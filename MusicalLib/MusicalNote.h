@@ -1,6 +1,6 @@
 //
 //  Note.h
-//  SoundWand
+//  MusicalLib
 //
 //  Created by Hari Karam Singh on 07/08/2011.
 //  Copyright (c) 2011-2015 Air Craft Media Ltd.  MIT License.
