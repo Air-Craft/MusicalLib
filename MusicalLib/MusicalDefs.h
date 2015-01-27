@@ -3,9 +3,12 @@
 /// \author     Created by  on 02/03/2012.
 //  Copyright  (c) 2011-2015 Air Craft Media Ltd.  MIT License.
 
-#ifndef MusicalLib_MLTypes_h
-#define MusicalLib_MLTypes_h
+#ifndef MusicalDefs_h
+#define MusicalDefs_h
 
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Types
+/////////////////////////////////////////////////////////////////////////
 
 /**
  Constants to identify note names, C, D#, etc.  Note C# != Db.  See
@@ -83,6 +86,35 @@ typedef enum {
     
 } MusicalInterval;
 
+
 /////////////////////////////////////////////////////////////////////////
+#pragma mark - Functions
+/////////////////////////////////////////////////////////////////////////
+
+/**
+ Convert NSStrings like C# and Bb to the MusicalKey enum type.  Proper case only!
+ */
+MusicalKey ML_KeyFromString(NSString *keyStr);
+
+/**
+ Convert MusicalKey's to NSStrings
+ */
+NSString *ML_KeyToString(MusicalKey key);
+
+/** The number of halfsteps to go between the note names of a scale.  Always position forward: F -> E = 11, A => A = 0, B => C = 1 */
+NSUInteger ML_HalfstepsFromKeytoKey(MusicalKey keyA, MusicalKey keyB);
+
+/** Returns the musical key that results from adding/subtracting the specified number of halfsteps and wrapping, Ie  C => -12 => C.  Flats always map to flats (or natural of course) and sharps to sharps */
+MusicalKey ML_KeyShiftedByHalfsteps(MusicalKey key, NSInteger halfsteps);
+
+/** Returns Ab for G#. Ab for Ab and the same for natural notes */
+MusicalKey ML_FlatVersionOfKey(MusicalKey key);
+
+/** Returns G# for Ab. G# for G# and the same for natural notes */
+MusicalKey ML_SharpVersionOfKey(MusicalKey key);
+
+/** YES if note is not a sharp or flat note */
+BOOL ML_KeyIsNatural(MusicalKey key);
+
 
 #endif

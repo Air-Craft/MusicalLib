@@ -57,7 +57,7 @@
 
 /** Return a new noteset with the notes augmented shifted by the specified amount of halfsteps.  Changes the key of the underlying scale and the min/max ranges
  */
-- (MusicalNoteSet *)noteSetShiftedByHalfSteps:(NSInteger)halfSteps;
+- (MusicalNoteSet *)noteSetShiftedByHalfsteps:(NSInteger)halfsteps;
 
 
 - (MusicalNoteSet *)noteSetShiftedByNoteOffsetInScale:(NSInteger)noteOffset;

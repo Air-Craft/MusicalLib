@@ -172,7 +172,7 @@ static NSString *_FAVORITES_STORE_FILENAME = @"MusicalLib_User";
 
 - (MusicalScale *)scaleWithID:(NSString *)ID keyStr:(NSString *)keyStr
 {
-    return [self scaleWithID:ID key:[MusicalNote noteNameFromString:keyStr]];
+    return [self scaleWithID:ID key:ML_KeyFromString(keyStr)];
 }
 
 //---------------------------------------------------------------------

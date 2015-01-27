@@ -22,164 +22,6 @@
 
 @implementation MusicalNote
 
-@synthesize name=_name, octave=_octave;
-
-/////////////////////////////////////////////////////////////////////////
-#pragma mark - Class Methods
-/////////////////////////////////////////////////////////////////////////
-
-+ (MusicalKey)noteNameFromString:(NSString *)noteString
-{
-    if ([noteString isEqualToString:@"C"]) return kMusicalKeyC;
-    if ([noteString isEqualToString:@"C#"]) return kMusicalKeyCs;
-    if ([noteString isEqualToString:@"Db"]) return kMusicalKeyDb;
-    if ([noteString isEqualToString:@"D"]) return kMusicalKeyD;
-    if ([noteString isEqualToString:@"D#"]) return kMusicalKeyDs;
-    if ([noteString isEqualToString:@"Eb"]) return kMusicalKeyEb;
-    if ([noteString isEqualToString:@"E"]) return kMusicalKeyE;
-    if ([noteString isEqualToString:@"F"]) return kMusicalKeyF;
-    if ([noteString isEqualToString:@"F#"]) return kMusicalKeyFs;
-    if ([noteString isEqualToString:@"Gb"]) return kMusicalKeyGb;
-    if ([noteString isEqualToString:@"G"]) return kMusicalKeyG;
-    if ([noteString isEqualToString:@"G#"]) return kMusicalKeyGs;
-    if ([noteString isEqualToString:@"Ab"]) return kMusicalKeyAb;
-    if ([noteString isEqualToString:@"A"]) return kMusicalKeyA;
-    if ([noteString isEqualToString:@"A#"]) return kMusicalKeyAs;
-    if ([noteString isEqualToString:@"Bb"]) return kMusicalKeyBb;
-    if ([noteString isEqualToString:@"B"]) return kMusicalKeyB;
-
-    [NSException raise:@"MLInvalidNoteNameString" format:@"MLInvalidNoteNameString: %@", noteString];
-    return kMusicalKeyA;  // Satisfy the compiler
-}
-
-//---------------------------------------------------------------------
-
-+ (NSString *)noteNameToString:(MusicalKey)noteName
-{
-    switch (noteName) {
-        case kMusicalKeyC: return @"C";
-        case kMusicalKeyCs: return @"C#";
-        case kMusicalKeyDb: return @"Db";
-        case kMusicalKeyD: return @"D";
-        case kMusicalKeyDs: return @"D#";
-        case kMusicalKeyEb: return @"Eb";
-        case kMusicalKeyE: return @"E";
-        case kMusicalKeyF: return @"F";
-        case kMusicalKeyFs: return @"F#";
-        case kMusicalKeyGb: return @"Gb";
-        case kMusicalKeyG: return @"G";
-        case kMusicalKeyGs: return @"G#";
-        case kMusicalKeyAb: return @"Ab";
-        case kMusicalKeyA: return @"A";
-        case kMusicalKeyAs: return @"A#";
-        case kMusicalKeyBb: return @"Bb";
-        case kMusicalKeyB: return @"B";
-        default:
-            [NSException raise:@"MLInvalidMusicalKey" format:@"MLInvalidMusicalKey: %u", noteName];
-            return nil;  // Satisfy the compiler
-    }
-}
-
-//---------------------------------------------------------------------
-
-+ (NSUInteger)halfStepsFromNoteName:(MusicalKey)noteA toNoteName:(MusicalKey)noteB
-{
-    // Relies on our enum's values
-    NSInteger diff = round((float_t)(noteB - noteA) / 10.);
-    
-    // If negative then add 12 to get the forward direction
-    if (diff < 0) diff += 12.;
-    
-    return diff;
-}
-
-//---------------------------------------------------------------------
-
-+ (MusicalKey)noteNameFromNoteName:(MusicalKey)noteName shiftedByHalfSteps:(NSInteger)halfSteps
-{
-    // We want to keep sharps as sharps and flats as flats
-    static MusicalKey sharpScale[12] = {kMusicalKeyC, kMusicalKeyCs, kMusicalKeyD, kMusicalKeyDs, kMusicalKeyE, kMusicalKeyF, kMusicalKeyFs, kMusicalKeyG, kMusicalKeyGs, kMusicalKeyA, kMusicalKeyAs, kMusicalKeyB};
-    static MusicalKey flatScale[12] = {kMusicalKeyC, kMusicalKeyDb, kMusicalKeyD, kMusicalKeyEb, kMusicalKeyE, kMusicalKeyF, kMusicalKeyGb, kMusicalKeyG, kMusicalKeyAb, kMusicalKeyA, kMusicalKeyBb, kMusicalKeyB};
-    
-    // Loop through and find a match.  Try the sharps first...
-    NSInteger matchedIdx = NSNotFound;
-    MusicalKey *scale;
-    for (int i=0; i<12; i++) {
-        if (sharpScale[i] == noteName) {
-            matchedIdx = i;
-            scale = sharpScale;
-            break;
-        }
-    }
-    
-    // If no match, then try the flats
-    if (matchedIdx == NSNotFound) {
-        for (int i=0; i<12; i++) {
-            if (flatScale[i] == noteName) {
-                matchedIdx = i;
-                scale = flatScale;
-            }
-        }
-    }
-    
-    NSAssert(matchedIdx != NSNotFound, @"No matching notename for %i!", noteName);
-    
-    // Now add halfsteps, wrap and return the new note name
-    NSInteger newIdx = matchedIdx + halfSteps;
-    newIdx %= 12;
-    if (newIdx < 0) newIdx += 12;
-    
-    return scale[newIdx];
-}
-
-//---------------------------------------------------------------------
-
-+ (MusicalKey)flatVersionForNoteName:(MusicalKey)noteName
-{
-    switch (noteName) {
-        case kMusicalKeyCs: return kMusicalKeyDb;
-        case kMusicalKeyDs: return kMusicalKeyEb;
-        case kMusicalKeyFs: return kMusicalKeyGb;
-        case kMusicalKeyGs: return kMusicalKeyAb;
-        case kMusicalKeyAs: return kMusicalKeyBb;
-        default:
-            return noteName;
-    }
-}
-
-//---------------------------------------------------------------------
-
-+ (MusicalKey)sharpVersionForNoteName:(MusicalKey)noteName
-{
-    switch (noteName) {
-        case kMusicalKeyDb: return kMusicalKeyCs;
-        case kMusicalKeyEb: return kMusicalKeyDs;
-        case kMusicalKeyGb: return kMusicalKeyFs;
-        case kMusicalKeyAb: return kMusicalKeyGs;
-        case kMusicalKeyBb: return kMusicalKeyAs;
-        default:
-            return noteName;
-    }
-}
-
-//---------------------------------------------------------------------
-
-+ (BOOL)noteNameIsNatural:(MusicalKey)noteName
-{
-    switch (noteName) {
-        case kMusicalKeyC:
-        case kMusicalKeyD:
-        case kMusicalKeyE:
-        case kMusicalKeyF:
-        case kMusicalKeyG:
-        case kMusicalKeyA:
-        case kMusicalKeyB:
-            return YES;
-        default:
-            return NO;
-    }
-}
-
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Life Cycle
@@ -192,12 +34,12 @@
 
 //---------------------------------------------------------------------
 
-- (instancetype)initWithKey:(MusicalKey)n octave:(NSInteger)o {
+- (instancetype)initWithKey:(MusicalKey)key octave:(NSInteger)octave {
     if (!(self = [super init])) 
         return nil;
 
-    _name = n;
-    _octave = o;
+    _key = key;
+    _octave = octave;
     return self;
 }
 
@@ -215,7 +57,7 @@
     NSUInteger len, i=0;
     NSInteger octv;
     unichar letter, modifier='\0', aChar;
-    MusicalKey noteName;
+    MusicalKey key;
     
     len = [noteStr length];
     if (len < 2)        // we need at least a letter and an octave
@@ -251,17 +93,17 @@
     // Now convert it to our properties' types
     // Resolve nonexistent notes like Cb to their equivalents, eg B, for now...
     switch (letter) {
-        case 'C':   noteName = (modifier == '#' ? kMusicalKeyCs : (modifier == 'b' ? kMusicalKeyB  : kMusicalKeyC)); break;
-        case 'D':   noteName = (modifier == '#' ? kMusicalKeyDs : (modifier == 'b' ? kMusicalKeyDb : kMusicalKeyD)); break;
-        case 'E':   noteName = (modifier == '#' ? kMusicalKeyF  : (modifier == 'b' ? kMusicalKeyEb : kMusicalKeyE)); break;
-        case 'F':   noteName = (modifier == '#' ? kMusicalKeyFs : (modifier == 'b' ? kMusicalKeyE  : kMusicalKeyF)); break;
-        case 'G':   noteName = (modifier == '#' ? kMusicalKeyGs : (modifier == 'b' ? kMusicalKeyGb : kMusicalKeyG)); break;
-        case 'A':   noteName = (modifier == '#' ? kMusicalKeyAs : (modifier == 'b' ? kMusicalKeyAb : kMusicalKeyA)); break;
-        case 'B':   noteName = (modifier == '#' ? kMusicalKeyC  : (modifier == 'b' ? kMusicalKeyBb : kMusicalKeyB)); break;
+        case 'C':   key = (modifier == '#' ? kMusicalKeyCs : (modifier == 'b' ? kMusicalKeyB  : kMusicalKeyC)); break;
+        case 'D':   key = (modifier == '#' ? kMusicalKeyDs : (modifier == 'b' ? kMusicalKeyDb : kMusicalKeyD)); break;
+        case 'E':   key = (modifier == '#' ? kMusicalKeyF  : (modifier == 'b' ? kMusicalKeyEb : kMusicalKeyE)); break;
+        case 'F':   key = (modifier == '#' ? kMusicalKeyFs : (modifier == 'b' ? kMusicalKeyE  : kMusicalKeyF)); break;
+        case 'G':   key = (modifier == '#' ? kMusicalKeyGs : (modifier == 'b' ? kMusicalKeyGb : kMusicalKeyG)); break;
+        case 'A':   key = (modifier == '#' ? kMusicalKeyAs : (modifier == 'b' ? kMusicalKeyAb : kMusicalKeyA)); break;
+        case 'B':   key = (modifier == '#' ? kMusicalKeyC  : (modifier == 'b' ? kMusicalKeyBb : kMusicalKeyB)); break;
         default: return nil; // shouldn't ever be
     }
     
-    return [self initWithKey:noteName octave:octv];
+    return [self initWithKey:key octave:octv];
 }
 
 //---------------------------------------------------------------------
@@ -280,18 +122,18 @@
     if (self) {
         _octave = floor(midiValue / 12) - 1;    // we're C-1 based
         switch (midiValue % 12) {
-            case 0: _name = kMusicalKeyC; break;
-            case 1: _name = kMusicalKeyCs; break;
-            case 2: _name = kMusicalKeyD; break;
-            case 3: _name = kMusicalKeyDs; break;
-            case 4: _name = kMusicalKeyE; break;
-            case 5: _name = kMusicalKeyF; break;
-            case 6: _name = kMusicalKeyFs; break;
-            case 7: _name = kMusicalKeyG; break;
-            case 8: _name = kMusicalKeyGs; break;
-            case 9: _name = kMusicalKeyA; break;
-            case 10: _name = kMusicalKeyAs; break;
-            case 11: _name = kMusicalKeyB; break;
+            case 0: _key = kMusicalKeyC; break;
+            case 1: _key = kMusicalKeyCs; break;
+            case 2: _key = kMusicalKeyD; break;
+            case 3: _key = kMusicalKeyDs; break;
+            case 4: _key = kMusicalKeyE; break;
+            case 5: _key = kMusicalKeyF; break;
+            case 6: _key = kMusicalKeyFs; break;
+            case 7: _key = kMusicalKeyG; break;
+            case 8: _key = kMusicalKeyGs; break;
+            case 9: _key = kMusicalKeyA; break;
+            case 10: _key = kMusicalKeyAs; break;
+            case 11: _key = kMusicalKeyB; break;
             default:
                 [NSException raise:NSInternalInconsistencyException format:@"Midi note name out of range. Shouldnt be!"];
         }
@@ -308,10 +150,10 @@
 
 //---------------------------------------------------------------------
 
-+ (MusicalNote *)noteFromAddingHalfsteps:(NSInteger)theHalfSteps toNote:(MusicalNote *)theNote
++ (MusicalNote *)noteFromAddingHalfsteps:(NSInteger)theHalfsteps toNote:(MusicalNote *)theNote
 {
-    NSInteger newOctave = theNote.octave + theHalfSteps / 12;
-    NSInteger newNoteVal = ( (NSInteger)roundf((float)theNote.name/10.0f) ) + (theHalfSteps % 12);
+    NSInteger newOctave = theNote.octave + theHalfsteps / 12;
+    NSInteger newNoteVal = ( (NSInteger)roundf((float)theNote.key/10.0f) ) + (theHalfsteps % 12);
     
     // Convert negative note vals to positive with octave shift
     if (newNoteVal < 0) {
@@ -362,7 +204,7 @@
 - (id)copyWithZone:(NSZone *)zone
 {
     MusicalNote *copy = [[[self class] allocWithZone:zone] init];
-    copy.name = self.name;
+    copy.key = self.key;
     copy.octave = self.octave;
     return copy;
 }
@@ -377,7 +219,7 @@
     //    if ([(MusicalNote *)object octave] == 2) {
     //        NSLog(@"sds");
     //    }
-    return ([(MusicalNote *)object name] == _name && [(MusicalNote *)object octave] == _octave);
+    return ([(MusicalNote *)object key] == _key && [(MusicalNote *)object octave] == _octave);
 }
 
 //---------------------------------------------------------------------
@@ -385,17 +227,13 @@
 - (NSUInteger)hash
 {
     // We want Cs != Db here
-    return ((NSUInteger)_octave * 120) + _name;
+    return ((NSUInteger)_octave * 120) + _key;
 }
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Properties
 /////////////////////////////////////////////////////////////////////////
 
-- (NSString *)nameString
-{
-    return [MusicalNote noteNameToString:self.name];
-}
 
 
 /////////////////////////////////////////////////////////////////////////
@@ -411,7 +249,7 @@
 
 - (NSInteger)toInteger 
 {
-    return (NSInteger)( (_octave * 12) + (NSUInteger)(roundf((float)_name / 10.0f)) );
+    return (NSInteger)( (_octave * 12) + (NSUInteger)(roundf((float)_key / 10.0f)) );
 }
 
 //---------------------------------------------------------------------
@@ -420,7 +258,7 @@
 {
     NSString *noteString;
     
-    switch (_name) {
+    switch (_key) {
         case kMusicalKeyC:    noteString = [NSString stringWithFormat:@"C%i", (int)_octave];    break;
         case kMusicalKeyCs:   noteString = [NSString stringWithFormat:@"C#%i", (int)_octave];    break;    
         case kMusicalKeyDb:   noteString = [NSString stringWithFormat:@"Db%i", (int)_octave];    break;     
@@ -479,7 +317,7 @@
 
 //---------------------------------------------------------------------
 
-- (NSInteger)getDifferenceInHalfStepsFrom:(MusicalNote *)aNote 
+- (NSInteger)halfstepsFromNote:(MusicalNote *)aNote 
 {
     return ([aNote toInteger] - [self toInteger]);
 }
@@ -493,9 +331,9 @@
 
 //---------------------------------------------------------------------
 
-- (BOOL)isAnOctaveOf:(MusicalKey)aNoteName
+- (BOOL)isAnOctaveOf:(MusicalKey)aKey
 {
-    return (roundf(aNoteName/10.0) == roundf(self.name/10.0));
+    return (roundf(aKey/10.0) == roundf(self.key/10.0));
 }
 
 @end

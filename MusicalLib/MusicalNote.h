@@ -7,54 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MusicalTypes.h"
+#import "MusicalDefs.h"
 
 
 
-/*************************************************************
+/**
  Representation of a musical note, eg. C#-2, E3, Gb0
  
  Some notes...
  - Note names like C# do NOT equal their musical equiv, Db.  
    In otherwords its possible to distinguish the two.  To 
    compare them as equal, use toInteger.
- *************************************************************/
+ */
 @interface MusicalNote : NSObject <NSCopying>
-
-/////////////////////////////////////////////////////////////////////////
-#pragma mark - Class Methods
-/////////////////////////////////////////////////////////////////////////
-
-/**
- Convert NSStrings like C# and Bb to the MusicalKey enum type.  Proper case only!
- */
-+ (MusicalKey)noteNameFromString:(NSString *)noteString;
-
-/**
- Convert MusicalKey's to NSStrings
- */
-+ (NSString *)noteNameToString:(MusicalKey)noteName;
-
-/** The number of halfsteps to go between the note names of a scale.  Always position forward: F -> E = 11, A => A = 0, B => C = 1 */
-+ (NSUInteger)halfStepsFromNoteName:(MusicalKey)noteA toNoteName:(MusicalKey)noteB;
-
-/** Returns the musical note name that results from adding/subtracting the specified number of halfsteps and wrapping, Ie  C => -12 => C.  Flats always map to flats (or natural of course) and sharps to sharps */
-+ (MusicalKey)noteNameFromNoteName:(MusicalKey)noteName shiftedByHalfSteps:(NSInteger)halfSteps;
-
-/** Returns Ab for G#. Ab for Ab and the same for natural notes */
-+ (MusicalKey)flatVersionForNoteName:(MusicalKey)noteName;
-
-/** Returns G# for Ab. G# for G# and the same for natural notes */
-+ (MusicalKey)sharpVersionForNoteName:(MusicalKey)noteName;
-
-
-+ (BOOL)noteNameIsNatural:(MusicalKey)noteName;
-
-
-// plus class initialisers below...
-
-
-
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Life Cycle
@@ -103,7 +68,7 @@
 
 //---------------------------------------------------------------------
 
-+ (MusicalNote *)noteWithInterval:(MusicalInterval)theHalfSteps fromNote:(MusicalNote *)theNote;
++ (MusicalNote *)noteWithInterval:(MusicalInterval)theHalfsteps fromNote:(MusicalNote *)theNote;
 
 
 /////////////////////////////////////////////////////////////////////////
@@ -115,10 +80,8 @@
  Enum constant for musical note name.  kMusicalKeyCs != kMusicalKeyDb, but
  round(kMusicalKeyCs/10) == round(kMusicalKeyDb/10).
  */
-@property (nonatomic) MusicalKey name;
+@property (nonatomic) MusicalKey key;
 
-/** The string representation of the MusicalKey */
-@property (nonatomic, readonly) NSString *nameString;
 
 /**
  Any NSInteger value
@@ -131,7 +94,7 @@
 #pragma mark - Public API
 /////////////////////////////////////////////////////////////////////////
 
-/// Returns a new note with the interval specified interval to this one
+/** Returns a new note with the interval specified interval to this one */
 - (MusicalNote *)noteWithInterval:(MusicalInterval)anInterval;
 
 /**
@@ -160,7 +123,7 @@
  Returns aNote - self. 0 = same note, musically (ie C# = Db). Negative means
  aNote is lower than self.
  */
-- (NSInteger)getDifferenceInHalfStepsFrom:(MusicalNote *)aNote;
+- (NSInteger)halfstepsFromNote:(MusicalNote *)aNote;
 
 /**
  NSObject override.  (C#2 != Db2).  Returns NO if object isnt a musical note.
@@ -175,7 +138,7 @@
 /**
  Return YES if the note has an equivalent note name, with C# = Db, etc.
  */
-- (BOOL)isAnOctaveOf:(MusicalKey)aNoteName;
+- (BOOL)isAnOctaveOf:(MusicalKey)aKey;
 
 @end
 

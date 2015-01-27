@@ -48,15 +48,15 @@
 
 //---------------------------------------------------------------------
 
-- (MusicalNoteSet *)noteSetShiftedByHalfSteps:(NSInteger)halfSteps
+- (MusicalNoteSet *)noteSetShiftedByHalfsteps:(NSInteger)halfsteps
 {
     // Create a new noteset with the notes augmented shifted by the specified amount
     // Scale stays the same but the start/end and key change
-    MusicalNote *newRangeMin = [MusicalNote noteFromAddingHalfsteps:halfSteps toNote:self.rangeMinNote];
-    MusicalNote *newRangeMax = [MusicalNote noteFromAddingHalfsteps:halfSteps toNote:self.rangeMaxNote];
+    MusicalNote *newRangeMin = [MusicalNote noteFromAddingHalfsteps:halfsteps toNote:self.rangeMinNote];
+    MusicalNote *newRangeMax = [MusicalNote noteFromAddingHalfsteps:halfsteps toNote:self.rangeMaxNote];
     
     // The key is just the
-    MusicalKey newKey = [MusicalNote noteNameFromNoteName:self.scale.key shiftedByHalfSteps:halfSteps];
+    MusicalKey newKey = ML_KeyShiftedByHalfsteps(self.scale.key, halfsteps);
     MusicalScale *newScale = [self.scale copyWithNewKey:newKey];
     
     
@@ -172,6 +172,6 @@
 
 - (NSUInteger)firstNotesIndexInScale
 {
-    return [_scale indexOfNoteInScale:[self noteAtIndex:0].name];
+    return [_scale indexOfKeyInScale:[self noteAtIndex:0].key];
 }
 @end

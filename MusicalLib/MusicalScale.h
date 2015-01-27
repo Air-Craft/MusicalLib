@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MusicalNote.h"
-#import "MusicalTypes.h"
+#import "MusicalDefs.h"
 #import "MusicalScaleDefinition.h"
 
 /**
@@ -52,7 +52,7 @@
  Public convenience methods for getting a note in the current
  key/scale closest to a given note.  
  
- See protected nearestInKeyNoteForNote:above for more.
+ See private _nearestInKeyNoteForNote:above for more.
  @{
  */
 - (MusicalNote *)nearestInKeyNoteGreaterThanOrEqualTo:(MusicalNote *)aNote;
@@ -69,17 +69,17 @@
 
 /** Returns whether the given note name is in this scale/key
  */
-- (BOOL)noteNameIsInKey:(MusicalKey)testNoteName;
+- (BOOL)keyIsInScale:(MusicalKey)key;
 
 
 /**
  Return the idx of the musical note in the scale definition.  C#=Db
  
- Wrapper for protected method @link getHalfstepDefinitionIndexForNoteName:
+ Wrapper for protected method @link getHalfstepDefinitionIndexForKey:
  
  @return 0 for first note.  NSNotFound
  */
-- (NSUInteger)indexOfNoteInScale:(MusicalKey)MusicalKey;
+- (NSUInteger)indexOfKeyInScale:(MusicalKey)MusicalKey;
 
 
 /** Get the note in this key/scale that is relPosition notes away from the reference. E.g. C1 => -3 in C Major = G0

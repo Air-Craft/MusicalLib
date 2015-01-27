@@ -160,8 +160,8 @@
     XCTAssertTrue([[[notes lastNote] toString] isEqualToString: @"A#2"],        @"C# Major: Incorrect note at last index: %@", [notes lastNote]);
     
     // Test init from strings
-//    startNote   = [[MusicalNote alloc] initWithNoteName:kMusicalKeyDb andOctave:-1];  // should snap to D
-//    endNote     = [[MusicalNote alloc] initWithNoteName:kMusicalKeyF andOctave:2];    // Minor 3rd is in key
+//    startNote   = [[MusicalNote alloc] initWithKey:kMusicalKeyDb andOctave:-1];  // should snap to D
+//    endNote     = [[MusicalNote alloc] initWithKey:kMusicalKeyF andOctave:2];    // Minor 3rd is in key
     notes = [_factory noteSetWithScaleID:@"dorian" keyStr:@"C" insideRangeFromNoteStr:@"Db-1" toNoteStr:@"F2"];
     XCTAssertTrue([notes.scale.name isEqualToString:@"Dorian"], @"Scale name \"%@\" != \"Dorian\"", notes.scale.name);
     XCTAssertTrue([[[notes noteAtIndex:0] toString] isEqualToString: @"D-1"], @"First note %@ should be D-1", notes.firstNote.toString);

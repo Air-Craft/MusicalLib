@@ -11,7 +11,7 @@
 #ifndef MusicalLib_h
 #define MusicalLib_h
 
-#import "MusicalTypes.h"
+#import "MusicalDefs.h"
 #import "MusicalLibException.h"
 #import "MusicalNote.h"
 #import "MusicalScaleFactory.h"

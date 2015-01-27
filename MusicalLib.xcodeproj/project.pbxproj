@@ -15,9 +15,7 @@
 		A67B472D1A76AD560050EBDA /* MusicalScaleDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = A67B472C1A76AD560050EBDA /* MusicalScaleDefinition.m */; };
 		A67B47301A76DE890050EBDA /* MusicalLibException.m in Sources */ = {isa = PBXBuildFile; fileRef = A67B472F1A76DE890050EBDA /* MusicalLibException.m */; };
 		A67B47331A76E95D0050EBDA /* MusicalScaleCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A67B47321A76E95D0050EBDA /* MusicalScaleCategory.m */; };
-		A6D946EE15DA53B6002B42E0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEDFB98614D968FE00D3CC9D /* Foundation.framework */; };
-		A6D9470515DA540D002B42E0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEDFB98414D968FE00D3CC9D /* UIKit.framework */; };
-		A6D9470615DA5414002B42E0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEDFB98814D968FE00D3CC9D /* CoreGraphics.framework */; };
+		A6D585881A780BEA000FE587 /* MusicalDefs.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D585871A780BEA000FE587 /* MusicalDefs.m */; };
 		CEDFB98514D968FE00D3CC9D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEDFB98414D968FE00D3CC9D /* UIKit.framework */; };
 		CEDFB98714D968FE00D3CC9D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEDFB98614D968FE00D3CC9D /* Foundation.framework */; };
 		CEDFB99E14D968FF00D3CC9D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEDFB98414D968FE00D3CC9D /* UIKit.framework */; };
@@ -39,20 +37,8 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		A6D946EB15DA53B6002B42E0 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "include/${PRODUCT_NAME}";
-			dstSubfolderSpec = 16;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		A67B47011A7690070050EBDA /* MusicalTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicalTypes.h; sourceTree = "<group>"; };
+		A67B47011A7690070050EBDA /* MusicalDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicalDefs.h; sourceTree = "<group>"; };
 		A67B47021A7690070050EBDA /* MusicalLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicalLib.h; sourceTree = "<group>"; };
 		A67B47031A7690070050EBDA /* MusicalNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicalNote.h; sourceTree = "<group>"; };
 		A67B47041A7690070050EBDA /* MusicalNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicalNote.m; sourceTree = "<group>"; };
@@ -69,7 +55,7 @@
 		A67B472F1A76DE890050EBDA /* MusicalLibException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicalLibException.m; sourceTree = "<group>"; };
 		A67B47311A76E95D0050EBDA /* MusicalScaleCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicalScaleCategory.h; sourceTree = "<group>"; };
 		A67B47321A76E95D0050EBDA /* MusicalScaleCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicalScaleCategory.m; sourceTree = "<group>"; };
-		A6D946ED15DA53B6002B42E0 /* libMusicalLibStaticLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMusicalLibStaticLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6D585871A780BEA000FE587 /* MusicalDefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicalDefs.m; sourceTree = "<group>"; };
 		CEDFB98014D968FE00D3CC9D /* MusicalLib.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicalLib.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEDFB98414D968FE00D3CC9D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CEDFB98614D968FE00D3CC9D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -88,16 +74,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A6D946EA15DA53B6002B42E0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A6D9470615DA5414002B42E0 /* CoreGraphics.framework in Frameworks */,
-				A6D9470515DA540D002B42E0 /* UIKit.framework in Frameworks */,
-				A6D946EE15DA53B6002B42E0 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		CEDFB97D14D968FE00D3CC9D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -124,7 +100,8 @@
 			children = (
 				A67B47021A7690070050EBDA /* MusicalLib.h */,
 				A67B47111A7694C90050EBDA /* MusicalScaleData.json */,
-				A67B47011A7690070050EBDA /* MusicalTypes.h */,
+				A67B47011A7690070050EBDA /* MusicalDefs.h */,
+				A6D585871A780BEA000FE587 /* MusicalDefs.m */,
 				A67B472E1A76DE890050EBDA /* MusicalLibException.h */,
 				A67B472F1A76DE890050EBDA /* MusicalLibException.m */,
 				A67B47031A7690070050EBDA /* MusicalNote.h */,
@@ -159,7 +136,6 @@
 			children = (
 				CEDFB98014D968FE00D3CC9D /* MusicalLib.app */,
 				CEDFB99B14D968FF00D3CC9D /* MusicalLibTests.xctest */,
-				A6D946ED15DA53B6002B42E0 /* libMusicalLibStaticLib.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -201,23 +177,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A6D946EC15DA53B6002B42E0 /* MusicalLibStaticLib */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A6D946F815DA53B7002B42E0 /* Build configuration list for PBXNativeTarget "MusicalLibStaticLib" */;
-			buildPhases = (
-				A6D946E915DA53B6002B42E0 /* Sources */,
-				A6D946EA15DA53B6002B42E0 /* Frameworks */,
-				A6D946EB15DA53B6002B42E0 /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = MusicalLibStaticLib;
-			productName = MusicalLibStaticLib;
-			productReference = A6D946ED15DA53B6002B42E0 /* libMusicalLibStaticLib.a */;
-			productType = "com.apple.product-type.library.static";
-		};
 		CEDFB97F14D968FE00D3CC9D /* MusicalLib */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CEDFB9AD14D968FF00D3CC9D /* Build configuration list for PBXNativeTarget "MusicalLib" */;
@@ -277,7 +236,6 @@
 			targets = (
 				CEDFB97F14D968FE00D3CC9D /* MusicalLib */,
 				CEDFB99A14D968FF00D3CC9D /* MusicalLibTests */,
-				A6D946EC15DA53B6002B42E0 /* MusicalLibStaticLib */,
 			);
 		};
 /* End PBXProject section */
@@ -319,19 +277,13 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		A6D946E915DA53B6002B42E0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		CEDFB97C14D968FE00D3CC9D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				A67B47301A76DE890050EBDA /* MusicalLibException.m in Sources */,
 				A67B47331A76E95D0050EBDA /* MusicalScaleCategory.m in Sources */,
+				A6D585881A780BEA000FE587 /* MusicalDefs.m in Sources */,
 				A67B47151A7694EF0050EBDA /* MusicalScaleFactory.m in Sources */,
 				CEDFB9BC14D96B1000D3CC9D /* main.m in Sources */,
 				A67B470D1A7690070050EBDA /* MusicalScale.m in Sources */,
@@ -380,38 +332,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		A6D946F615DA53B7002B42E0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				DSTROOT = /tmp/MusicalLibStaticLib.dst;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MusicalLibStaticLib/MusicalLibStaticLib-Prefix.pch";
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		A6D946F715DA53B7002B42E0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				DSTROOT = /tmp/MusicalLibStaticLib.dst;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MusicalLibStaticLib/MusicalLibStaticLib-Prefix.pch";
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
 		CEDFB9AB14D968FF00D3CC9D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -483,10 +403,14 @@
 		CEDFB9AE14D968FF00D3CC9D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Project/MusicalLib-Prefix.pch";
 				INFOPLIST_FILE = "Project/MusicalLib-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MusicalLib/MusicalLib-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -494,10 +418,13 @@
 		CEDFB9AF14D968FF00D3CC9D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Project/MusicalLib-Prefix.pch";
 				INFOPLIST_FILE = "Project/MusicalLib-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MusicalLib/MusicalLib-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -537,15 +464,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A6D946F815DA53B7002B42E0 /* Build configuration list for PBXNativeTarget "MusicalLibStaticLib" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A6D946F615DA53B7002B42E0 /* Debug */,
-				A6D946F715DA53B7002B42E0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		CEDFB97A14D968FE00D3CC9D /* Build configuration list for PBXProject "MusicalLib" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
