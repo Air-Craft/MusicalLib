@@ -98,8 +98,8 @@
 		A67B46FF1A7690070050EBDA /* MusicalLib */ = {
 			isa = PBXGroup;
 			children = (
-				A67B47021A7690070050EBDA /* MusicalLib.h */,
 				A67B47111A7694C90050EBDA /* MusicalScaleData.json */,
+				A67B47021A7690070050EBDA /* MusicalLib.h */,
 				A67B47011A7690070050EBDA /* MusicalDefs.h */,
 				A6D585871A780BEA000FE587 /* MusicalDefs.m */,
 				A67B472E1A76DE890050EBDA /* MusicalLibException.h */,

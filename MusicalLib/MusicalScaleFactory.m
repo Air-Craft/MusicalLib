@@ -67,15 +67,17 @@ static NSString *_FAVORITES_STORE_FILENAME = @"MusicalLib_User";
 - (instancetype)init
 {
     self = [super init];
-    if (self) {
+    if (self)
+    {
         _favoriteScaleDefs = [NSArray array];
+        [self _setupAndLoadData];
     }
     return self;
 }
 
 //---------------------------------------------------------------------
 
-- (void)setupAndLoadData
+- (void)_setupAndLoadData
 {
     echo("Setup...");
     

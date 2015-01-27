@@ -19,6 +19,17 @@
 #pragma mark -
 /////////////////////////////////////////////////////////////////////////
 
+@interface MusicalScaleFactory ()
+
+/** Allow forcing a refresh from disk to validate persistence tests */
+- (void)_setupAndLoadData;
+
+@end
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark -
+/////////////////////////////////////////////////////////////////////////
+
 @implementation MusicalLibTests
 {
     MusicalScaleFactory *_factory;
@@ -28,7 +39,7 @@
 {
     [super setUp];
     _factory = [MusicalScaleFactory sharedInstance];
-    [_factory setupAndLoadData];
+    [_factory _setupAndLoadData];
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -117,7 +128,7 @@
     [_factory storeScaleDefinitionInFavorites:scaleDef1 isFavorite:YES];
     [_factory storeScaleDefinitionInFavorites:scaleDef2 isFavorite:YES];
     XCTAssertTrue(_factory.favoriteScaleDefinitions.count == 2, @"Adding favorites failed");
-    [_factory setupAndLoadData];
+    [_factory _setupAndLoadData];
     
     // Check they are correct
     XCTAssertTrue([_factory.favoriteScaleDefinitions[0] isEqual:scaleDef1], @"Favorites idx=0 is the wrong one");
@@ -126,14 +137,14 @@
     // Remove one...
     [_factory storeScaleDefinitionInFavorites:scaleDef1 isFavorite:NO];
     XCTAssertTrue(_factory.favoriteScaleDefinitions.count == 1, @"Removing favorite failed");
-    [_factory setupAndLoadData];
+    [_factory _setupAndLoadData];
     
     // Test the correct tone was removed
     XCTAssertTrue([_factory.favoriteScaleDefinitions[0] isEqual:scaleDef2], @"Removing favorite left the wrong one remaining");
     
     // Remove final...
     [_factory storeScaleDefinitionInFavorites:scaleDef2 isFavorite:NO];
-    [_factory setupAndLoadData];
+    [_factory _setupAndLoadData];
     XCTAssertTrue(_factory.favoriteScaleDefinitions.count == 0, @"Removing last favorite failed");
 }
 

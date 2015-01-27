@@ -24,14 +24,12 @@
 #pragma mark - Life Cycle
 /////////////////////////////////////////////////////////////////////////
 
-+ (instancetype)sharedInstance;
+/**
+On first call, initialises the JSON data stores creating the folder in the documents directory if DNE. Loads the data from the bundle file and the datastores into memory. Best to call this early.
 
-/** 
- Initialises the JSON data stores creating the folder in the documents directory if DNE. Loads the data from the bundle file and the datastores into memory. Best to call this early.
- 
- @throws MusicalLibException on failure to create folder or read files
- */
-- (void)setupAndLoadData;
+@throws MusicalLibException on failure to create folder or read files. Possible on first call only.
+*/
++ (instancetype)sharedInstance;
 
 
 /////////////////////////////////////////////////////////////////////////
