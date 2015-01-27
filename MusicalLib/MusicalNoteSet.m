@@ -3,7 +3,7 @@
 //  SoundWand
 //
 //  Created by Hari Karam Singh on 20/11/2011.
-//  Copyright (c) 2011-2014 Amritvela / Club 15CC.  MIT License.
+//  Copyright (c) 2011-2015 Air Craft Media Ltd.  MIT License.
 //
 
 #import "MusicalNoteSet.h"
@@ -17,7 +17,14 @@
 #pragma mark - Life Cycle
 /////////////////////////////////////////////////////////////////////////
 
-- (MusicalNoteSet *)initWithScale:(MusicalScaleAbstract *)aScale
++ (instancetype)noteSetWithScale:(MusicalScale *)scale insideRangeFromNote:(MusicalNote *)fromNote toNote:(MusicalNote *)toNote
+{
+    return [[self alloc] initWithScale:scale insideRangeFromNote:fromNote toNote:toNote];
+}
+
+//---------------------------------------------------------------------
+
+- (MusicalNoteSet *)initWithScale:(MusicalScale *)aScale
               insideRangeFromNote:(MusicalNote *)fromNote 
                            toNote:(MusicalNote *)toNote
 {
@@ -31,33 +38,12 @@
     return self;
 }
 
-//---------------------------------------------------------------------
-
-- (MusicalNoteSet *)initWithScaleName:(NSString *)aScaleName 
-                         scaleKeyString:(NSString *)aKeyName
-                  insideRangeFromNoteString:(NSString *)fromNote 
-                               toNoteString:(NSString *)toNote
-{
-    // Convert the key string to the reqd enum and init the class
-    MusicalScaleAbstract *aScale = [MusicalScaleAbstract musicalScaleFromScaleName:aScaleName andKeyName:aKeyName];
-    
-    if (!aScale) {
-        [NSException raise:@"MusicalLibScaleNotFound" 
-                    format:@"The scale %@ could not be found.", aScaleName];
-    }
-
-    // And init with our method
-    return [self initWithScale:aScale 
-           insideRangeFromNote:[[MusicalNote alloc] initFromNoteString:fromNote] 
-                        toNote:[[MusicalNote alloc] initFromNoteString:toNote]];   
-}
-
 
 //---------------------------------------------------------------------
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@: %p, _scale=%@, %i notes in range %@..%@ => %@..%@ (%@)>", NSStringFromClass([self class]), &self, [[self.scale class] name], (int)[self noteCount], self.rangeMinNote, self.rangeMaxNote, self.firstNote, self.lastNote, [self.notesArray componentsJoinedByString:@" "]];
+    return [NSString stringWithFormat:@"<%@: %p, _scale=%@, %i notes in range %@..%@ => %@..%@ (%@)>", NSStringFromClass([self class]), &self, self.scale.name, (int)[self noteCount], self.rangeMinNote, self.rangeMaxNote, self.firstNote, self.lastNote, [self.notesArray componentsJoinedByString:@" "]];
 }
 
 //---------------------------------------------------------------------
@@ -70,8 +56,8 @@
     MusicalNote *newRangeMax = [MusicalNote noteFromAddingHalfsteps:halfSteps toNote:self.rangeMaxNote];
     
     // The key is just the
-    MusicalNoteName newKey = [MusicalNote noteNameFromNoteName:self.scale.key shiftedByHalfSteps:halfSteps];
-    MusicalScaleAbstract *newScale = [self.scale musicalScaleWithNewKey:newKey];
+    MusicalKey newKey = [MusicalNote noteNameFromNoteName:self.scale.key shiftedByHalfSteps:halfSteps];
+    MusicalScale *newScale = [self.scale copyWithNewKey:newKey];
     
     
     // Now build the new set
@@ -113,14 +99,14 @@
 }
 - (MusicalNote *)actualEndNote
 {
-    return [_scale getNearestInKeyNoteLessThanOrEqualTo:_rangeMaxNote];
+    return [_scale nearestInKeyNoteLessThanOrEqualTo:_rangeMaxNote];
 }
 
 
 - (NSArray *)notesArray
 {
     if (!_notesCache) {
-        _notesCache = [_scale getArrayOfNotesInRangeFrom:_rangeMinNote
+        _notesCache = [_scale arrayOfNotesInRangeFrom:_rangeMinNote
                                                       to:_rangeMaxNote];
     }
     return _notesCache;

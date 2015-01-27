@@ -3,35 +3,12 @@
 //  SoundWand
 //
 //  Created by Hari Karam Singh on 07/08/2011.
-//  Copyright (c) 2011-2014 Amritvela / Club 15CC.  MIT License.
+//  Copyright (c) 2011-2015 Air Craft Media Ltd.  MIT License.
 //
 
 #import <Foundation/Foundation.h>
-#import "MLTypes.h"
+#import "MusicalTypes.h"
 
-/**
- Constants to identify note names, C, D#, etc.  Note C# != Db.  See 
- name property for more info
- */
-typedef enum {
-    MUSICAL_NOTE_C   = 0,    
-    MUSICAL_NOTE_Cs = 9,    
-    MUSICAL_NOTE_Db  = 11,     
-    MUSICAL_NOTE_D   = 20,    
-    MUSICAL_NOTE_Ds = 29,    
-    MUSICAL_NOTE_Eb  = 31,     
-    MUSICAL_NOTE_E  = 40,      
-    MUSICAL_NOTE_F  = 50,     
-    MUSICAL_NOTE_Fs = 59,    
-    MUSICAL_NOTE_Gb  = 61,     
-    MUSICAL_NOTE_G  = 70,     
-    MUSICAL_NOTE_Gs = 79,    
-    MUSICAL_NOTE_Ab  = 81,     
-    MUSICAL_NOTE_A  = 90,    
-    MUSICAL_NOTE_As = 99,   
-    MUSICAL_NOTE_Bb  = 101,    
-    MUSICAL_NOTE_B  = 110
-} MusicalNoteName;
 
 
 /*************************************************************
@@ -49,29 +26,29 @@ typedef enum {
 /////////////////////////////////////////////////////////////////////////
 
 /**
- Convert NSStrings like C# and Bb to the MusicalNoteName enum type.  Proper case only!
+ Convert NSStrings like C# and Bb to the MusicalKey enum type.  Proper case only!
  */
-+ (MusicalNoteName)noteNameFromString:(NSString *)noteString;
++ (MusicalKey)noteNameFromString:(NSString *)noteString;
 
 /**
- Convert MusicalNoteName's to NSStrings
+ Convert MusicalKey's to NSStrings
  */
-+ (NSString *)noteNameToString:(MusicalNoteName)noteName;
++ (NSString *)noteNameToString:(MusicalKey)noteName;
 
 /** The number of halfsteps to go between the note names of a scale.  Always position forward: F -> E = 11, A => A = 0, B => C = 1 */
-+ (NSUInteger)halfStepsFromNoteName:(MusicalNoteName)noteA toNoteName:(MusicalNoteName)noteB;
++ (NSUInteger)halfStepsFromNoteName:(MusicalKey)noteA toNoteName:(MusicalKey)noteB;
 
 /** Returns the musical note name that results from adding/subtracting the specified number of halfsteps and wrapping, Ie  C => -12 => C.  Flats always map to flats (or natural of course) and sharps to sharps */
-+ (MusicalNoteName)noteNameFromNoteName:(MusicalNoteName)noteName shiftedByHalfSteps:(NSInteger)halfSteps;
++ (MusicalKey)noteNameFromNoteName:(MusicalKey)noteName shiftedByHalfSteps:(NSInteger)halfSteps;
 
 /** Returns Ab for G#. Ab for Ab and the same for natural notes */
-+ (MusicalNoteName)flatVersionForNoteName:(MusicalNoteName)noteName;
++ (MusicalKey)flatVersionForNoteName:(MusicalKey)noteName;
 
 /** Returns G# for Ab. G# for G# and the same for natural notes */
-+ (MusicalNoteName)sharpVersionForNoteName:(MusicalNoteName)noteName;
++ (MusicalKey)sharpVersionForNoteName:(MusicalKey)noteName;
 
 
-+ (BOOL)noteNameIsNatural:(MusicalNoteName)noteName;
++ (BOOL)noteNameIsNatural:(MusicalKey)noteName;
 
 
 // plus class initialisers below...
@@ -86,7 +63,8 @@ typedef enum {
 /**
  Main initializer
  */
-- (MusicalNote *)initWithNoteName:(MusicalNoteName)n andOctave:(NSInteger)o;
++ (instancetype)noteWithKey:(MusicalKey)key octave:(NSInteger)octave;
+- (instancetype)initWithKey:(MusicalKey)key octave:(NSInteger)octave;
 
 //---------------------------------------------------------------------
 
@@ -98,18 +76,22 @@ typedef enum {
  - The remainder (not optional) must be an integer value representing the octave
  - Nonexistants like Cb resolve to their existing equivlent, eg B.
  */
-- (MusicalNote *)initFromNoteString:(NSString *)noteStr;
++ (instancetype)noteFromString:(NSString *)noteStr;
+- (instancetype)initFromString:(NSString *)noteStr;
 
 //---------------------------------------------------------------------
 
-- (MusicalNote *)initFromMidiValue:(NSUInteger)midiValue;
+/** Converts the midiValue 0-127 to the corresponding note @{ */
++ (instancetype)noteFromMidiValue:(NSUInteger)midiValue;
+- (instancetype)initFromMidiValue:(NSUInteger)midiValue;
+/** @} */
 
 //---------------------------------------------------------------------
 
 /**
  Defaults to C4 (middle C)
  */
-- (MusicalNote *)init;
+- (instancetype)init;
 
 //---------------------------------------------------------------------
 
@@ -121,7 +103,7 @@ typedef enum {
 
 //---------------------------------------------------------------------
 
-+ (MusicalNote *)noteWithInterval:(MLNoteInterval)theHalfSteps fromNote:(MusicalNote *)theNote;
++ (MusicalNote *)noteWithInterval:(MusicalInterval)theHalfSteps fromNote:(MusicalNote *)theNote;
 
 
 /////////////////////////////////////////////////////////////////////////
@@ -130,12 +112,12 @@ typedef enum {
 
 
 /**
- Enum constant for musical note name.  MUSICAL_NOTE_Cs != MUSICAL_NOTE_Db, but
- round(MUSICAL_NOTE_Cs/10) == round(MUSICAL_NOTE_Db/10).
+ Enum constant for musical note name.  kMusicalKeyCs != kMusicalKeyDb, but
+ round(kMusicalKeyCs/10) == round(kMusicalKeyDb/10).
  */
-@property (nonatomic) MusicalNoteName name;
+@property (nonatomic) MusicalKey name;
 
-/** The string representation of the MusicalNoteName */
+/** The string representation of the MusicalKey */
 @property (nonatomic, readonly) NSString *nameString;
 
 /**
@@ -150,7 +132,7 @@ typedef enum {
 /////////////////////////////////////////////////////////////////////////
 
 /// Returns a new note with the interval specified interval to this one
-- (MusicalNote *)noteWithInterval:(MLNoteInterval)anInterval;
+- (MusicalNote *)noteWithInterval:(MusicalInterval)anInterval;
 
 /**
  Calculate a hash representing the distance in half steps from C0.  
@@ -193,7 +175,7 @@ typedef enum {
 /**
  Return YES if the note has an equivalent note name, with C# = Db, etc.
  */
-- (BOOL)isAnOctaveOf:(MusicalNoteName)aNoteName;
+- (BOOL)isAnOctaveOf:(MusicalKey)aNoteName;
 
 @end
 

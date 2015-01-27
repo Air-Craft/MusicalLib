@@ -3,7 +3,7 @@
 //  MusicalLib
 //
 //  Created by Hari Karam Singh on 01/02/2012.
-//  Copyright (c) 2011-2014 Amritvela / Club 15CC.  MIT License.
+//  Copyright (c) 2011-2015 Air Craft Media Ltd.  MIT License.
 //
 
 #import <UIKit/UIKit.h>

@@ -3,158 +3,63 @@
 //  SoundWand
 //
 //  Created by Hari Karam Singh on 07/09/2011.
-//  Copyright (c) 2011-2014 Amritvela / Club 15CC.  MIT License.
+//  Copyright (c) 2011-2015 Air Craft Media Ltd.  MIT License.
 //
 
 #import <tgmath.h>
-#import "MusicalScaleAbstract.h"
-#import "MusicalScaleAbstract+.h"
+#import "MusicalScale.h"
 
-@implementation MusicalScaleAbstract
-
-@synthesize key;
-
-/////////////////////////////////////////////////////////////////////////
-#pragma mark - Abstract
-/////////////////////////////////////////////////////////////////////////
-
-+ (NSInteger const *)halfstepsArray 
-{
-    [NSException raise:@"MLIncompleteImplementation" format:@"Subclass must override this method"];
-    return 0;
-}
-
-+ (NSUInteger const)halfstepsArrayCount 
-{
-    [NSException raise:@"MLIncompleteImplementation" format:@"Subclass must override this method"]; 
-    return 0u;
-}
-
-+ (NSUInteger const)octavesCovered 
-{
-    [NSException raise:@"MLIncompleteImplementation" format:@"Subclass must override this method"]; 
-    return 0u;
-}
-
-+ (const NSString *)name 
-{
-    [NSException raise:@"MLIncompleteImplementation" format:@"Subclass must override this method"]; 
-    return nil;
-}
-
-+ (const NSString *)category
-{
-    [NSException raise:@"MLIncompleteImplementation" format:@"Subclass must override this method"]; 
-    return nil;
-}
-
-
-/////////////////////////////////////////////////////////////////////////
-#pragma mark - Class Methods
-/////////////////////////////////////////////////////////////////////////
-
-
-+ (NSArray *)scaleNamesArray 
-{
-    static NSArray *scaleNames;
-
-    if (nil == scaleNames) {
-        NSArray *clsArr = [MLObjC subclassesOfClass:[MusicalScaleAbstract class]];
-        NSMutableArray *tmpArr = [NSMutableArray array];
-        
-        // Get the name 
-        for (Class cls in clsArr) {
-            [tmpArr addObject: [cls name]];
-        }
-        
-        scaleNames = [tmpArr sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];   // de-mutable it
-    }
-    return scaleNames;
-}
-
-/** ********************************************************************/
-
-+ (MusicalScaleAbstract *)musicalScaleFromScaleName:(NSString *)scaleName andKey:(MusicalNoteName)theKey 
-{
-    static NSMutableDictionary *scaleClassLookup;
-
-    // Init the lookup if needed
-    if (nil == scaleClassLookup) {
-        NSArray *clsArr = [MLObjC subclassesOfClass:[MusicalScaleAbstract class]];
-        scaleClassLookup = [NSMutableDictionary dictionary];
-        for (Class cls in clsArr) {
-            [scaleClassLookup setObject:cls forKey:[cls name]];
-        }
-    }
-    
-    Class scaleClass = [scaleClassLookup objectForKey:scaleName];
-    
-    if (NULL == scaleClass) {
-        [NSException raise:NSInvalidArgumentException format:@"Scale with name '%@' note found", scaleName];
-    }
-    
-    return [[scaleClass alloc] initWithKey:theKey];
-}
-
-/////////////////////////////////////////////////////////////////////////
-
-+ (MusicalScaleAbstract *)musicalScaleFromScaleName:(NSString *)scaleName andKeyName:(NSString *)theKeyName
-{
-    MusicalNoteName key = [MusicalNote noteNameFromString:theKeyName];
-    return [self musicalScaleFromScaleName:scaleName andKey:key];
-}
-
-
+@implementation MusicalScale
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Life Cycle
 /////////////////////////////////////////////////////////////////////////
-
-
-- (id)initWithKey:(MusicalNoteName)theKey 
++ (instancetype)scaleWithDefinition:(MusicalScaleDefinition *)scaleDef key:(MusicalKey)key
 {
-    if (!(self = [super init])) return nil;
-
-    key = theKey;
-    
-    return self;
-}
-
-- (id)init
-{
-    return [self initWithKey:MUSICAL_NOTE_C];
+    return [[self alloc] initWithScaleDefinition:scaleDef key:key];
 }
 
 //---------------------------------------------------------------------
 
-- (MusicalScaleAbstract *)musicalScaleWithNewKey:(MusicalNoteName)newKey
+- (instancetype)initWithScaleDefinition:(MusicalScaleDefinition *)scaleDef key:(MusicalKey)key
 {
-    MusicalScaleAbstract *newScale = [[self class] new];
-    newScale->key = newKey;
-    return newScale;
+    self = [super init];
+    if (self) {
+        _scaleDefinition = scaleDef;
+        _key = key;
+    }
+    return self;
 }
+
+//---------------------------------------------------------------------
+
+- (id)init { [NSException raise:NSGenericException format:@"Use ScaleFactory!"]; return nil; }
+
+//---------------------------------------------------------------------
+
+- (instancetype)copyWithNewKey:(MusicalKey)newKey
+{
+    return [self.class scaleWithDefinition:self.scaleDefinition key:newKey];
+}
+
+//---------------------------------------------------------------------
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"<%@ (%p): scaleDef=%@, key=%@", NSStringFromClass(self.class), &self, _scaleDefinition.ID, [MusicalNote noteNameToString:_key]];
+}
+
 
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Properties
 /////////////////////////////////////////////////////////////////////////
 
-
-- (NSUInteger)noteCountForScale 
-{
-    return [[self class] halfstepsArrayCount];
-}
+- (NSString *)name { return _scaleDefinition.name; }
 
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Public API
-/////////////////////////////////////////////////////////////////////////
-
-- (NSString *)name 
-{
-    return (NSString *)[[self class] name];
-}
-
 /////////////////////////////////////////////////////////////////////////
 
 - (MusicalNote *)nearestInKeyNoteGreaterThanOrEqualTo:(MusicalNote *)aNote
@@ -162,16 +67,17 @@
     return [self nearestInKeyNoteForNote:aNote above:YES];
 }
 
-/////////////////////////////////////////////////////////////////////////
+//---------------------------------------------------------------------
 
-- (MusicalNote *)getNearestInKeyNoteLessThanOrEqualTo:(MusicalNote *)aNote
+
+- (MusicalNote *)nearestInKeyNoteLessThanOrEqualTo:(MusicalNote *)aNote
 {
     return [self nearestInKeyNoteForNote:aNote above:NO];
 }
 
-/////////////////////////////////////////////////////////////////////////
+//---------------------------------------------------------------------
 
-- (MusicalNote *)getNearestInKeyNoteForInterval:(MLNoteInterval)anInterval note:(MusicalNote *)aStartNote
+- (MusicalNote *)nearestInKeyNoteForInterval:(MusicalInterval)anInterval note:(MusicalNote *)aStartNote
 {
     // Get the greater and less than notes and choose the one with the lesser interval
     MusicalNote *lowerBound, *upperBound, *notePlusInterval;
@@ -179,7 +85,7 @@
     notePlusInterval = [aStartNote noteWithInterval:anInterval];
 
     // Get the note snapped to scale above and below.  See which is closer to the original
-    lowerBound = [self getNearestInKeyNoteLessThanOrEqualTo:notePlusInterval];
+    lowerBound = [self nearestInKeyNoteLessThanOrEqualTo:notePlusInterval];
     upperBound = [self nearestInKeyNoteGreaterThanOrEqualTo:notePlusInterval];
     
     NSInteger lowerDiff, upperDiff;
@@ -188,23 +94,21 @@
     
     // If the diffs are equal then choose the note further away for musical considerations
     // Note, this is different for intervals below
-    if (anInterval >= MLNoteIntervalUnison) {
+    if (anInterval >= kMusicalIntervalUnison) {
         return upperDiff >= lowerDiff ? upperBound : lowerBound;
     } else {
         return upperDiff > lowerDiff ? upperBound : lowerBound;        
     }
 }
 
+//---------------------------------------------------------------------
 
-/////////////////////////////////////////////////////////////////////////
-
-- (NSArray *)getArrayOfNotesInRangeFrom:(MusicalNote *)fromNote to:(MusicalNote *)toNote
+- (NSArray *)arrayOfNotesInRangeFrom:(MusicalNote *)fromNote to:(MusicalNote *)toNote
 {
     NSMutableArray *noteSet;
     MusicalNote *note, *rootNote;
-    NSInteger const *halfstepsArr = [[self class] halfstepsArray];
-    NSUInteger const halfstepsArrCnt = [[self class] halfstepsArrayCount];
-    NSUInteger const octavesCoveredByDef = [[self class] octavesCovered];
+    NSUInteger halfstepsArrCnt = _scaleDefinition.halfstepsArr.count;
+    NSUInteger const octavesCoveredByDef = floor([_scaleDefinition.halfstepsArr.lastObject integerValue] / 12) + 1;
     
     // Get the start note snapped to this key/scale
     note = [self nearestInKeyNoteGreaterThanOrEqualTo:fromNote]; 
@@ -212,8 +116,9 @@
     // Get the index in the scale definition that represents this note, (wrt the key)
     NSUInteger i = [self halfstepDefinitionIndexForNoteName:note.name];
     
-    // And get the scale's root note which "note" is relative to, ie note = root + halfstepsArr[i]
-    rootNote = [[MusicalNote alloc] initWithNoteName:key andOctave:note.octave];
+    // And get the scale's root note which "note" is relative to, ie note = root + [_scaleDef.halfstepsArr[i] integerValue]
+    rootNote = [[MusicalNote alloc] initWithKey:_key octave:note.octave];
+    
     // Now get the nearest octave thats below our test Note
     // Even if they are equal, go one octave lower so we can grab the note *below* if
     // requested
@@ -237,7 +142,7 @@
         }
         
         // And get the next note for the scale
-        note = [MusicalNote noteFromAddingHalfsteps:halfstepsArr[i]+octaveAdd toNote:rootNote];    // we've already done index 0 implicitly above
+        note = [MusicalNote noteFromAddingHalfsteps:[_scaleDefinition.halfstepsArr[i] integerValue]+octaveAdd toNote:rootNote];    // we've already done index 0 implicitly above
         
         
     } while ([note toInteger] <= [toNote toInteger]);  // no need to snap the end note to the scale. it will be included if relavant 
@@ -245,18 +150,18 @@
     return [NSArray arrayWithArray:noteSet];        // convert to immutable type
 }
 
-/////////////////////////////////////////////////////////////////////////
+//---------------------------------------------------------------------
 
-- (BOOL)noteNameIsInKey:(MusicalNoteName)testNoteName
+- (BOOL)noteNameIsInKey:(MusicalKey)testNoteName
 {
     return ([self halfstepDefinitionIndexForNoteName:testNoteName] != NSNotFound);
 }
 
 //---------------------------------------------------------------------
 
-- (NSUInteger)indexOfNoteInScale:(MusicalNoteName)musicalNoteName
+- (NSUInteger)indexOfNoteInScale:(MusicalKey)MusicalKey
 {
-    return [self halfstepDefinitionIndexForNoteName:musicalNoteName];
+    return [self halfstepDefinitionIndexForNoteName:MusicalKey];
 }
 
 //---------------------------------------------------------------------
@@ -277,10 +182,9 @@
     
     // Now tally up the halfsteps
     NSInteger halfsteps = 0;
-    const NSInteger *halfstepsDefArr = [[self class] halfstepsArray];
     NSInteger sign = (relPosition < 0) ? -1 : 1;
     NSInteger iters = abs((int)relPosition);
-    NSUInteger scaleNotes = [[self class] halfstepsArrayCount];
+    NSUInteger scaleNotes = _scaleDefinition.halfstepsArr.count;
     while (iters-- > 0) {
 
         // Halfsteps are all relative to root so we need to subtract the next from the current
@@ -290,7 +194,7 @@
         else nextIdx %= scaleNotes;
         
         // Get the distance wrt 12 note scale
-        NSInteger deltaHalfSteps = halfstepsDefArr[nextIdx] - halfstepsDefArr[idx];
+        NSInteger deltaHalfSteps = [_scaleDefinition.halfstepsArr[nextIdx] integerValue] - [_scaleDefinition.halfstepsArr[idx] integerValue];
         deltaHalfSteps %= 12;
         if (relPosition >= 0 && deltaHalfSteps < 0) deltaHalfSteps += 12;
         else if (relPosition < 0 && deltaHalfSteps >= 0) deltaHalfSteps -= 12;
@@ -316,15 +220,14 @@
     MusicalNote *note, *baseNote, *loopStartNote, *prevNote;
     
     //    NSArray *scaleDefArr = [[self class] getScaleDefArray];
-    NSInteger const *halfstepsArr = [[self class] halfstepsArray];
-    NSUInteger const halfstepsArrCnt = [[self class] halfstepsArrayCount];
-    NSUInteger const octavesCoveredByDef = [[self class] octavesCovered];
+    NSUInteger const halfstepsArrCnt = _scaleDefinition.halfstepsArr.count;
+    NSUInteger const octavesCoveredByDef = floor([_scaleDefinition.halfstepsArr.lastObject integerValue] / 12) + 1;
     
     // Get the basis to which we add halfsteps to get the scale notes
-    baseNote = [[MusicalNote alloc] initWithNoteName:key andOctave:theNote.octave];
+    baseNote = [[MusicalNote alloc] initWithKey:_key octave:theNote.octave];
     
     // Scale the loop start note to the first interval value (as it may not be 0 for scales that dont start on the root note)
-    loopStartNote = [MusicalNote noteFromAddingHalfsteps:halfstepsArr[0] toNote:baseNote];
+    loopStartNote = [MusicalNote noteFromAddingHalfsteps:[_scaleDefinition.halfstepsArr[0] integerValue] toNote:baseNote];
     
     // Now get the nearest octave thats below our test Note
     // Even if they are equal, go one octave lower so we can grab the note *below* if
@@ -340,7 +243,7 @@
     note = [loopStartNote copy];
     do {
         prevNote = note;
-        note = [MusicalNote noteFromAddingHalfsteps:halfstepsArr[i]+octaveAdd toNote:loopStartNote];
+        note = [MusicalNote noteFromAddingHalfsteps:[_scaleDefinition.halfstepsArr[i] integerValue]+octaveAdd toNote:loopStartNote];
         
         // loop around our scale definition array
         if (++i >= halfstepsArrCnt) {
@@ -360,22 +263,21 @@
 
 //---------------------------------------------------------------------
 
-- (NSUInteger)halfstepDefinitionIndexForNoteName:(MusicalNoteName)theNoteName
+- (NSUInteger)halfstepDefinitionIndexForNoteName:(MusicalKey)theNoteName
 {
-    NSInteger const *halfstepsArr = [[self class] halfstepsArray];
-    NSUInteger const halfstepsArrCnt = [[self class] halfstepsArrayCount];
+    NSUInteger const halfstepsArrCnt = _scaleDefinition.halfstepsArr.count;
     MusicalNote *aStartNote, *note;
     
     // Make a note with our key as the name in any octave and one for the note name to test too
-    note = aStartNote = [[MusicalNote alloc] initWithNoteName:key andOctave:0];
-    MusicalNote *testNote = [[MusicalNote alloc]  initWithNoteName:theNoteName andOctave:0];
+    note = aStartNote = [[MusicalNote alloc] initWithKey:_key octave:0];
+    MusicalNote *testNote = [[MusicalNote alloc]  initWithKey:theNoteName octave:0];
     
     // Loop through the definition until we get a match
     NSUInteger i = 0;
 
     do {
         // Add first as the first note in our scale might not be the root note!
-        note = [MusicalNote noteFromAddingHalfsteps:halfstepsArr[i] toNote:aStartNote];
+        note = [MusicalNote noteFromAddingHalfsteps:[_scaleDefinition.halfstepsArr[i] integerValue] toNote:aStartNote];
         
         // Set the octave of our test note to match
         testNote.octave = note.octave;

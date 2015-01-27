@@ -3,11 +3,11 @@
 //  SoundWand
 //
 //  Created by Hari Karam Singh on 20/11/2011.
-//  Copyright (c) 2011-2014 Amritvela / Club 15CC.  MIT License.
+//  Copyright (c) 2011-2015 Air Craft Media Ltd.  MIT License.
 //
 
 #import <Foundation/Foundation.h>
-#import "MusicalScaleAbstract.h"
+#import "MusicalScale.h"
 #import "MusicalNote.h"
 
 /**
@@ -18,7 +18,7 @@
  */
 @interface MusicalNoteSet : NSObject 
 
-@property (nonatomic, strong) MusicalScaleAbstract *scale;
+@property (nonatomic, strong) MusicalScale *scale;
 
 /**
  Note range within which the scale notes will be
@@ -43,28 +43,17 @@
 #pragma mark - Life Cycle
 /////////////////////////////////////////////////////////////////////////
 
-/** 
- Designated init.  
- Returns object with start/endNote adjusted to 
- fall within the requested range 
- 
- \param scale   Note, MusicalScaleAbstract classes include the scale's key
+/**
+ Designated init. Returns object with start/endNote adjusted to fall within the requested range
+ @{
  */
-- (MusicalNoteSet *)initWithScale:(MusicalScaleAbstract *)scale
++ (instancetype)noteSetWithScale:(MusicalScale *)scale
+             insideRangeFromNote:(MusicalNote *)fromNote
+                          toNote:(MusicalNote *)toNote;
+- (instancetype)initWithScale:(MusicalScale *)scale
               insideRangeFromNote:(MusicalNote *)fromNote 
                            toNote:(MusicalNote *)toNote;
-
-/**
- Alternative init for convenience
- @param aScaleName  Name of scale eg "Dorian"
- @param aKey        String name of key "G#"
- @param fromNote    Min starting note eg "Ab-2".  If note in key then first in-key note AFTER this note will be used
- @param toNote      Max ending note.
- */
-- (MusicalNoteSet *)initWithScaleName:(NSString *)aScaleName
-                       scaleKeyString:(NSString *)aKey
-            insideRangeFromNoteString:(NSString *)fromNote
-                         toNoteString:(NSString *)toNote;
+/** @} */
 
 /** Return a new noteset with the notes augmented shifted by the specified amount of halfsteps.  Changes the key of the underlying scale and the min/max ranges
  */

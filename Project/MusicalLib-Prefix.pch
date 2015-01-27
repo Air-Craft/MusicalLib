@@ -14,4 +14,4 @@
 #endif
 
 
-#define MUSICAL_LIB_DEBUG 1
+#define LOG_MUSICAL_LIB_DATASTORE 0
