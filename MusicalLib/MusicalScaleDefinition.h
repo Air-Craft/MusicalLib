@@ -23,7 +23,7 @@
                     isUser:(BOOL)isUser
             halfstepsArray:(NSArray *)halfstepsArr;
 
-/** YES iff both the ID and the name match exactly. If we need to check whether they represent the same entry, then create a separatemethod checking IDs.  */
+/** YES iff both the ID and the name match exactly. If we need to check whether they represent the same entry, then create a separate method checking IDs.  */
 - (BOOL)isEqual:(id)object;
 
 

@@ -38,7 +38,7 @@ On first call, initialises the JSON data stores creating the folder in the docum
 
 - (NSArray *)allCategories;
 - (NSArray *)scaleDefinitionsForCategory:(MusicalScaleCategory *)scaleCategory;
-
+- (MusicalScaleDefinition *)scaleDefinitionWithID:(NSString *)scaleDefID;
 - (NSArray *)favoriteScaleDefinitions;
 
 - (MusicalScale *)scaleWithID:(NSString *)ID key:(MusicalKey)key;

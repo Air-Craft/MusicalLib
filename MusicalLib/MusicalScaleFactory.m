@@ -165,6 +165,19 @@ static NSString *_FAVORITES_STORE_FILENAME = @"MusicalLib_User";
 
 //---------------------------------------------------------------------
 
+- (MusicalScaleDefinition *)scaleDefinitionWithID:(NSString *)scaleDefID
+{
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"ID LIKE %@", scaleDefID];
+    NSArray *res = [_scaleDefs filteredArrayUsingPredicate:pred];
+    if (!res || res.count == 0) {
+        echo("WARNING: Scale definition not found for ID: %@", scaleDefID);
+        return nil;
+    }
+    return res[0];  // there should be only one
+}
+
+//---------------------------------------------------------------------
+
 - (NSArray *)favoriteScaleDefinitions
 {
     return _favoriteScaleDefs;
@@ -182,7 +195,7 @@ static NSString *_FAVORITES_STORE_FILENAME = @"MusicalLib_User";
 - (MusicalScale *)scaleWithID:(NSString *)ID key:(MusicalKey)key
 {
     // Get the definition
-    MusicalScaleDefinition *scaleDef = [self _scaleDefWithID:ID];
+    MusicalScaleDefinition *scaleDef = [self scaleDefinitionWithID:ID];
     if (!scaleDef) return nil;
         
     return [MusicalScale scaleWithDefinition:scaleDef key:key];
@@ -338,24 +351,11 @@ static NSString *_FAVORITES_STORE_FILENAME = @"MusicalLib_User";
         NSMutableArray *favs = [NSMutableArray array];
         for (NSDictionary *favEntry in json[@"favorites"])
         {
-            [favs addObject:[self _scaleDefWithID:favEntry[@"id"]]];
+            [favs addObject:[self scaleDefinitionWithID:favEntry[@"id"]]];
         }
         _favoriteScaleDefs = [NSArray arrayWithArray:favs];
         echo("...%i favorites loaded", (int)_favoriteScaleDefs.count);
     }
-}
-
-//---------------------------------------------------------------------
-
-- (MusicalScaleDefinition *)_scaleDefWithID:(NSString *)scaleDefID
-{
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"ID LIKE %@", scaleDefID];
-    NSArray *res = [_scaleDefs filteredArrayUsingPredicate:pred];
-    if (!res || res.count == 0) {
-        echo("WARNING: Scale definition not found for ID: %@", scaleDefID);
-        return nil;
-    }
-    return res[0];  // there should be only one
 }
 
 //---------------------------------------------------------------------
