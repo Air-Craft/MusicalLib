@@ -103,9 +103,9 @@ static NSString *_FAVORITES_STORE_FILENAME = @"MusicalLib_User";
         echo("...Loading built-in scale JSON data...");
         
         NSURL *scaleDefsURL = [[NSBundle mainBundle] URLForResource:@"MusicalScaleData" withExtension:@"json"];
-        NSParameterAssert(scaleDefsURL);
+        NSAssert(scaleDefsURL, @"Could not find MusicalScaleData.json in bundle!");
         NSData *jsonData = [NSData dataWithContentsOfURL:scaleDefsURL];
-        NSParameterAssert(jsonData);
+        NSAssert(jsonData, @"Could not load MusicalScaleData.json!");
         NSError *err;
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&err];
         if (err) {
@@ -255,7 +255,7 @@ static NSString *_FAVORITES_STORE_FILENAME = @"MusicalLib_User";
     [_favoriteScaleDefs enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         [favEntries addObject:@{@"id": [obj ID]}];
     }];
-    NSDictionary *favsJSON = @{ @"favorites": favEntries }
+    NSDictionary *favsJSON = @{ @"favorites": favEntries };
     
     // Save JSON file
     echo("...saving data to persistent store.");

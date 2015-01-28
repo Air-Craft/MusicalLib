@@ -49,14 +49,12 @@
 /////////////////////////////////////////////////////////////////////////
 
 /**
- Public convenience methods for getting a note in the current
- key/scale closest to a given note.  
- 
- See private _nearestInKeyNoteForNote:above for more.
+ Methods for getting a note in the current key/scale closest to a given note.
  @{
  */
 - (MusicalNote *)nearestInKeyNoteGreaterThanOrEqualTo:(MusicalNote *)aNote;
 - (MusicalNote *)nearestInKeyNoteLessThanOrEqualTo:(MusicalNote *)aNote;
+- (MusicalNote *)nearestInKeyNoteForNote:(MusicalNote *)theNote above:(BOOL)above;
 /// @}
 
 /** Checks up and down and returns the closer or the higher if tie  */

@@ -226,6 +226,25 @@
     }
 }
 
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Key/Interval Functions
+/////////////////////////////////////////////////////////////////////////
+
+- (void)testMusicalKeyFunctions
+{
+    XCTAssertEqual(MusicalFlatVersionOfKey(kMusicalKeyAb), kMusicalKeyAb);
+    XCTAssertEqual(MusicalFlatVersionOfKey(kMusicalKeyAs), kMusicalKeyBb);
+    XCTAssertEqual(MusicalFlatVersionOfKey(kMusicalKeyD), kMusicalKeyD);
+    
+    XCTAssertEqual(MusicalSharpVersionOfKey(kMusicalKeyAs), kMusicalKeyAs);
+    XCTAssertEqual(MusicalSharpVersionOfKey(kMusicalKeyAb), kMusicalKeyGs);
+    XCTAssertEqual(MusicalSharpVersionOfKey(kMusicalKeyF), kMusicalKeyF);
+    
+    XCTAssertTrue(MusicalKeyIsNatural(kMusicalKeyF));
+    XCTAssertFalse(MusicalKeyIsNatural(kMusicalKeyFs));
+    XCTAssertFalse(MusicalKeyIsNatural(kMusicalKeyAb));
+}
+
 
 
 @end

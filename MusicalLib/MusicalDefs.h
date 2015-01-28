@@ -6,6 +6,14 @@
 #ifndef MusicalDefs_h
 #define MusicalDefs_h
 
+#import <Foundation/Foundation.h>
+@class MusicalScale;
+
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Types
 /////////////////////////////////////////////////////////////////////////
@@ -91,6 +99,7 @@ typedef enum {
 #pragma mark - Functions
 /////////////////////////////////////////////////////////////////////////
 
+
 /**
  Convert NSStrings like C# and Bb to the MusicalKey enum type.  Proper case only!
  */
@@ -116,5 +125,11 @@ MusicalKey MusicalSharpVersionOfKey(MusicalKey key);
 /** YES if note is not a sharp or flat note */
 BOOL MusicalKeyIsNatural(MusicalKey key);
 
+    
+#ifdef __cplusplus
+}
+#endif
+
+    
 
 #endif

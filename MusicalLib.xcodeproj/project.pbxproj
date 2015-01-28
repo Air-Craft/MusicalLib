@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A62205D91A79860B00321EE7 /* MusicalLibStatic.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = A62205D81A79860B00321EE7 /* MusicalLibStatic.h */; };
+		A62205DB1A79860B00321EE7 /* MusicalLibStatic.m in Sources */ = {isa = PBXBuildFile; fileRef = A62205DA1A79860B00321EE7 /* MusicalLibStatic.m */; };
+		A62205F51A79876400321EE7 /* MusicalDefs.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D585871A780BEA000FE587 /* MusicalDefs.m */; };
+		A62205F61A79876400321EE7 /* MusicalLibException.m in Sources */ = {isa = PBXBuildFile; fileRef = A67B472F1A76DE890050EBDA /* MusicalLibException.m */; };
+		A62205F71A79876400321EE7 /* MusicalNote.m in Sources */ = {isa = PBXBuildFile; fileRef = A67B47041A7690070050EBDA /* MusicalNote.m */; };
+		A62205F81A79876400321EE7 /* MusicalScaleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = A67B47141A7694EF0050EBDA /* MusicalScaleFactory.m */; };
+		A62205F91A79876400321EE7 /* MusicalScaleDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = A67B472C1A76AD560050EBDA /* MusicalScaleDefinition.m */; };
+		A62205FA1A79876400321EE7 /* MusicalScaleCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = A67B47321A76E95D0050EBDA /* MusicalScaleCategory.m */; };
+		A62205FB1A79876400321EE7 /* MusicalScale.m in Sources */ = {isa = PBXBuildFile; fileRef = A67B47091A7690070050EBDA /* MusicalScale.m */; };
+		A62205FC1A79876400321EE7 /* MusicalNoteSet.m in Sources */ = {isa = PBXBuildFile; fileRef = A67B47061A7690070050EBDA /* MusicalNoteSet.m */; };
 		A67B470B1A7690070050EBDA /* MusicalNote.m in Sources */ = {isa = PBXBuildFile; fileRef = A67B47041A7690070050EBDA /* MusicalNote.m */; };
 		A67B470C1A7690070050EBDA /* MusicalNoteSet.m in Sources */ = {isa = PBXBuildFile; fileRef = A67B47061A7690070050EBDA /* MusicalNoteSet.m */; };
 		A67B470D1A7690070050EBDA /* MusicalScale.m in Sources */ = {isa = PBXBuildFile; fileRef = A67B47091A7690070050EBDA /* MusicalScale.m */; };
@@ -37,7 +47,24 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		A62205D41A79860B00321EE7 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				A62205D91A79860B00321EE7 /* MusicalLibStatic.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		A62205D61A79860B00321EE7 /* libMusicalLibStatic.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMusicalLibStatic.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A62205D81A79860B00321EE7 /* MusicalLibStatic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicalLibStatic.h; sourceTree = "<group>"; };
+		A62205DA1A79860B00321EE7 /* MusicalLibStatic.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicalLibStatic.m; sourceTree = "<group>"; };
+		A62205E61A79860B00321EE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A67B47011A7690070050EBDA /* MusicalDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicalDefs.h; sourceTree = "<group>"; };
 		A67B47021A7690070050EBDA /* MusicalLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicalLib.h; sourceTree = "<group>"; };
 		A67B47031A7690070050EBDA /* MusicalNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicalNote.h; sourceTree = "<group>"; };
@@ -74,6 +101,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A62205D31A79860B00321EE7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CEDFB97D14D968FE00D3CC9D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -95,6 +129,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A62205D71A79860B00321EE7 /* MusicalLibStatic */ = {
+			isa = PBXGroup;
+			children = (
+				A62205D81A79860B00321EE7 /* MusicalLibStatic.h */,
+				A62205DA1A79860B00321EE7 /* MusicalLibStatic.m */,
+			);
+			path = MusicalLibStatic;
+			sourceTree = "<group>";
+		};
+		A62205E41A79860B00321EE7 /* MusicalLibStaticTests */ = {
+			isa = PBXGroup;
+			children = (
+				A62205E51A79860B00321EE7 /* Supporting Files */,
+			);
+			path = MusicalLibStaticTests;
+			sourceTree = "<group>";
+		};
+		A62205E51A79860B00321EE7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A62205E61A79860B00321EE7 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		A67B46FF1A7690070050EBDA /* MusicalLib */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +185,8 @@
 				A67B46FF1A7690070050EBDA /* MusicalLib */,
 				CEDFB9B314D96B1000D3CC9D /* Project */,
 				CEDFB9BF14D96B1800D3CC9D /* Tests */,
+				A62205D71A79860B00321EE7 /* MusicalLibStatic */,
+				A62205E41A79860B00321EE7 /* MusicalLibStaticTests */,
 				CEDFB98314D968FE00D3CC9D /* Frameworks */,
 				CEDFB98114D968FE00D3CC9D /* Products */,
 			);
@@ -136,6 +197,7 @@
 			children = (
 				CEDFB98014D968FE00D3CC9D /* MusicalLib.app */,
 				CEDFB99B14D968FF00D3CC9D /* MusicalLibTests.xctest */,
+				A62205D61A79860B00321EE7 /* libMusicalLibStatic.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -177,6 +239,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		A62205D51A79860B00321EE7 /* MusicalLibStatic */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A62205EB1A79860B00321EE7 /* Build configuration list for PBXNativeTarget "MusicalLibStatic" */;
+			buildPhases = (
+				A62205D21A79860B00321EE7 /* Sources */,
+				A62205D31A79860B00321EE7 /* Frameworks */,
+				A62205D41A79860B00321EE7 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MusicalLibStatic;
+			productName = MusicalLibStatic;
+			productReference = A62205D61A79860B00321EE7 /* libMusicalLibStatic.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		CEDFB97F14D968FE00D3CC9D /* MusicalLib */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CEDFB9AD14D968FF00D3CC9D /* Build configuration list for PBXNativeTarget "MusicalLib" */;
@@ -221,6 +300,11 @@
 			attributes = {
 				LastTestingUpgradeCheck = 0610;
 				LastUpgradeCheck = 0610;
+				TargetAttributes = {
+					A62205D51A79860B00321EE7 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
 			};
 			buildConfigurationList = CEDFB97A14D968FE00D3CC9D /* Build configuration list for PBXProject "MusicalLib" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -236,6 +320,7 @@
 			targets = (
 				CEDFB97F14D968FE00D3CC9D /* MusicalLib */,
 				CEDFB99A14D968FF00D3CC9D /* MusicalLibTests */,
+				A62205D51A79860B00321EE7 /* MusicalLibStatic */,
 			);
 		};
 /* End PBXProject section */
@@ -277,6 +362,22 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A62205D21A79860B00321EE7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A62205F71A79876400321EE7 /* MusicalNote.m in Sources */,
+				A62205F61A79876400321EE7 /* MusicalLibException.m in Sources */,
+				A62205FA1A79876400321EE7 /* MusicalScaleCategory.m in Sources */,
+				A62205F51A79876400321EE7 /* MusicalDefs.m in Sources */,
+				A62205FC1A79876400321EE7 /* MusicalNoteSet.m in Sources */,
+				A62205F81A79876400321EE7 /* MusicalScaleFactory.m in Sources */,
+				A62205F91A79876400321EE7 /* MusicalScaleDefinition.m in Sources */,
+				A62205DB1A79860B00321EE7 /* MusicalLibStatic.m in Sources */,
+				A62205FB1A79876400321EE7 /* MusicalScale.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CEDFB97C14D968FE00D3CC9D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -332,6 +433,47 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		A62205E71A79860B00321EE7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		A62205E81A79860B00321EE7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		CEDFB9AB14D968FF00D3CC9D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -464,6 +606,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A62205EB1A79860B00321EE7 /* Build configuration list for PBXNativeTarget "MusicalLibStatic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A62205E71A79860B00321EE7 /* Debug */,
+				A62205E81A79860B00321EE7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		CEDFB97A14D968FE00D3CC9D /* Build configuration list for PBXProject "MusicalLib" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

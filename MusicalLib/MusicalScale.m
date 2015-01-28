@@ -64,7 +64,7 @@
 
 - (MusicalNote *)nearestInKeyNoteGreaterThanOrEqualTo:(MusicalNote *)aNote
 {
-    return [self _nearestInKeyNoteForNote:aNote above:YES];
+    return [self nearestInKeyNoteForNote:aNote above:YES];
 }
 
 //---------------------------------------------------------------------
@@ -72,7 +72,55 @@
 
 - (MusicalNote *)nearestInKeyNoteLessThanOrEqualTo:(MusicalNote *)aNote
 {
-    return [self _nearestInKeyNoteForNote:aNote above:NO];
+    return [self nearestInKeyNoteForNote:aNote above:NO];
+}
+
+//---------------------------------------------------------------------
+
+- (MusicalNote *)nearestInKeyNoteForNote:(MusicalNote *)theNote above:(BOOL)above
+{
+    MusicalNote *note, *baseNote, *loopStartNote, *prevNote;
+    
+    //    NSArray *scaleDefArr = [[self class] getScaleDefArray];
+    NSUInteger const halfstepsArrCnt = _scaleDefinition.halfstepsArr.count;
+    NSUInteger const octavesCoveredByDef = floor([_scaleDefinition.halfstepsArr.lastObject integerValue] / 12) + 1;
+    
+    // Get the basis to which we add halfsteps to get the scale notes
+    baseNote = [[MusicalNote alloc] initWithKey:_key octave:theNote.octave];
+    
+    // Scale the loop start note to the first interval value (as it may not be 0 for scales that dont start on the root note)
+    loopStartNote = [MusicalNote noteFromAddingHalfsteps:[_scaleDefinition.halfstepsArr[0] integerValue] toNote:baseNote];
+    
+    // Now get the nearest octave thats below our test Note
+    // Even if they are equal, go one octave lower so we can grab the note *below* if
+    // requested
+    while ([loopStartNote toInteger] >= [theNote toInteger]) {
+        loopStartNote = [loopStartNote noteWithNewOctave:loopStartNote.octave - octavesCoveredByDef];
+    }
+    
+    // Loop through and find point at which we find or cross over (or match) the test note
+    NSUInteger i = 1;
+    NSInteger theNoteVal = [theNote toInteger];    // save some calculations
+    NSInteger octaveAdd = 0;
+    note = [loopStartNote copy];
+    do {
+        prevNote = note;
+        note = [MusicalNote noteFromAddingHalfsteps:[_scaleDefinition.halfstepsArr[i] integerValue]+octaveAdd toNote:loopStartNote];
+        
+        // loop around our scale definition array
+        if (++i >= halfstepsArrCnt) {
+            i = 0;
+            octaveAdd += (12 * octavesCoveredByDef);    // it could be a multi-octave scale
+        }
+    } while ([note toInteger] < theNoteVal);
+    
+    // Check for an exact match first
+    if ([note toInteger] == theNoteVal) {
+        return note;
+    }
+    
+    // Otherwise prev < theNote < note.  Return the one appropriate for our request...
+    return above ? note : prevNote;
 }
 
 //---------------------------------------------------------------------
@@ -175,7 +223,7 @@
     
     // If the reference is not in the scale then snap to the previous scale note (or next note note if relPos is negative)
     if (idx == NSNotFound) {
-        referenceNote = [self _nearestInKeyNoteForNote:referenceNote above:(relPosition > 0)];
+        referenceNote = [self nearestInKeyNoteForNote:referenceNote above:(relPosition > 0)];
         idx = [self _halfstepDefinitionIndexForKey:referenceNote.key];
         NSAssert(idx != NSNotFound, @"Shouldn't be (MSA:nwsp)");
     }
@@ -214,54 +262,6 @@
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Additional Privates
 /////////////////////////////////////////////////////////////////////////
-
-- (MusicalNote *)_nearestInKeyNoteForNote:(MusicalNote *)theNote above:(BOOL)above
-{
-    MusicalNote *note, *baseNote, *loopStartNote, *prevNote;
-    
-    //    NSArray *scaleDefArr = [[self class] getScaleDefArray];
-    NSUInteger const halfstepsArrCnt = _scaleDefinition.halfstepsArr.count;
-    NSUInteger const octavesCoveredByDef = floor([_scaleDefinition.halfstepsArr.lastObject integerValue] / 12) + 1;
-    
-    // Get the basis to which we add halfsteps to get the scale notes
-    baseNote = [[MusicalNote alloc] initWithKey:_key octave:theNote.octave];
-    
-    // Scale the loop start note to the first interval value (as it may not be 0 for scales that dont start on the root note)
-    loopStartNote = [MusicalNote noteFromAddingHalfsteps:[_scaleDefinition.halfstepsArr[0] integerValue] toNote:baseNote];
-    
-    // Now get the nearest octave thats below our test Note
-    // Even if they are equal, go one octave lower so we can grab the note *below* if
-    // requested
-    while ([loopStartNote toInteger] >= [theNote toInteger]) {
-        loopStartNote = [loopStartNote noteWithNewOctave:loopStartNote.octave - octavesCoveredByDef];
-    }
-    
-    // Loop through and find point at which we find or cross over (or match) the test note
-    NSUInteger i = 1;
-    NSInteger theNoteVal = [theNote toInteger];    // save some calculations
-    NSInteger octaveAdd = 0;
-    note = [loopStartNote copy];
-    do {
-        prevNote = note;
-        note = [MusicalNote noteFromAddingHalfsteps:[_scaleDefinition.halfstepsArr[i] integerValue]+octaveAdd toNote:loopStartNote];
-        
-        // loop around our scale definition array
-        if (++i >= halfstepsArrCnt) {
-            i = 0;
-            octaveAdd += (12 * octavesCoveredByDef);    // it could be a multi-octave scale 
-        }
-    } while ([note toInteger] < theNoteVal);   
-
-    // Check for an exact match first
-    if ([note toInteger] == theNoteVal) {
-        return note;
-    }
-    
-    // Otherwise prev < theNote < note.  Return the one appropriate for our request...
-    return above ? note : prevNote;
-}
-
-//---------------------------------------------------------------------
 
 - (NSUInteger)_halfstepDefinitionIndexForKey:(MusicalKey)theKey
 {
