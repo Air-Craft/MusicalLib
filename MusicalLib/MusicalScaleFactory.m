@@ -185,6 +185,13 @@ static NSString *_FAVORITES_STORE_FILENAME = @"MusicalLib_User";
 
 //---------------------------------------------------------------------
 
+- (BOOL)isFavorite:(MusicalScaleDefinition *)scaleDefinition
+{
+    return [self.favoriteScaleDefinitions containsObject:scaleDefinition];
+}
+
+//---------------------------------------------------------------------
+
 - (MusicalScale *)scaleWithID:(NSString *)ID keyStr:(NSString *)keyStr
 {
     return [self scaleWithID:ID key:MusicalKeyFromString(keyStr)];

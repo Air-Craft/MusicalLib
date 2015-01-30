@@ -25,9 +25,11 @@
 - (instancetype)initWithScaleDefinition:(MusicalScaleDefinition *)scaleDef key:(MusicalKey)key;
 
 
-/** Make a copy of the scale with a new */
-- (instancetype)copyWithNewKey:(MusicalKey)newKey;
+/** Make a copy of the scale with a new key */
+- (instancetype)scaleWithNewKey:(MusicalKey)newKey;
 
+/** Make a copy of the scale with a new definition (e.g Minor) and the same key */
+- (instancetype)scaleWithNewDefinition:(MusicalScaleDefinition *)newScaleDefinition;
 
 
 /////////////////////////////////////////////////////////////////////////

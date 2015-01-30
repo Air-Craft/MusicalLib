@@ -37,9 +37,16 @@
 
 //---------------------------------------------------------------------
 
-- (instancetype)copyWithNewKey:(MusicalKey)newKey
+- (instancetype)scaleWithNewKey:(MusicalKey)newKey
 {
     return [self.class scaleWithDefinition:self.scaleDefinition key:newKey];
+}
+
+//---------------------------------------------------------------------
+
+- (instancetype)scaleWithNewDefinition:(MusicalScaleDefinition *)newScaleDefinition
+{
+    return [self.class scaleWithDefinition:newScaleDefinition key:self.key];
 }
 
 //---------------------------------------------------------------------

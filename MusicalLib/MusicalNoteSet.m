@@ -57,7 +57,7 @@
     
     // The key is just the
     MusicalKey newKey = MusicalKeyShiftedByHalfsteps(self.scale.key, halfsteps);
-    MusicalScale *newScale = [self.scale copyWithNewKey:newKey];
+    MusicalScale *newScale = [self.scale scaleWithNewKey:newKey];
     
     
     // Now build the new set
