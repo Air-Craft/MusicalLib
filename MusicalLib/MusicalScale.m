@@ -51,12 +51,17 @@
 
 //---------------------------------------------------------------------
 
-- (NSString *)description
+- (NSString *)debugDescription
 {
-    return [NSString stringWithFormat:@"<%@ (%p): scaleDef=%@, key=%@", NSStringFromClass(self.class), &self, _scaleDefinition.ID, MusicalKeyToString(_key)];
+    return [NSString stringWithFormat:@"<%@ (%p): scaleDef=%@, key=%@", NSStringFromClass(self.class), self, _scaleDefinition.ID, MusicalKeyToString(_key)];
 }
 
+//---------------------------------------------------------------------
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"<%@, %@>", MusicalKeyToString(_key), _scaleDefinition.name];
+}
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Properties

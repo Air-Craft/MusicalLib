@@ -23,14 +23,11 @@
 #pragma mark - Defs & Consts
 /////////////////////////////////////////////////////////////////////////
 
-/** Name of the bundle file which has the scale data. Assumes a "json" extension */
-static const NSString *_BUNDLE_FILE_NAME = @"MusicalScaleData";
-
 /** The default name of the subfolder to create/use in the Docs folder for persistent data. Overrideable by the API */
 static NSString *_DATASTORE_SUBFOLDER = @"MusicalLib";
 
 /** Default name JSON filename for above */
-static NSString *_FAVORITES_STORE_FILENAME = @"MusicalLib_User";
+static NSString *_FAVORITES_STORE_FILENAME = @"MusicalLib_User.json";
 
 
 

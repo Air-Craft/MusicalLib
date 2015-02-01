@@ -32,9 +32,16 @@
 
 //---------------------------------------------------------------------
 
+- (NSString *)debugDescription
+{
+    return [NSString stringWithFormat:@"<%@ (%p): ID=%@, name=%@, categs=%@, halfsteps=[%@]", NSStringFromClass(self.class), self, _ID, _name, [_categories componentsJoinedByString:@", "], [_halfstepsArr componentsJoinedByString:@", "]];
+}
+
+//---------------------------------------------------------------------
+
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@ (%p): ID=%@, name=%@, categs=%@, halfsteps=[%@]", NSStringFromClass(self.class), &self, _ID, _name, [_categories componentsJoinedByString:@", "], [_halfstepsArr componentsJoinedByString:@", "]];
+    return [NSString stringWithFormat:@"%@", _name];
 }
 
 //---------------------------------------------------------------------
