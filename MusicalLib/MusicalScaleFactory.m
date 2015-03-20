@@ -10,14 +10,14 @@
 
 #import "MusicalLibException.h"
 
-
-#if defined(DEBUG) && (!defined(LOG_MUSICAL_LIB_DATASTORE) || LOG_MUSICAL_LIB_DATASTORE)
-#   undef echo
-#	define echo(fmt, ...) NSLog((@"[MUSICAL_LIB_DATASTORE] " fmt), ##__VA_ARGS__);
+#undef echo
+#if DEBUG && (!defined(LOG_MUSICAL_LIB_DATASTORE) || LOG_MUSICAL_LIB_DATASTORE)
+#   define echo(fmt, ...) NSLog((@"[MUSICAL_LIB_DATASTORE] " fmt), ##__VA_ARGS__);
 #else
-#   undef echo
 #   define echo(...)
 #endif
+#undef warn
+#define warn(fmt, ...) NSLog((@"[MUSICAL_LIB_DATASTORE] WARNING: " fmt), ##__VA_ARGS__);
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Defs & Consts
@@ -167,7 +167,7 @@ static NSString *_FAVORITES_STORE_FILENAME = @"MusicalLib_User.json";
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"ID LIKE %@", scaleDefID];
     NSArray *res = [_scaleDefs filteredArrayUsingPredicate:pred];
     if (!res || res.count == 0) {
-        echo("WARNING: Scale definition not found for ID: %@", scaleDefID);
+        warn("Scale definition not found for ID: %@", scaleDefID);
         return nil;
     }
     return res[0];  // there should be only one
